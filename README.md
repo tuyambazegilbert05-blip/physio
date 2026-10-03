@@ -35,3 +35,4 @@ Email/password registration uses Supabase Auth. Authentication email delivery us
 
 Financial operations are persisted in PostgreSQL. Group access is constrained by RLS, and balances include verified contributions, repayments, outstanding loans, and the configured group reserve. Read [database setup](database/README.md), [development instructions](docs/deployment/development.md), and [motion guidelines](docs/architecture/motion-system.md) before extending those areas.
 # physio
+# physio
