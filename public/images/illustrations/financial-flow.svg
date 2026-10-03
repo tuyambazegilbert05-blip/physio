@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 300" role="img" aria-labelledby="title desc">
+  <title id="title">How a savings group works</title>
+  <desc id="desc">Member contributions are recorded in the group ledger, then support savings and loans.</desc>
+  <g fill="none" stroke="#bdc9e6" stroke-width="5" stroke-linecap="round"><path d="M133 150h126m114 0h126m114 0h20"/><path d="m247 137 15 13-15 13m228-26 15 13-15 13m148-26 15 13-15 13"/></g>
+  <g><rect x="24" y="85" width="128" height="130" rx="22" fill="#eef2ff"/><rect x="254" y="85" width="128" height="130" rx="22" fill="#fff" stroke="#dce3f0" stroke-width="3"/><rect x="484" y="85" width="128" height="130" rx="22" fill="#eaf8f1"/><rect x="630" y="85" width="106" height="130" rx="22" fill="#fff4e2"/></g>
+  <g fill="#17275a"><circle cx="88" cy="126" r="15"/><path d="M57 174c4-20 15-30 31-30s27 10 31 30" stroke="#4768d9" stroke-width="9" stroke-linecap="round"/><path d="M290 127h57m-57 21h57m-57 21h39" stroke="#4768d9" stroke-width="8" stroke-linecap="round"/><path d="M528 160h40m-32-15 16-17 16 17" fill="none" stroke="#1f9a67" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/><path d="M663 169h40m-32-17h25m-18-18h11" stroke="#c88823" stroke-width="8" stroke-linecap="round"/></g>
+  <g fill="#52617d" font-family="Arial, sans-serif" font-size="15" font-weight="600" text-anchor="middle"><text x="88" y="245">Members</text><text x="318" y="245">Shared ledger</text><text x="548" y="245">Group savings</text><text x="683" y="245">Loans</text></g>
+</svg>

@@ -1,0 +1,2 @@
+export type LoanStatus = 'pending' | 'approved' | 'rejected' | 'active' | 'repaid' | 'defaulted'
+export type Loan = { id: string; group_id: string; member_id: string; cycle_id: string | null; principal: number; outstanding_amount: number; outstanding_interest: number; interest_rate: number; term_months: number; purpose: string; status: LoanStatus; is_draft: boolean; is_own?: boolean; rejection_reason: string | null; disbursement_reference: string | null; disbursed_at: string | null; approved_by: string | null; due_date: string | null; created_at: string; updated_at: string }

@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 520" role="img" aria-labelledby="title desc">
+  <title id="title">Connected savings community</title>
+  <desc id="desc">A shared ledger connects six members through a savings group.</desc>
+  <defs><linearGradient id="paper" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#fff"/><stop offset="1" stop-color="#eef2ff"/></linearGradient><filter id="shadow" x="-.2" y="-.2" width="1.4" height="1.4"><feDropShadow dx="0" dy="12" stdDeviation="14" flood-color="#17275a" flood-opacity=".12"/></filter></defs>
+  <rect x="22" y="20" width="676" height="480" rx="38" fill="url(#paper)"/>
+  <g stroke="#bdc9e6" stroke-width="7" stroke-linecap="round"><path d="m195 133 154 77m176-74-155 74m-176 62 154-53m177 53-155-53m-176 164 154-96m177 96-155-96"/></g>
+  <g filter="url(#shadow)"><rect x="276" y="182" width="168" height="166" rx="26" fill="#fff"/><path d="M313 239h94m-94 30h70m-70 30h47" stroke="#bdc9e6" stroke-width="9" stroke-linecap="round"/><rect x="313" y="205" width="94" height="13" rx="6" fill="#4768d9"/></g>
+  <g fill="#fff" stroke="#dce5f4" stroke-width="5"><circle cx="166" cy="118" r="46"/><circle cx="554" cy="112" r="46"/><circle cx="154" cy="252" r="46"/><circle cx="566" cy="252" r="46"/><circle cx="206" cy="415" r="46"/><circle cx="514" cy="415" r="46"/></g>
+  <g fill="#4768d9"><circle cx="166" cy="118" r="18"/><circle cx="554" cy="112" r="18"/><circle cx="154" cy="252" r="18"/><circle cx="566" cy="252" r="18"/><circle cx="206" cy="415" r="18"/><circle cx="514" cy="415" r="18"/></g>
+  <circle cx="360" cy="265" r="14" fill="#1f9a67"/>
+</svg>

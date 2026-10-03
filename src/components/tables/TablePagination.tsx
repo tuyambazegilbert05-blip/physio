@@ -1,0 +1,3 @@
+export function TablePagination({ page, pages, onPageChange }: { page: number; pages: number; onPageChange: (page: number) => void }) {
+  return <nav aria-label="Table pages" className="flex items-center justify-between py-3 text-sm"><span className="text-slate-500">Page {page} of {Math.max(1, pages)}</span><div className="flex gap-2"><button type="button" disabled={page <= 1} onClick={() => onPageChange(page - 1)} className="rounded border px-3 py-1.5 disabled:opacity-40">Previous</button><button type="button" disabled={page >= pages} onClick={() => onPageChange(page + 1)} className="rounded border px-3 py-1.5 disabled:opacity-40">Next</button></div></nav>
+}

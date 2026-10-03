@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 220" role="img" aria-labelledby="title desc">
+  <title id="title">An open savings ledger</title>
+  <desc id="desc">An open book with an empty contribution chart, ready for the group's first record.</desc>
+  <path d="M40 165V72c40-16 80-11 120 8v103c-40-19-80-24-120-18Zm240 0V72c-40-16-80-11-120 8v103c40-19 80-24 120-18Z" fill="#fff" stroke="#cbd5e7" stroke-width="5" stroke-linejoin="round"/>
+  <path d="M69 101h58m-58 23h58m66-23h58m-58 23h58" stroke="#dce3f0" stroke-width="7" stroke-linecap="round"/>
+  <path d="M93 157v-14m22 14v-27m22 27v-20m68 20v-22m22 22v-34m22 34v-17" stroke="#4768d9" stroke-width="9" stroke-linecap="round"/>
+  <circle cx="160" cy="48" r="23" fill="#eaf8f1"/><path d="M160 36v24m-8-8 8 8 8-8" fill="none" stroke="#1f9a67" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>

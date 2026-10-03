@@ -1,0 +1,39 @@
+:root {
+  color-scheme: light;
+  --background: #f5f7fb;
+  --foreground: #172033;
+  --muted: #657089;
+  --line: #e4e8f0;
+  --navy: #17275a;
+  --blue: #4768d9;
+  --soft-blue: #eef2ff;
+  --green: #1f9a67;
+  --amber: #c88823;
+  --red: #d05252;
+  --panel: #fff;
+
+  /* Phyaio Cycle Design System Colors */
+  --cobalt: #2437F5;
+  --violet: #7B3FF2;
+  --cyan: #1FB8F0;
+  --mint: #2DE1B9;
+  --navy-ink: #081233;
+  --cloud: #F2F5FB;
+
+  /* Typography */
+  --font-sora: 'Sora', system-ui, -apple-system, sans-serif;
+  --font-manrope: 'Manrope', system-ui, -apple-system, sans-serif;
+
+  --motion-duration-fast: 140ms;
+  --motion-duration-normal: 240ms;
+  --motion-duration-slow: 380ms;
+
+  --motion-ease-standard: cubic-bezier(0.2, 0, 0, 1);
+  --motion-ease-emphasized: cubic-bezier(0.2, 0, 0, 1.15);
+  --motion-ease-enter: cubic-bezier(0, 0, 0.2, 1);
+  --motion-ease-exit: cubic-bezier(0.4, 0, 1, 1);
+
+  --motion-stagger-small: 40ms;
+  --motion-stagger-medium: 70ms;
+  --motion-stagger-large: 110ms;
+}

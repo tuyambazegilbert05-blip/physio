@@ -1,0 +1,10 @@
+node_modules
+.next
+pnpm-lock.yaml
+database/migrations/**
+public/icons/*.png
+public/icons/*.ico
+pnpm-lock.yaml
+public/**/*.png
+public/**/*.jpg
+src/assets/lottie/*.json

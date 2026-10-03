@@ -1,0 +1,169 @@
+.screen {
+  display: grid;
+  width: 100%;
+  min-height: 100vh;
+  min-height: 100dvh;
+  align-content: center;
+  justify-items: center;
+  gap: 12px;
+  overflow: hidden;
+  padding: 32px 24px;
+  background: radial-gradient(circle at 50% 44%, #ffffff 0%, var(--background) 62%, #edf1f9 100%);
+  color: var(--foreground);
+  text-align: center;
+}
+
+.inline {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  color: var(--muted);
+  vertical-align: middle;
+}
+
+.mark {
+  position: relative;
+  display: grid;
+  width: 72px;
+  height: 72px;
+  place-items: center;
+  isolation: isolate;
+}
+
+.halo {
+  position: absolute;
+  z-index: -1;
+  inset: 4px;
+  border: 1px solid rgb(71 104 217 / 30%);
+  border-radius: 22px;
+  animation: halo-pulse 2.2s ease-out infinite;
+}
+
+.logo {
+  display: block;
+  width: 58px;
+  height: 58px;
+  object-fit: contain;
+  animation: logo-breathe 1.8s ease-in-out infinite;
+}
+
+.logoAssemble {
+  animation: logo-assemble 4s cubic-bezier(0.2, 0.75, 0.25, 1) both;
+}
+
+.logoStill {
+  animation: none;
+}
+
+.wordmark {
+  margin-top: 4px;
+  color: var(--navy);
+  font-size: 20px;
+  font-weight: 700;
+  letter-spacing: 0.01em;
+}
+
+.message {
+  color: var(--muted);
+  font-size: 14px;
+}
+
+.inline .mark {
+  width: 30px;
+  height: 30px;
+}
+
+.screen .mark {
+  width: 220px;
+  height: 220px;
+}
+
+.screen .halo {
+  inset: 5%;
+  border-color: rgb(71 104 217 / 24%);
+  border-radius: 50%;
+  box-shadow: 0 0 72px rgb(71 104 217 / 14%);
+}
+
+.screen .logo {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.screen .wordmark {
+  margin-top: 0;
+  font-size: clamp(23px, 3vw, 30px);
+}
+
+.screen .message {
+  font-size: 15px;
+}
+
+.inline .halo {
+  inset: 1px;
+  border-radius: 10px;
+}
+
+.inline .logo {
+  width: 25px;
+  height: 25px;
+}
+
+.inline .message {
+  font-size: 13px;
+}
+
+@keyframes halo-pulse {
+  0% {
+    opacity: 0.75;
+    transform: scale(0.88);
+  }
+
+  75%,
+  100% {
+    opacity: 0;
+    transform: scale(1.12);
+  }
+}
+
+@keyframes logo-breathe {
+  50% {
+    transform: scale(0.94);
+  }
+}
+
+@keyframes logo-assemble {
+  0% {
+    opacity: 0;
+    transform: scale(0.72) rotate(-12deg);
+    filter: blur(8px);
+  }
+
+  65% {
+    opacity: 1;
+    transform: scale(1.04) rotate(2deg);
+    filter: blur(0);
+  }
+
+  100% {
+    opacity: 1;
+    transform: scale(1) rotate(0);
+    filter: blur(0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .halo,
+  .logo,
+  .logoAssemble {
+    animation: none;
+  }
+}
+
+@media (max-width: 520px) {
+  .screen .mark {
+    width: min(72vw, 280px);
+    height: min(72vw, 280px);
+  }
+}
