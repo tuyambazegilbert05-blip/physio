@@ -27,7 +27,7 @@ export type EmailSendResult =
 function getEmailConfig() {
   const apiKey = process.env.BREVO_API_KEY
   const senderEmail = process.env.BREVO_SENDER_EMAIL
-  const senderName = process.env.BREVO_SENDER_NAME || 'Phyaio Cycle'
+  const senderName = process.env.BREVO_SENDER_NAME || 'Physio Fund Cycle'
 
   return { apiKey, senderEmail, senderName }
 }
@@ -125,7 +125,7 @@ function createBrandedEmailTemplate({
             <tr>
               <td align="center" style="padding-bottom:28px;">
                 <div style="font-size:22px;font-weight:800;letter-spacing:-0.5px;color:#081233;">
-                  phyaio cycle
+                  physio fund cycle
                 </div>
                 <div style="font-size:12px;font-weight:600;color:#657089;text-transform:uppercase;letter-spacing:1px;margin-top:4px;">
                   Group Savings Platform
@@ -165,13 +165,13 @@ function createBrandedEmailTemplate({
             <tr>
               <td align="center" style="padding-top:28px;color:#94A3B8;font-size:12px;line-height:1.7;">
                 <p style="margin:0 0 8px;">
-                  Secured with 256-bit encryption. Automated communications from Phyaio Cycle.
+                  Secured with 256-bit encryption. Automated communications from Physio Fund Cycle.
                 </p>
                 <a href="${siteUrl}/dashboard" style="color:#2437F5;text-decoration:none;font-weight:600;">Go to Dashboard</a>
                 <span style="padding:0 8px;">•</span>
                 <a href="${siteUrl}/dashboard/settings" style="color:#2437F5;text-decoration:none;font-weight:600;">Notification Settings</a>
                 <p style="margin:12px 0 0;font-size:11px;">
-                  © ${new Date().getFullYear()} Phyaio Cycle. All rights reserved.
+                  © ${new Date().getFullYear()} Physio Fund Cycle. All rights reserved.
                 </p>
               </td>
             </tr>
@@ -226,7 +226,7 @@ export async function sendNotificationEmail({
 
   return sendTransactionalEmail({
     to: [{ email: toEmail, name: toName }],
-    subject: `[Phyaio Cycle] ${title}`,
+    subject: `[Physio Fund Cycle] ${title}`,
     htmlContent,
     textContent: `${title}\n\n${message}\n\n${actionUrl ? `Visit: ${actionUrl}` : ''}`,
   })
@@ -375,9 +375,9 @@ export async function sendAuthRecoveryEmail({
 
   return sendTransactionalEmail({
     to: [{ email: toEmail }],
-    subject: 'Reset your Phyaio Cycle password',
+    subject: 'Reset your Physio Fund Cycle password',
     htmlContent,
-    textContent: `Reset your Phyaio Cycle password:\n\n${actionUrl}\n\nIf you didn't request this, you can ignore this email.`,
+    textContent: `Reset your Physio Fund Cycle password:\n\n${actionUrl}\n\nIf you didn't request this, you can ignore this email.`,
   })
 }
 
@@ -401,9 +401,9 @@ export async function sendEmailVerificationOtp({
   })
   return sendTransactionalEmail({
     to: [{ email: toEmail }],
-    subject: 'Your Phyaio Cycle email verification code',
+    subject: 'Your Physio Fund Cycle email verification code',
     htmlContent,
-    textContent: `Your Phyaio Cycle verification code is ${code}. It expires shortly and can only be used once.`,
+    textContent: `Your Physio Fund Cycle verification code is ${code}. It expires shortly and can only be used once.`,
   })
 }
 
@@ -435,7 +435,7 @@ export async function sendMembershipDecisionEmail({
     : `${siteUrl}/dashboard/join`
   return sendTransactionalEmail({
     to: [{ email: toEmail, name: toName }],
-    subject: `[Phyaio Cycle] ${headline}`,
+    subject: `[Physio Fund Cycle] ${headline}`,
     htmlContent: createBrandedEmailTemplate({
       headline,
       bodyHtml: `<p style="margin:0 0 14px;">Hello ${safeName},</p><p style="margin:0 0 14px;">Your request to join <strong>${safeGroupName}</strong> was ${status}.</p>${approved ? '<p>You are now a Member. Continue with group onboarding to review the group information, rules, and contribution details before opening your personal Member space.</p>' : '<p>You do not have Member access to this Ikimina. You can review other available groups from your account.</p>'}${safeMessage ? `<p style="margin-top:16px;padding:14px;border-radius:12px;background:#f8f5ff;color:#4b5563;">Message from the Ikimina: ${safeMessage}</p>` : ''}`,
@@ -492,7 +492,7 @@ export async function sendGroupInvitationEmail({
   })
   return sendTransactionalEmail({
     to: [{ email: toEmail, name: toName ?? undefined }],
-    subject: `[Phyaio Cycle] Invitation to join ${groupName}`,
+    subject: `[Physio Fund Cycle] Invitation to join ${groupName}`,
     htmlContent,
     textContent: `Hello ${toName || 'there'}, ${inviterName} invited you to join ${groupName}. Accepting activates your Member membership. You will then complete group onboarding to review its information and requirements before opening your personal Member space. Member onboarding does not record a payment. This invitation does not assign administrative or financial approval responsibilities. It expires on ${date}.\n\nAccept invitation: ${acceptUrl}\n\nDecline invitation: ${declineUrl}`,
   })

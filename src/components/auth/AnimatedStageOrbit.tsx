@@ -164,7 +164,7 @@ export function AnimatedStageOrbit({ isMobile = false, className = '', lang = 'e
             <div className="absolute w-28 h-28 bg-gradient-to-tr from-cyan-400/35 to-violet-500/30 blur-xl rounded-full pointer-events-none" />
             <Image
               src="/animated_log/logo_assemble_transparent.gif"
-              alt="Ikimina Logo"
+              alt="Physio Fund Cycle logo"
               width={145}
               height={165}
               priority
@@ -351,7 +351,7 @@ export function AnimatedStageOrbit({ isMobile = false, className = '', lang = 'e
             >
               <Image
                 src="/animated_log/logo_assemble_transparent.gif"
-                alt="Ikimina Logo"
+                alt="Physio Fund Cycle logo"
                 width={200}
                 height={230}
                 priority

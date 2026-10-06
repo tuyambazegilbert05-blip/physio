@@ -2,7 +2,7 @@
 
 ## Account access
 
-Register with name, email, and password → Ikimina creates the account and opaque session → Ikimina sends and validates its own email OTP → choose a discoverable group → submit a membership request → wait for authorized approval before member access. Login, MFA, password change, password recovery, logout, and session revocation are also app-owned; PostgreSQL and its RLS remain hosted by Supabase.
+Register with name, email, and password → Physio Fund Cycle creates the account and opaque session → Physio Fund Cycle sends and validates its own email OTP → choose a discoverable group → submit a membership request → wait for authorized approval before member access. Login, MFA, password change, password recovery, logout, and session revocation are also app-owned; PostgreSQL and its RLS remain hosted by Supabase.
 
 ## Contribution
 

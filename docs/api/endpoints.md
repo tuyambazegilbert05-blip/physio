@@ -2,7 +2,7 @@
 
 | Method | Path | Purpose |
 | --- | --- | --- |
-| POST | `/api/auth/register` | Create an Ikimina account and session, then dispatch the app-owned verification OTP |
+| POST | `/api/auth/register` | Create a Physio Fund Cycle account and session, then dispatch the app-owned verification OTP |
 | GET, POST | `/api/auth/verify-email` | Read verification state or verify the signed-in account's app-owned email OTP |
 | POST | `/api/auth/resend-verification` | Resend the app-owned email OTP under application rate limits |
 | POST | `/api/auth/forgot-password` | Create a rate-limited, app-owned password recovery token and deliver it through Brevo |

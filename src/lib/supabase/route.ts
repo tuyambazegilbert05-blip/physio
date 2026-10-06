@@ -43,7 +43,7 @@ export async function requireApiUser(
         user: null,
         response: Response.json(
           {
-            error: { message: 'Verify your email with the code we sent before accessing Ikimina.' },
+            error: { message: 'Verify your email with the code we sent before accessing Physio Fund Cycle.' },
           },
           { status: 403 },
         ),

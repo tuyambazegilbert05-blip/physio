@@ -9,7 +9,7 @@ type BrandLoaderProps = {
 }
 
 export function BrandLoader({
-  label = 'Loading Phyaio Cycle',
+  label = 'Loading Physio Fund Cycle',
   message = 'Preparing your workspace',
   variant = 'screen',
 }: BrandLoaderProps) {
@@ -40,7 +40,7 @@ export function BrandLoader({
       </span>
       {variant === 'screen' && (
         <span className={`${styles.wordmark} font-heading font-extrabold text-[#081233]`}>
-          Phyaio Cycle
+          Physio Fund Cycle
         </span>
       )}
       {message && <span className={styles.message}>{message}</span>}

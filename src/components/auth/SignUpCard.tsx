@@ -26,7 +26,7 @@ export function SignUpCard({ lang = 'en' }: SignUpCardProps) {
     en: {
       badge: 'Start together',
       title: 'Create your account',
-      subtitle: 'Join Phyaio Cycle to save and grow with your group.',
+      subtitle: 'Join Physio Fund Cycle to save and grow with your group.',
       nameLabel: 'Full name',
       namePlaceholder: 'e.g. Mukamana Alice',
       emailLabel: 'Email address',
@@ -44,7 +44,7 @@ export function SignUpCard({ lang = 'en' }: SignUpCardProps) {
     rw: {
       badge: 'Dutangirane',
       title: 'Fungura konti yawe',
-      subtitle: 'Injira muri Phyaio Cycle ubike kandi ukurane n’itsinda ryawe.',
+      subtitle: 'Injira muri Physio Fund Cycle ubike kandi ukurane n’itsinda ryawe.',
       nameLabel: 'Amazina yose',
       namePlaceholder: 'urugero: Mukamana Alice',
       emailLabel: 'Imeri yawe',

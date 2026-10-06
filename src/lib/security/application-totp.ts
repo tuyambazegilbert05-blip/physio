@@ -81,7 +81,7 @@ export function verifyTotp(secret: string, input: string, at = Date.now()) {
 }
 
 export function createTotpSetupUrl(secret: string, email: string) {
-  const label = `Ikimina:${email}`
-  const query = new URLSearchParams({ secret, issuer: 'Ikimina', algorithm: 'SHA1', digits: '6', period: '30' })
+  const label = `Physio Fund Cycle:${email}`
+  const query = new URLSearchParams({ secret, issuer: 'Physio Fund Cycle', algorithm: 'SHA1', digits: '6', period: '30' })
   return `otpauth://totp/${encodeURIComponent(label)}?${query.toString()}`
 }

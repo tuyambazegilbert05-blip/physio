@@ -45,7 +45,7 @@ export async function POST(request: NextRequest) {
     toEmail: targetEmail,
     toName: user.user_metadata?.full_name || 'Member',
     title: 'Brevo Delivery Test Successful',
-    message: 'Your Brevo email carrier integration is now live and working seamlessly on Phyaio Cycle.',
+    message: 'Your Brevo email carrier integration is now live and working seamlessly on Physio Fund Cycle.',
     actionUrl: `${request.nextUrl.origin}/dashboard`,
     actionLabel: 'Return to Dashboard',
   })

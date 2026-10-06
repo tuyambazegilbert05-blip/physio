@@ -79,7 +79,7 @@ export function LoginView() {
 
       {/* Bottom subtle copyright note */}
       <footer className="w-full max-w-[1400px] mx-auto px-6 py-4 text-center text-xs text-slate-400 select-none z-10 font-sans">
-        © {new Date().getFullYear()} Phyaio Cycle. {lang === 'en' ? 'All rights reserved.' : 'Uburenganzira bwose bwubahirijwe.'}
+        © {new Date().getFullYear()} Physio Fund Cycle. {lang === 'en' ? 'All rights reserved.' : 'Uburenganzira bwose bwubahirijwe.'}
       </footer>
     </div>
   )

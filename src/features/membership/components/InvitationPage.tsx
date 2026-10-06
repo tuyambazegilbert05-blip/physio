@@ -151,7 +151,7 @@ export function InvitationPage({ token, declineRequested }: { token: string; dec
   return (
     <main className="min-h-screen bg-[#F8FAFF] px-4 py-8 text-[#081233] sm:px-6 sm:py-12" style={{ backgroundImage: 'linear-gradient(to right, rgba(99,102,241,.08) 1px, transparent 1px), linear-gradient(to bottom, rgba(99,102,241,.08) 1px, transparent 1px)', backgroundSize: '42px 42px' }}>
       <div className="mx-auto w-full max-w-[620px]">
-        <header className="mb-7 flex justify-center"><Link href="/" aria-label="Phyaio Cycle home"><BrandLogo size={34} wordmarkClassName="font-heading text-xl font-extrabold text-[#081233]" /></Link></header>
+        <header className="mb-7 flex justify-center"><Link href="/" aria-label="Physio Fund Cycle home"><BrandLogo size={34} wordmarkClassName="font-heading text-xl font-extrabold text-[#081233]" /></Link></header>
         <section className="rounded-[28px] border border-white/90 bg-white/95 p-5 shadow-[0_22px_70px_-38px_rgba(84,39,170,.4)] sm:p-8">
           <div className="mb-5 flex h-12 w-12 items-center justify-center rounded-2xl bg-violet-50 text-violet-700"><Mail className="h-5 w-5" /></div>
           {loading ? <div className="animate-pulse"><div className="h-6 w-52 rounded bg-slate-100" /><div className="mt-3 h-4 w-full rounded bg-slate-100" /></div> : invitation ? (
@@ -185,7 +185,7 @@ export function InvitationPage({ token, declineRequested }: { token: string; dec
                   <p className="mt-5 rounded-xl bg-slate-50 px-4 py-3 text-center text-xs leading-relaxed text-slate-600">You are signed in. Accept above with the account for <strong>{invitation.email}</strong>. If this is a different account, <button type="button" onClick={() => void switchAccount()} className="font-bold text-violet-700 hover:underline">sign out and switch accounts</button>.</p>
                 ) : (
                   <>
-                    <p className="mt-3 text-center text-xs text-slate-500">Already have a Phyaio Cycle account? <Link href={loginHref} className="font-bold text-violet-700 hover:underline">Sign in to accept</Link>.</p>
+                    <p className="mt-3 text-center text-xs text-slate-500">Already have a Physio Fund Cycle account? <Link href={loginHref} className="font-bold text-violet-700 hover:underline">Sign in to accept</Link>.</p>
                     <div className="my-6 flex items-center gap-3 text-[10px] font-bold uppercase tracking-[.18em] text-slate-400"><span className="h-px flex-1 bg-slate-100" />Create an account<span className="h-px flex-1 bg-slate-100" /></div>
                     <form onSubmit={createAccount} className="grid gap-4">
                       <p className="text-xs leading-relaxed text-slate-500">The invitation verifies this email address. Account creation goes straight to membership activation; no extra code or joining request is needed.</p>

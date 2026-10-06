@@ -80,7 +80,7 @@ export function VerifyEmailView() {
       {/* Bottom subtle copyright note */}
       <footer className="w-full py-4 text-center z-10 select-none">
         <p className="text-xs text-slate-400 font-medium">
-          © {new Date().getFullYear()} Phyaio Cycle. All rights reserved.
+          © {new Date().getFullYear()} Physio Fund Cycle. All rights reserved.
         </p>
       </footer>
     </div>

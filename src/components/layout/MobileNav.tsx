@@ -17,7 +17,7 @@ export function MobileNav() {
   return (
     <div className="relative md:hidden">
       <div className="flex min-h-11 items-center justify-between gap-4">
-        <Link href="/dashboard" aria-label="Phyaio Cycle home" onClick={() => setOpen(false)}>
+        <Link href="/dashboard" aria-label="Physio Fund Cycle home" onClick={() => setOpen(false)}>
           <BrandLogo
             size={34}
             wordmarkClassName="font-heading text-base font-extrabold text-[#081233]"

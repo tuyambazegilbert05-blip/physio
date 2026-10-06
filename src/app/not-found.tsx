@@ -4,7 +4,7 @@ import { BrandLogo } from '@/components/ui/BrandLogo'
 export default function NotFound() {
   return (
     <main className="app-error">
-      <Link href="/" aria-label="Phyaio Cycle home" className="mb-6 inline-flex">
+      <Link href="/" aria-label="Physio Fund Cycle home" className="mb-6 inline-flex">
         <BrandLogo size={38} wordmarkClassName="text-xl" />
       </Link>
       <h1>Page not found</h1>

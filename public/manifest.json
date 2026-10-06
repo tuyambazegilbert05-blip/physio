@@ -1,6 +1,6 @@
 {
-  "name": "Phyaio Cycle Savings Groups",
-  "short_name": "Phyaio Cycle",
+  "name": "Physio Fund Cycle Savings Groups",
+  "short_name": "Physio Fund Cycle",
   "description": "A secure workspace for community savings groups.",
   "start_url": "/dashboard",
   "scope": "/",

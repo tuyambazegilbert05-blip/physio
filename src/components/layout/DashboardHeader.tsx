@@ -81,7 +81,7 @@ export function DashboardHeader({ title, description }: { title: string; descrip
       <div className="mx-auto flex min-h-10 max-w-[1500px] items-center justify-between gap-3">
         <div className="min-w-0">
           <p className="hidden text-[9px] font-extrabold uppercase tracking-[0.16em] text-[#7B3FF2] sm:block">
-            Phyaio Cycle workspace
+            Physio Fund Cycle workspace
           </p>
           <h1 className="truncate font-heading text-base font-extrabold leading-tight tracking-tight text-[#081233] sm:text-lg">
             {title}

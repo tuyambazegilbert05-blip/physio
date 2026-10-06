@@ -1,4 +1,4 @@
-# Phyaio Cycle motion system
+# Physio Fund Cycle motion system
 
 Motion communicates state, hierarchy, continuity, and feedback. It must never compete with financial information or imply that an operation succeeded before the server confirms it. Keep movement restrained, quick, accessible, and tied to a user or data event.
 
@@ -34,7 +34,7 @@ The shared stylesheet honors `prefers-reduced-motion` by removing non-essential 
 - Use responsive GSAP behavior: full choreography only where it suits desktop, reduced movement on tablet, and a simple reveal or static view on mobile.
 - Lazy-load Lottie and 3D code and assets. Stop decorative loops when offscreen where practical.
 - Keep 3D scenes isolated, low cost, and limited to one canvas per experience. Use a static HTML/SVG fallback, respect reduced motion, and lower scene detail on mobile.
-- Keep Lottie definitions in a central registry. Match the Phyaio Cycle palette, stroke weight, and visual style.
+- Keep Lottie definitions in a central registry. Match the Physio Fund Cycle palette, stroke weight, and visual style.
 - Use CSS for skeletons and simple control feedback. Do not animate fake data into existence or make users wait for a transition.
 - Document major animations with their purpose, trigger, owner, mobile behavior, reduced-motion behavior, fallback, and performance cost.
 
