@@ -90,7 +90,7 @@ export async function GET(request: Request) {
       },
       requests: (requests ?? []).map((item) => ({
         ...item,
-        group_name: groupNames.get(item.group_id) ?? 'Ikimina group',
+        group_name: groupNames.get(item.group_id) ?? 'Savings group',
       })),
       groups: (discoverable ?? []).filter((group) => !activeMemberships.has(group.id)),
     },
@@ -151,8 +151,8 @@ export async function PATCH(request: Request) {
     try {
       const emailResult = await sendMembershipDecisionEmail({
         toEmail: requestRecord.applicant_email,
-        toName: requestRecord.applicant_name ?? 'Ikimina applicant',
-        groupName: group?.name ?? 'the Ikimina group',
+        toName: requestRecord.applicant_name ?? 'Group applicant',
+        groupName: group?.name ?? 'the group',
         groupId: requestRecord.group_id,
         approved: parsed.data.decision === 'approved',
         message: requestRecord.decision_message,

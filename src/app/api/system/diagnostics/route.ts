@@ -34,7 +34,7 @@ export async function GET(request: Request) {
   const groupId = new URL(request.url).searchParams.get('group_id')
   if (!uuidSchema.safeParse(groupId).success) {
     return Response.json(
-      { error: { message: 'A valid Ikimina is required.' } },
+      { error: { message: 'A valid group is required.' } },
       { status: 400, headers: { 'Cache-Control': 'no-store' } },
     )
   }
@@ -46,7 +46,7 @@ export async function GET(request: Request) {
   if (permissionsError) return safeUnavailableResponse()
   if (!canViewTechnicalDiagnostics(permissions)) {
     return Response.json(
-      { error: { message: 'You do not have access to technical diagnostics for this Ikimina.' } },
+      { error: { message: 'You do not have access to technical diagnostics for this group.' } },
       { status: 403, headers: { 'Cache-Control': 'no-store' } },
     )
   }

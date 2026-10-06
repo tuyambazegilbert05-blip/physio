@@ -57,7 +57,7 @@ export async function POST(request: Request) {
     if (!userId) return Response.json({ error: { message: 'That authenticator code was already used. Enter the current code and try again.' } }, { status: 401 })
     const response = NextResponse.json({
       data: {
-        message: profile.email_verified_at ? 'Signed in.' : 'Verify your email with the code we sent before opening Ikimina.',
+        message: profile.email_verified_at ? 'Signed in.' : 'Verify your email with the code we sent before opening Physio Fund Circle.',
         requiresMfa: false,
         requiresEmailVerification: !profile.email_verified_at,
         email: profile.email,

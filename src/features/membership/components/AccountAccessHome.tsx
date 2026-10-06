@@ -132,7 +132,7 @@ export function AccountAccessHome() {
   return (
     <>
       <DashboardHeader
-        title="Join an Ikimina"
+        title="Join a group"
         description="Your platform account is separate from group membership."
       />
       <main className="mx-auto w-full max-w-[1180px] space-y-5 p-4 sm:space-y-6 sm:p-7 lg:p-8">
@@ -246,7 +246,7 @@ export function AccountAccessHome() {
                   </div>
                   {request.status === 'pending' && (
                     <p className="mt-3 rounded-xl bg-amber-50/80 px-3 py-2 text-xs leading-relaxed text-amber-900">
-                      Your request is waiting for the Ikimina’s authorized reviewers. You cannot
+                      Your request is waiting for the group’s authorized reviewers. You cannot
                       access its member dashboard or records yet.
                     </p>
                   )}
@@ -283,7 +283,7 @@ export function AccountAccessHome() {
           <div className="mb-4 flex flex-wrap items-end justify-between gap-3">
             <div>
               <h2 className="font-heading text-lg font-extrabold text-[#231044]">
-                Available Ikimina groups
+                Available groups
               </h2>
               <p className="mt-1 text-xs text-slate-500">
                 Only public group details are shown before membership approval.
@@ -327,7 +327,7 @@ export function AccountAccessHome() {
                     </span>
                   </div>
                   <p className="mt-3 min-h-10 text-xs leading-relaxed text-slate-600">
-                    {group.description || 'This Ikimina has not added a public description yet.'}
+                    {group.description || 'This group has not added a public description yet.'}
                   </p>
                   <button
                     type="button"
@@ -354,7 +354,7 @@ export function AccountAccessHome() {
             onClick={() => setCreateGroupOpen((open) => !open)}
             className="inline-flex items-center gap-2 text-xs font-bold text-[#5934bd]"
           >
-            <Plus className="h-4 w-4" /> Start a new Ikimina
+            <Plus className="h-4 w-4" /> Start a new group
           </button>
           {createGroupOpen && (
             <div className="mt-3 max-w-2xl">
@@ -368,7 +368,7 @@ export function AccountAccessHome() {
         </section>
       </main>
 
-      <Modal open={Boolean(selected)} title="Review this Ikimina" onClose={() => setSelected(null)}>
+      <Modal open={Boolean(selected)} title="Review this group" onClose={() => setSelected(null)}>
         {selected && (
           <form onSubmit={(event) => void submitRequest(event)} className="grid gap-4">
             <div className="rounded-2xl bg-violet-50/70 p-4">

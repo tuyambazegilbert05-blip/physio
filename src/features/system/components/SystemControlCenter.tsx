@@ -135,7 +135,7 @@ export function SystemControlCenter({ preferredGroupId }: { preferredGroupId?: s
     return (
       <main className="p-5">
         <p className="rounded-2xl border border-slate-200 bg-white p-5 text-sm text-slate-600">
-          No Ikimina with technical access is available.
+          No group with technical access is available.
         </p>
       </main>
     )
@@ -154,7 +154,7 @@ export function SystemControlCenter({ preferredGroupId }: { preferredGroupId?: s
           </p>
           <h1 className="mt-2 font-heading text-2xl font-extrabold text-slate-950">{group.name}</h1>
           <p className="mt-2 max-w-3xl text-sm leading-relaxed text-slate-600">
-            Controls are scoped to this Ikimina. The selected state and closed modules are checked
+            Controls are scoped to this group. The selected state and closed modules are checked
             in the database on business writes; viewing records remains available under the usual
             data permissions.
           </p>

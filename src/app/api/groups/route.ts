@@ -57,7 +57,7 @@ export async function PATCH(request: Request) {
   )
   if (authorizationError) return databaseError(authorizationError)
   if (!authorized)
-    return Response.json({ error: { message: 'You do not have permission to manage this Ikimina.' } }, { status: 403 })
+    return Response.json({ error: { message: 'You do not have permission to manage this group.' } }, { status: 403 })
 
   const { group_id, ...changes } = parsed.data
   const { data, error } = await auth.supabase
@@ -67,6 +67,6 @@ export async function PATCH(request: Request) {
     .select('id,name,currency,contribution_amount,contribution_frequency,created_by,created_at,updated_at')
     .maybeSingle()
   if (error) return databaseError(error)
-  if (!data) return Response.json({ error: { message: 'The Ikimina could not be found.' } }, { status: 404 })
+  if (!data) return Response.json({ error: { message: 'The group could not be found.' } }, { status: 404 })
   return Response.json({ data })
 }

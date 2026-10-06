@@ -2,7 +2,7 @@ import { databaseError, requireApiUser } from '@/lib/supabase/route'
 import { uuidSchema } from '@/lib/validations'
 
 /**
- * Returns the signed-in user's own Ikimina position. Every financial query is
+ * Returns the signed-in user's own group position. Every financial query is
  * filtered by the member id loaded from auth.uid(), even when the account also
  * has group-wide permissions through another role.
  */

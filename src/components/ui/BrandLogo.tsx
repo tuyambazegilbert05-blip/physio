@@ -28,7 +28,7 @@ export function BrandLogo({
       />
       {showWordmark && (
         <span className={cn('font-bold lowercase tracking-tight text-[#081233]', wordmarkClassName)}>
-          Physio Fund Cycle
+          Physio Fund Circle
         </span>
       )}
     </span>

@@ -200,14 +200,14 @@ export function WorkspaceControls({
 
   return (
     <section
-      aria-label="Ikimina workspace"
+      aria-label="group workspace"
       className="rounded-2xl border border-indigo-100/80 bg-white/80 p-3 shadow-sm"
     >
       <label
         className="block text-[9px] font-extrabold uppercase tracking-[0.15em] text-slate-400"
         htmlFor="active-ikimina"
       >
-        Active Ikimina
+        Active group
       </label>
       <div className="relative mt-1.5">
         <select
@@ -256,7 +256,7 @@ export function WorkspaceControls({
               className={`inline-flex min-w-0 items-center justify-center gap-1 rounded-lg px-2 py-2 text-[10px] font-bold transition ${pathname.startsWith('/dashboard/workspace') ? 'bg-violet-700 text-white' : 'bg-violet-50 text-violet-800 hover:bg-violet-100'}`}
             >
               <Building2 className="h-3.5 w-3.5 shrink-0" />
-              <span className="truncate">Manage Ikimina</span>
+              <span className="truncate">Manage group</span>
             </Link>
           )}
           {financeHref && (
@@ -393,7 +393,7 @@ export function WorkspaceControls({
           href="/dashboard/join"
           className="mt-2 inline-flex items-center gap-1 text-[10px] font-bold text-violet-700"
         >
-          <LayoutDashboard className="h-3.5 w-3.5" /> Find an Ikimina
+          <LayoutDashboard className="h-3.5 w-3.5" /> Find a group
         </Link>
       )}
     </section>

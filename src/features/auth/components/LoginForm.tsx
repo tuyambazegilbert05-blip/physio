@@ -68,6 +68,6 @@ export function LoginForm() {
       {!mfaRequired && <><div className="text-right"><Link href="/forgot-password" className="text-sm text-indigo-700 hover:underline">Forgot password?</Link></div><FormSubmit pending={pending}>Sign in</FormSubmit></>}
     </form>
     {mfaRequired && <section className="grid gap-3 rounded-lg border border-slate-200 bg-slate-50 p-4"><h2 className="font-semibold">Two-factor verification</h2><p className="text-sm text-slate-600">Enter the current six-digit code from your authenticator app.</p><FormField htmlFor="sign-in-mfa-code" label="Authenticator code"><Input id="sign-in-mfa-code" value={mfaCode} onChange={(event) => setMfaCode(event.target.value)} inputMode="numeric" autoComplete="one-time-code" pattern="[0-9]{6}" maxLength={6} required /></FormField><FormSubmit type="button" pending={pending} onClick={() => void verifyMfa()}>Verify and sign in</FormSubmit><button type="button" className="text-sm text-slate-600 underline" onClick={() => { void fetch('/api/auth/mfa/login', { method: 'DELETE' }); setMfaRequired(false); setMfaCode('') }}>Cancel</button></section>}
-    {!mfaRequired && <p className="text-center text-sm text-slate-600">New to Physio Fund Cycle? <Link href="/register" className="font-medium text-indigo-700">Create an account</Link></p>}
+    {!mfaRequired && <p className="text-center text-sm text-slate-600">New to Physio Fund Circle? <Link href="/register" className="font-medium text-indigo-700">Create an account</Link></p>}
   </div>
 }

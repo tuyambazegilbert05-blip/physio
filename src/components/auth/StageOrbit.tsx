@@ -60,7 +60,7 @@ export function StageOrbit({ isMobile = false, className = '', lang = 'en' }: St
             <div className="absolute w-28 h-28 bg-gradient-to-tr from-cyan-400/30 to-violet-500/25 blur-xl rounded-full pointer-events-none" />
             <Image
               src="/animated_log/logo_assemble_transparent.gif"
-              alt="Physio Fund Cycle Logo"
+              alt="Physio Fund Circle Logo"
               width={150}
               height={150}
               priority
@@ -193,7 +193,7 @@ export function StageOrbit({ isMobile = false, className = '', lang = 'en' }: St
             <div className="absolute w-52 h-52 bg-gradient-to-tr from-[#1FB8F0]/25 via-[#7B3FF2]/20 to-blue-500/20 blur-2xl rounded-full" />
             <Image
               src="/animated_log/logo_assemble_transparent.gif"
-              alt="Physio Fund Cycle Logo"
+              alt="Physio Fund Circle Logo"
               width={220}
               height={220}
               priority

@@ -137,7 +137,7 @@ export function MemberCommunications({
             </span>
             <div>
               <h2 className="font-heading text-base font-extrabold text-[#231044]">
-                Ask an Ikimina official
+                Ask a group official
               </h2>
               <p className="mt-0.5 text-[10px] text-slate-500">
                 Only you and assigned officials can read this conversation.
@@ -225,7 +225,7 @@ export function MemberCommunications({
                             {ownMessage
                               ? 'You'
                               : audience === 'member'
-                                ? 'Ikimina official'
+                                ? 'group official'
                                 : 'Member'}
                           </p>
                           <time className="text-[9px] text-slate-400">

@@ -4,7 +4,7 @@ import { Providers } from '@/components/providers/Providers'
 import './globals.css'
 
 export const metadata: Metadata = {
-  title: 'Physio Fund Cycle · Savings group management',
+  title: 'Physio Fund Circle · Savings group management',
   description: 'A secure workspace for managing savings, contributions, loans, and group governance.',
   icons: {
     icon: [

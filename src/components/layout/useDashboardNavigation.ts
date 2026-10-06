@@ -254,7 +254,7 @@ export function useDashboardNavigation() {
         icon: ClipboardCheck,
       })
     }
-    if (workspaceLinks.length) next.push({ label: 'Manage Ikimina', links: workspaceLinks })
+    if (workspaceLinks.length) next.push({ label: 'Manage group', links: workspaceLinks })
 
     if (can('roles:read', 'roles:manage')) {
       next.push({
@@ -297,7 +297,7 @@ export function useDashboardNavigation() {
     next.push({
       label: 'Account',
       links: [
-        { label: 'Join an Ikimina', href: '/dashboard/join', icon: Users },
+        { label: 'Join a group', href: '/dashboard/join', icon: Users },
         { label: 'Notifications', href: '/dashboard/notifications', icon: Bell },
         { label: 'Account settings', href: '/dashboard/settings', icon: Settings2 },
       ],

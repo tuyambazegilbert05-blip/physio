@@ -22,7 +22,7 @@ async function getPermissions(supabase: SupabaseClient<Database>, groupId: strin
   if (error) return { permissions: null, response: databaseError(error) }
   const permissions = data ?? []
   if (!technicalPermissions.some((permission) => permissions.includes(permission))) {
-    return { permissions: null, response: Response.json({ error: { message: 'Technical access is not assigned for this Ikimina.' } }, { status: 403 }) }
+    return { permissions: null, response: Response.json({ error: { message: 'Technical access is not assigned for this group.' } }, { status: 403 }) }
   }
   return { permissions, response: null }
 }
@@ -31,7 +31,7 @@ export async function GET(request: Request) {
   const auth = await requireApiUser({ requireVerifiedEmail: true })
   if (auth.response) return auth.response
   const groupId = new URL(request.url).searchParams.get('group_id')
-  if (!uuidSchema.safeParse(groupId).success) return Response.json({ error: { message: 'A valid Ikimina is required.' } }, { status: 400 })
+  if (!uuidSchema.safeParse(groupId).success) return Response.json({ error: { message: 'A valid group is required.' } }, { status: 400 })
   const access = await getPermissions(auth.supabase, groupId!)
   if (access.response) return access.response
   const { data, error } = await auth.supabase.from('group_system_controls')

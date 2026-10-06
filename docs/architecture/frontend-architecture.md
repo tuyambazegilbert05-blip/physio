@@ -1,6 +1,6 @@
 # Frontend architecture
 
-Physio Fund Cycle uses the Next.js App Router with TypeScript source under `src/`. Route modules stay small: they select route parameters and compose reusable feature components. Client components own form interaction and browser state; server components load route data through cookie-aware Supabase clients.
+Physio Fund Circle uses the Next.js App Router with TypeScript source under `src/`. Route modules stay small: they select route parameters and compose reusable feature components. Client components own form interaction and browser state; server components load route data through cookie-aware Supabase clients.
 
 ## Source boundaries
 

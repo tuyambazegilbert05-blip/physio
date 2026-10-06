@@ -56,13 +56,13 @@ export function GroupSettingsPage() {
     }
   }
 
-  if (loading) return <p role="status" className="p-6 text-sm text-slate-500">Loading Ikimina settings…</p>
+  if (loading) return <p role="status" className="p-6 text-sm text-slate-500">Loading group settings…</p>
   if (groupError) return <p role="alert" className="m-5 rounded-xl bg-rose-50 p-4 text-sm text-rose-700">{groupError}</p>
   if (!group) return <p className="p-6 text-sm text-slate-500">No group is available for settings.</p>
 
   return (
     <>
-      <DashboardHeader title="Group settings" description={`${group.name} · Manage Ikimina`} />
+      <DashboardHeader title="Group settings" description={`${group.name} · Manage group`} />
       <main className="mx-auto w-full max-w-[1000px] space-y-5 p-4 sm:p-7 lg:p-8">
         {accessLoading ? (
           <p role="status" className="rounded-xl border border-indigo-100 bg-white p-4 text-sm text-slate-500">Loading group permissions…</p>
@@ -83,13 +83,13 @@ export function GroupSettingsPage() {
           <section className="rounded-2xl border border-indigo-100/80 bg-white p-5 shadow-[0_18px_46px_-38px_rgba(36,55,245,0.55)] sm:p-7">
             <div className="mb-5 border-b border-indigo-50 pb-4">
               <p className="text-[9px] font-extrabold uppercase tracking-[0.15em] text-violet-700">Group profile</p>
-              <h2 className="mt-1 font-heading text-lg font-extrabold text-[#081233]">Basic Ikimina information</h2>
-              <p className="mt-1 max-w-2xl text-xs leading-relaxed text-slate-500">Changes apply to this Ikimina only. Technical platform and security configuration are managed separately.</p>
+              <h2 className="mt-1 font-heading text-lg font-extrabold text-[#081233]">Basic group information</h2>
+              <p className="mt-1 max-w-2xl text-xs leading-relaxed text-slate-500">Changes apply to this group only. Technical platform and security configuration are managed separately.</p>
             </div>
             <form onSubmit={(event) => void submit(event)} className="grid gap-4 sm:grid-cols-2">
               <FormError message={error} />
               {saved && <p role="status" className="rounded-xl border border-emerald-200 bg-emerald-50 px-3.5 py-2.5 text-xs font-semibold text-emerald-800 sm:col-span-2">Group settings saved.</p>}
-              <FormField htmlFor="group-name" label="Ikimina name"><Input id="group-name" name="name" defaultValue={group.name} minLength={2} maxLength={120} required /></FormField>
+              <FormField htmlFor="group-name" label="group name"><Input id="group-name" name="name" defaultValue={group.name} minLength={2} maxLength={120} required /></FormField>
               <FormField htmlFor="group-currency" label="Currency" hint="Use the three-letter currency code used by the group ledger."><Input id="group-currency" name="currency" defaultValue={group.currency} minLength={3} maxLength={3} required /></FormField>
               <FormField htmlFor="group-contribution" label="Default contribution amount"><Input id="group-contribution" name="contribution_amount" type="number" min="1" step="1" defaultValue={group.contribution_amount} required /></FormField>
               <FormField htmlFor="group-frequency" label="Default contribution frequency"><Select id="group-frequency" name="contribution_frequency" defaultValue={group.contribution_frequency}><option value="weekly">Weekly</option><option value="monthly">Monthly</option><option value="quarterly">Quarterly</option></Select></FormField>

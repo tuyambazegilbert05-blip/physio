@@ -21,7 +21,7 @@ const guideSteps = [
   },
   {
     title: 'Monthly contributions',
-    body: 'See the amount expected, what you submitted, what the Ikimina received, and any remaining amount.',
+    body: 'See the amount expected, what you submitted, what the group received, and any remaining amount.',
     href: '/dashboard/my/contributions',
     link: 'View contributions',
   },
@@ -57,7 +57,7 @@ const guideSteps = [
   },
   {
     title: 'Contact officials',
-    body: 'Send a private question to authorized Ikimina officials about your records or obligations.',
+    body: 'Send a private question to authorized group officials about your records or obligations.',
     href: '/dashboard/my/communications',
     link: 'Contact an official',
   },

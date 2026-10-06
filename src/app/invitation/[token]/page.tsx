@@ -3,7 +3,7 @@ import { InvitationPage } from '@/features/membership/components/InvitationPage'
 
 export const dynamic = 'force-dynamic'
 export const metadata: Metadata = {
-  title: 'Physio Fund Cycle invitation',
+  title: 'Physio Fund Circle invitation',
   robots: { index: false, follow: false },
   referrer: 'no-referrer',
 }

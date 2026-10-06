@@ -9,7 +9,7 @@ export function OfficialCommunicationsPage() {
   const { groups, group, loading, error } = useActiveGroup()
   if (loading) return <p className="p-8 text-sm text-slate-500">Loading workspace…</p>
   if (!group)
-    return <p className="p-8 text-sm text-slate-500">No Ikimina workspace is available.</p>
+    return <p className="p-8 text-sm text-slate-500">No group workspace is available.</p>
 
   return (
     <>

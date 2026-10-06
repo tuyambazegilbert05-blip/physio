@@ -54,7 +54,7 @@ export function OrbitStage({ isMobile = false, className = '', lang = 'en' }: Or
           <div className="relative z-10 flex items-center justify-center">
             <Image
               src="/animated_log/logo_assemble_transparent.gif"
-              alt="Physio Fund Cycle Logo"
+              alt="Physio Fund Circle Logo"
               width={140}
               height={160}
               priority
@@ -109,7 +109,7 @@ export function OrbitStage({ isMobile = false, className = '', lang = 'en' }: Or
             <div className="absolute w-48 h-48 bg-gradient-to-tr from-[#1FB8F0]/30 to-[#7B3FF2]/25 blur-2xl rounded-full" />
             <Image
               src="/animated_log/logo_assemble_transparent.gif"
-              alt="Physio Fund Cycle Logo"
+              alt="Physio Fund Circle Logo"
               width={210}
               height={240}
               priority

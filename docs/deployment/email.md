@@ -1,6 +1,6 @@
 # Authentication and transactional email
 
-Physio Fund Cycle owns application authentication: accounts, password hashes, sessions, MFA, email verification, and password recovery. Supabase is used for PostgreSQL only. Application email is sent server-side through the centralized Brevo REST service.
+Physio Fund Circle owns application authentication: accounts, password hashes, sessions, MFA, email verification, and password recovery. Supabase is used for PostgreSQL only. Application email is sent server-side through the centralized Brevo REST service.
 
 ## Required server configuration
 
@@ -15,10 +15,10 @@ AUTH_EMAIL_OTP_SECRET=at-least-32-random-bytes
 AUTH_MFA_ENCRYPTION_KEY=64-hex-characters-for-32-random-bytes
 BREVO_API_KEY=your-brevo-rest-api-key
 BREVO_SENDER_EMAIL=your-verified-sender@your-domain
-BREVO_SENDER_NAME=Physio Fund Cycle
+BREVO_SENDER_NAME=Physio Fund Circle
 ```
 
-`SUPABASE_JWT_SECRET` must be the actual signing secret configured for the project's legacy HS256 JWT verification. The server issues a five-minute authenticated database claim only after validating a Physio Fund Cycle session; this preserves the current `auth.uid()`-based RLS policies. Do not generate a replacement value, expose it to the browser, or use the service-role key as a substitute. If the project no longer accepts legacy HS256 JWTs, the database identity/RLS bridge must be migrated before app-authenticated requests can work.
+`SUPABASE_JWT_SECRET` must be the actual signing secret configured for the project's legacy HS256 JWT verification. The server issues a five-minute authenticated database claim only after validating a Physio Fund Circle session; this preserves the current `auth.uid()`-based RLS policies. Do not generate a replacement value, expose it to the browser, or use the service-role key as a substitute. If the project no longer accepts legacy HS256 JWTs, the database identity/RLS bridge must be migrated before app-authenticated requests can work.
 
 Generate the app-owned secrets with a cryptographically secure random source. Keep them stable across deployments so sessions, MFA factors, verification, and rate-limit records remain valid. `AUTH_MFA_ENCRYPTION_KEY` must decode from hex to exactly 32 bytes. Do not print or commit secret values.
 

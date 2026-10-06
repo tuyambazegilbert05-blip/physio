@@ -35,14 +35,14 @@ export function AuthCardShell({ children }: AuthCardShellProps) {
           <span className="font-sans font-medium">
             {lang === 'en'
               ? 'Secure group savings management'
-              : 'Umutekano wizewe mu micungire ya Physio Fund Cycle'}
+              : 'Umutekano wizewe mu micungire ya Physio Fund Circle'}
           </span>
         </div>
       </main>
 
       {/* Bottom spacer */}
       <footer className="py-2 text-center text-xs text-slate-400 font-sans">
-        © {new Date().getFullYear()} Physio Fund Cycle. All rights reserved.
+        © {new Date().getFullYear()} Physio Fund Circle. All rights reserved.
       </footer>
     </div>
   )

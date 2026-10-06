@@ -1,6 +1,6 @@
 /**
  * Capabilities that represent group operations. Group metadata visibility and
- * platform-only technical permissions do not open an Ikimina workspace.
+ * platform-only technical permissions do not open a group workspace.
  */
 export const groupWorkspacePermissions = [
   'groups:manage',

@@ -1,6 +1,6 @@
 # Security architecture
 
-- Physio Fund Cycle stores password hashes, opaque session-token hashes, MFA factors, and recovery tokens in server-only database tables. The browser receives only an HttpOnly `ikimina_session` cookie; no access token or password hash is returned.
+- Physio Fund Circle stores password hashes, opaque session-token hashes, MFA factors, and recovery tokens in server-only database tables. The browser receives only an HttpOnly `ikimina_session` cookie; no access token or password hash is returned.
 - Sessions have a 12-hour lifetime when “keep me signed in” is off, otherwise a 30-day absolute lifetime and a seven-day inactivity timeout. Activity updates the server-side last-seen time; an expired or idle session must sign in again.
 - Server routes validate that session against PostgreSQL before issuing a five-minute, server-signed database identity claim. The legacy Supabase JWT signing secret is server-only. PostgreSQL `auth.uid()` and the existing RLS/permission functions continue to enforce row access; never accept user IDs, roles, or permissions from the browser as identity.
 - `src/proxy.ts` performs inexpensive cookie-presence routing only. Server layouts and API handlers resolve the session; authorization remains in handlers and PostgreSQL RLS, not in the proxy.

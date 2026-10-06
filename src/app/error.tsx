@@ -11,7 +11,7 @@ export default function ErrorPage({
 }) {
   return (
     <main role="alert" className="app-error">
-      <Link href="/" aria-label="Physio Fund Cycle home" className="mb-6 inline-flex">
+      <Link href="/" aria-label="Physio Fund Circle home" className="mb-6 inline-flex">
         <BrandLogo size={38} wordmarkClassName="text-xl" />
       </Link>
       <h1>We couldn’t load this page</h1>

@@ -20,11 +20,11 @@ export function IntroSplash() {
     <main
       aria-busy="true"
       aria-live="polite"
-      aria-label="Loading Physio Fund Cycle"
+      aria-label="Loading Physio Fund Circle"
       className="w-full min-h-screen bg-[#F8FAFF] flex items-center justify-center"
     >
       <BrandLoader
-        label="Loading Physio Fund Cycle"
+        label="Loading Physio Fund Circle"
         message="Preparing your workspace"
         variant="screen"
       />

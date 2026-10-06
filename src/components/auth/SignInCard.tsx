@@ -50,7 +50,7 @@ export function SignInCard({ lang = 'en' }: SignInCardProps) {
   const t = {
     en: {
       welcomeBack: 'Welcome back',
-      subtitle: 'Sign in to your Physio Fund Cycle group.',
+      subtitle: 'Sign in to your Physio Fund Circle group.',
       emailLabel: 'Email address',
       passwordLabel: 'Password',
       phoneLabel: 'Phone number',
@@ -60,7 +60,7 @@ export function SignInCard({ lang = 'en' }: SignInCardProps) {
       or: 'or',
       phoneOption: 'Continue with phone number',
       emailOption: 'Continue with email instead',
-      newToPhysioFundCycle: 'New to Physio Fund Cycle?',
+      newToPhysioFundCircle: 'New to Physio Fund Circle?',
       createAccount: 'Create an account',
       verifyCode: 'Verify code',
       authenticatorLabel: 'Authenticator code',
@@ -83,7 +83,7 @@ export function SignInCard({ lang = 'en' }: SignInCardProps) {
       or: 'cyangwa',
       phoneOption: 'Komeza ukoresheje telefone',
       emailOption: 'Komeza ukoresheje imeyili',
-      newToPhysioFundCycle: 'Muri bashya muri Physio Fund Cycle?',
+      newToPhysioFundCircle: 'Muri bashya muri Physio Fund Circle?',
       createAccount: 'Fungura konti',
       verifyCode: 'Emeza kode',
       authenticatorLabel: 'Kode y’umutekano',
@@ -92,7 +92,7 @@ export function SignInCard({ lang = 'en' }: SignInCardProps) {
       welcomeUser: `Murakaza neza${userName ? `, ${userName}` : ''}`,
       openingDashboard: 'Dufungura ikibaho cy’itsinda ryawe',
       goToDashboard: 'Komeza ku kibaho',
-      secureNote: 'Umutekano wizewe mu micungire ya Physio Fund Cycle',
+      secureNote: 'Umutekano wizewe mu micungire ya Physio Fund Circle',
     },
   }[lang]
 
@@ -231,7 +231,7 @@ export function SignInCard({ lang = 'en' }: SignInCardProps) {
               >
                 <Image
                   src="/animated_log/logo_assemble_transparent.gif"
-                  alt="Physio Fund Cycle Logo"
+                  alt="Physio Fund Circle Logo"
                   width={120}
                   height={120}
                   unoptimized
@@ -472,7 +472,7 @@ export function SignInCard({ lang = 'en' }: SignInCardProps) {
                     >
                       <Image
                         src="/animated_log/logo_assemble_transparent.gif"
-                        alt="Physio Fund Cycle Logo"
+                        alt="Physio Fund Circle Logo"
                         width={64}
                         height={64}
                         unoptimized
@@ -540,7 +540,7 @@ export function SignInCard({ lang = 'en' }: SignInCardProps) {
               {!mfaRequired && (
                 <div className="text-center pt-2.5">
                   <p className="text-[13px] text-[#64748B] font-sans">
-                    {t.newToPhysioFundCycle}{' '}
+                    {t.newToPhysioFundCircle}{' '}
                     <Link
                       href="/register"
                       className="font-bold text-[#7B3FF2] hover:text-[#2437F5] hover:underline transition-colors"

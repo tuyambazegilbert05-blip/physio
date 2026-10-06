@@ -1,6 +1,6 @@
 # Database
 
-The application stores account identity in `public.profiles`; password hashes, opaque sessions, reset tokens, MFA factors, and auth rate limits are held in private app-auth tables. Supabase provides PostgreSQL and RLS. A server route validates the Physio Fund Cycle session and signs a short-lived database identity for the existing `auth.uid()`-based policies. Membership remains independent from group roles, so technical access does not make an account a member. Migration 020 preserves existing profile UUIDs while removing the `auth.users` dependency from public identity references.
+The application stores account identity in `public.profiles`; password hashes, opaque sessions, reset tokens, MFA factors, and auth rate limits are held in private app-auth tables. Supabase provides PostgreSQL and RLS. A server route validates the Physio Fund Circle session and signs a short-lived database identity for the existing `auth.uid()`-based policies. Membership remains independent from group roles, so technical access does not make an account a member. Migration 020 preserves existing profile UUIDs while removing the `auth.users` dependency from public identity references.
 
 ## Migrations
 

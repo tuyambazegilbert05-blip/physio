@@ -57,7 +57,7 @@ export function GroupForm({ onCreated }: { onCreated?: (group: Group) => void })
       <FormField
         htmlFor="group-description"
         label="Description"
-        hint="Optional public details that help people identify your Ikimina."
+        hint="Optional public details that help people identify your group."
       >
         <textarea
           id="group-description"

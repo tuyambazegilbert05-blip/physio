@@ -77,7 +77,7 @@ export function AnnouncementsPage() {
         ? { ...existing, items: [item, ...existing.items] }
         : existing)
       form.reset()
-      setNotice(publish ? 'Announcement published to this Ikimina.' : 'Announcement saved as a draft.')
+      setNotice(publish ? 'Announcement published to this group.' : 'Announcement saved as a draft.')
     } catch (cause) {
       setFormError(cause instanceof Error ? cause.message : 'The announcement could not be saved.')
     } finally {
@@ -98,7 +98,7 @@ export function AnnouncementsPage() {
       setState((existing) => existing?.groupId === group.id
         ? { ...existing, items: existing.items.map((entry) => entry.id === item.id ? published : entry) }
         : existing)
-      setNotice('Draft published to this Ikimina.')
+      setNotice('Draft published to this group.')
     } catch (cause) {
       setFormError(cause instanceof Error ? cause.message : 'The draft could not be published.')
     } finally {
@@ -108,7 +108,7 @@ export function AnnouncementsPage() {
 
   if (groupLoading) return <p role="status" className="p-6 text-sm text-slate-500">Loading group communications…</p>
   if (groupError) return <p role="alert" className="m-5 rounded-xl bg-rose-50 p-4 text-sm text-rose-700">{groupError}</p>
-  if (!group) return <p className="p-6 text-sm text-slate-500">No Ikimina is available.</p>
+  if (!group) return <p className="p-6 text-sm text-slate-500">No group is available.</p>
 
   return (
     <>
@@ -128,7 +128,7 @@ export function AnnouncementsPage() {
                 <FormError message={formError} />
                 {notice && <p role="status" className="rounded-lg border border-emerald-200 bg-emerald-50 px-3 py-2 text-xs font-semibold text-emerald-800">{notice}</p>}
                 <FormField htmlFor="announcement-title" label="Title"><Input id="announcement-title" name="title" minLength={3} maxLength={160} required /></FormField>
-                <FormField htmlFor="announcement-body" label="Message" hint="Visible to members of this Ikimina after publication."><textarea id="announcement-body" name="body" required maxLength={5000} rows={7} className="w-full rounded-xl border border-indigo-100 bg-white px-3.5 py-3 text-sm leading-relaxed text-[#081233] outline-none focus:border-violet-300 focus:ring-4 focus:ring-violet-100" /></FormField>
+                <FormField htmlFor="announcement-body" label="Message" hint="Visible to members of this group after publication."><textarea id="announcement-body" name="body" required maxLength={5000} rows={7} className="w-full rounded-xl border border-indigo-100 bg-white px-3.5 py-3 text-sm leading-relaxed text-[#081233] outline-none focus:border-violet-300 focus:ring-4 focus:ring-violet-100" /></FormField>
                 <div className="flex flex-wrap gap-2">
                   <FormSubmit pending={sending} name="intent" value="draft" className="bg-slate-700 shadow-none hover:bg-slate-800">Save draft</FormSubmit>
                   <FormSubmit pending={sending} name="intent" value="publish" className="inline-flex items-center gap-2"><Send className="h-4 w-4" />Publish</FormSubmit>
@@ -138,7 +138,7 @@ export function AnnouncementsPage() {
 
             <section className="rounded-2xl border border-indigo-100/80 bg-white p-5 shadow-[0_18px_45px_-38px_rgba(36,55,245,0.55)] sm:p-6">
               <div className="mb-4 flex items-center gap-3 border-b border-indigo-50 pb-4"><span className="rounded-xl bg-indigo-50 p-2 text-indigo-800"><Bell className="h-4 w-4" /></span><div><p className="text-[9px] font-extrabold uppercase tracking-[0.15em] text-indigo-700">This group only</p><h2 className="font-heading text-base font-extrabold text-[#081233]">Communication history</h2></div></div>
-              {current.items.length ? <ul className="space-y-3">{current.items.map((item) => <li key={item.id} className="rounded-xl border border-slate-100 p-4"><div className="flex flex-wrap items-start justify-between gap-3"><h3 className="text-sm font-bold text-[#081233]">{item.title}</h3><span className={`rounded-full px-2.5 py-1 text-[9px] font-bold ${item.published_at ? 'bg-emerald-50 text-emerald-800' : 'bg-slate-100 text-slate-600'}`}>{item.published_at ? 'Published' : 'Draft'}</span></div><p className="mt-2 whitespace-pre-wrap break-words text-xs leading-relaxed text-slate-600">{item.body}</p><div className="mt-3 flex flex-wrap items-center justify-between gap-2"><p className="text-[10px] text-slate-400">{item.published_at ? `Published ${formatDate(item.published_at)}` : `Draft created ${formatDate(item.created_at)}`}</p>{!item.published_at && <button type="button" disabled={sending} onClick={() => void publishDraft(item)} className="rounded-lg bg-violet-700 px-3 py-2 text-[10px] font-bold text-white hover:bg-violet-800 disabled:opacity-60">Publish draft</button>}</div></li>)}</ul> : <div className="rounded-xl border border-dashed border-indigo-200 bg-indigo-50/40 px-4 py-8 text-center"><Megaphone className="mx-auto h-5 w-5 text-violet-700" /><h3 className="mt-2 text-xs font-bold text-[#081233]">No announcements yet</h3><p className="mt-1 text-[11px] text-slate-500">Drafts and published notices for this Ikimina will appear here.</p></div>}
+              {current.items.length ? <ul className="space-y-3">{current.items.map((item) => <li key={item.id} className="rounded-xl border border-slate-100 p-4"><div className="flex flex-wrap items-start justify-between gap-3"><h3 className="text-sm font-bold text-[#081233]">{item.title}</h3><span className={`rounded-full px-2.5 py-1 text-[9px] font-bold ${item.published_at ? 'bg-emerald-50 text-emerald-800' : 'bg-slate-100 text-slate-600'}`}>{item.published_at ? 'Published' : 'Draft'}</span></div><p className="mt-2 whitespace-pre-wrap break-words text-xs leading-relaxed text-slate-600">{item.body}</p><div className="mt-3 flex flex-wrap items-center justify-between gap-2"><p className="text-[10px] text-slate-400">{item.published_at ? `Published ${formatDate(item.published_at)}` : `Draft created ${formatDate(item.created_at)}`}</p>{!item.published_at && <button type="button" disabled={sending} onClick={() => void publishDraft(item)} className="rounded-lg bg-violet-700 px-3 py-2 text-[10px] font-bold text-white hover:bg-violet-800 disabled:opacity-60">Publish draft</button>}</div></li>)}</ul> : <div className="rounded-xl border border-dashed border-indigo-200 bg-indigo-50/40 px-4 py-8 text-center"><Megaphone className="mx-auto h-5 w-5 text-violet-700" /><h3 className="mt-2 text-xs font-bold text-[#081233]">No announcements yet</h3><p className="mt-1 text-[11px] text-slate-500">Drafts and published notices for this group will appear here.</p></div>}
             </section>
           </div>
         )}

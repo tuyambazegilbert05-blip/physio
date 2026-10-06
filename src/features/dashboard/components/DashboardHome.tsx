@@ -14,7 +14,7 @@ function SelectedGroupUnavailable() {
     <main className="mx-auto max-w-3xl p-5 sm:p-8">
       <section className="rounded-2xl border border-amber-200 bg-amber-50 p-5 sm:p-7">
         <Building2 className="h-5 w-5 text-amber-800" aria-hidden="true" />
-        <h1 className="mt-3 font-heading text-lg font-extrabold text-amber-950">This Ikimina is not available to your account</h1>
+        <h1 className="mt-3 font-heading text-lg font-extrabold text-amber-950">This group is not available to your account</h1>
         <p className="mt-2 text-sm leading-relaxed text-amber-900/80">Choose a group where you have an active membership or an assigned group permission.</p>
         <Link href="/dashboard" className="mt-4 inline-flex rounded-lg bg-amber-900 px-3.5 py-2.5 text-xs font-bold text-white hover:bg-amber-950">Open available space</Link>
       </section>

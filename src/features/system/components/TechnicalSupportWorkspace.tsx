@@ -80,7 +80,7 @@ export function TechnicalSupportWorkspace({ preferredGroupId }: { preferredGroup
     return (
       <main className="p-5">
         <p className="rounded-2xl border border-slate-200 bg-white p-5 text-sm text-slate-600">
-          No Ikimina with technical access is available.
+          No group with technical access is available.
         </p>
       </main>
     )

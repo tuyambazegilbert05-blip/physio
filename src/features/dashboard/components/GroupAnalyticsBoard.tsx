@@ -899,7 +899,7 @@ export function GroupAnalyticsBoard({ data }: { data: GroupAnalyticsData }) {
           <div className="mt-3 flex items-center gap-2 rounded-xl bg-violet-50/75 px-3 py-2 text-[9px] text-violet-900">
             <Users className="h-3.5 w-3.5 shrink-0" aria-hidden="true" />
             <span>
-              Actions are scoped to <strong className="font-extrabold">this Ikimina</strong> and
+              Actions are scoped to <strong className="font-extrabold">this group</strong> and
               your assigned permissions.
             </span>
           </div>

@@ -1,5 +1,5 @@
 import { AccountAccessHome } from '@/features/membership/components/AccountAccessHome'
 
-export default function JoinIkiminaPage() {
+export default function JoinGroupPage() {
   return <AccountAccessHome />
 }

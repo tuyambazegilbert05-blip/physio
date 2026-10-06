@@ -15,7 +15,7 @@ export type GroupRole = (typeof groupRoles)[number]
 export const roleLabels: Record<GroupRole, string> = {
   chairperson: 'Chairperson',
   committee_member: 'Committee member',
-  group_administrator: 'Ikimina administrator',
+  group_administrator: 'Group administrator',
   treasurer: 'Treasurer',
   secretary: 'Secretary',
   system_administrator: 'System administrator',

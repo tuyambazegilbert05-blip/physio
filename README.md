@@ -1,16 +1,16 @@
-# Physio Fund Cycle
+# Physio Fund Circle
 
-Physio Fund Cycle is a savings-group management application for member records, contributions, savings, loans, meetings, and reports. It uses Next.js App Router, React, TypeScript, Tailwind CSS, Supabase PostgreSQL, and row-level security.
+Physio Fund Circle is a savings-group management application for member records, contributions, savings, loans, meetings, and reports. It uses Next.js App Router, React, TypeScript, Tailwind CSS, Supabase PostgreSQL, and row-level security.
 
 ## Run locally
 
 1. Use Node.js 22.13 or newer and pnpm 12.3.4.
 2. Install packages with `pnpm install`.
-3. Create a Supabase project and copy its URL, publishable key, and server-only service credentials into `.env.local` using `.env.example` as a guide. Supply the project's legacy HS256 JWT signing secret as `SUPABASE_JWT_SECRET`; it is required for server-validated Physio Fund Cycle sessions to reach existing `auth.uid()`-based RLS safely.
+3. Create a Supabase project and copy its URL, publishable key, and server-only service credentials into `.env.local` using `.env.example` as a guide. Supply the project's legacy HS256 JWT signing secret as `SUPABASE_JWT_SECRET`; it is required for server-validated Physio Fund Circle sessions to reach existing `auth.uid()`-based RLS safely.
 4. Apply every numbered migration in `database/migrations/` in order, including `020_application_auth`, or use the Supabase CLI with the migration files.
 5. Start the app with `pnpm dev` and open `http://localhost:3000`.
 
-Physio Fund Cycle owns account passwords, application sessions, MFA, email verification, and password recovery. PostgreSQL remains hosted by Supabase; validated server sessions are the only source of user identity for database-scoped requests. Application email is sent through the server-side Brevo REST service. See [email setup](docs/deployment/email.md). Never expose service-role, JWT-signing, session, OTP, MFA-encryption, or Brevo secrets to browser code.
+Physio Fund Circle owns account passwords, application sessions, MFA, email verification, and password recovery. PostgreSQL remains hosted by Supabase; validated server sessions are the only source of user identity for database-scoped requests. Application email is sent through the server-side Brevo REST service. See [email setup](docs/deployment/email.md). Never expose service-role, JWT-signing, session, OTP, MFA-encryption, or Brevo secrets to browser code.
 
 ## Application commands
 

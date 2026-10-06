@@ -56,7 +56,7 @@ type Snapshot = {
 }
 
 const labels: Record<Exclude<OnboardingStep, 'complete'>, string> = {
-  group_information: 'About your Ikimina',
+  group_information: 'About your group',
   rules: 'Rules and requirements',
   member_information: 'Your information',
   shares: 'Shares',
@@ -163,7 +163,7 @@ export function MemberOnboarding({ groupId }: { groupId: string }) {
       <header className="rounded-3xl border border-violet-100 bg-white/95 p-5 shadow-[0_22px_70px_-52px_rgba(60,36,120,.5)] sm:p-8">
         <p className="inline-flex items-center gap-2 text-[10px] font-extrabold uppercase tracking-[.17em] text-violet-700"><ShieldCheck className="h-4 w-4" />Member onboarding</p>
         <h1 className="mt-2 font-heading text-2xl font-extrabold tracking-tight text-[#17102f] sm:text-3xl">Welcome to {group.name}</h1>
-        <p className="mt-2 max-w-2xl text-sm leading-relaxed text-slate-600">We’ll walk through this Ikimina’s information and requirements before opening your personal Member space. Your progress is saved to this membership.</p>
+        <p className="mt-2 max-w-2xl text-sm leading-relaxed text-slate-600">We’ll walk through this group’s information and requirements before opening your personal Member space. Your progress is saved to this membership.</p>
         <div className="mt-6 grid grid-cols-2 gap-2 md:grid-cols-5" aria-label="Onboarding progress">
           {Object.entries(labels).map(([key, label], index) => {
             const done = completed || index < currentIndex
@@ -184,7 +184,7 @@ export function MemberOnboarding({ groupId }: { groupId: string }) {
         </section>
       ) : step === 'group_information' ? (
         <section className="space-y-5 rounded-3xl border border-violet-100 bg-white p-5 shadow-sm sm:p-8">
-          <div className="flex gap-3"><div className="grid h-10 w-10 shrink-0 place-items-center rounded-xl bg-violet-50 text-violet-700"><Building2 className="h-5 w-5" /></div><div><h2 className="font-heading text-lg font-extrabold text-[#17102f]">About this Ikimina</h2><p className="mt-1 text-xs text-slate-500">Review the group context before continuing.</p></div></div>
+          <div className="flex gap-3"><div className="grid h-10 w-10 shrink-0 place-items-center rounded-xl bg-violet-50 text-violet-700"><Building2 className="h-5 w-5" /></div><div><h2 className="font-heading text-lg font-extrabold text-[#17102f]">About this group</h2><p className="mt-1 text-xs text-slate-500">Review the group context before continuing.</p></div></div>
           <dl className="grid gap-3 sm:grid-cols-2"><Info label="Group" value={group.name} />{group.location && <Info label="Community or location" value={group.location} />}<Info label="Contribution frequency" value={group.contribution_frequency} /><Info label="Group currency" value={group.currency} />{snapshot.cycle && <Info label="Current cycle" value={`${snapshot.cycle.name} · ${snapshot.cycle.starts_on} to ${snapshot.cycle.ends_on}`} />}</dl>
           {group.description && <p className="rounded-xl bg-slate-50 p-4 text-sm leading-relaxed text-slate-700">{group.description}</p>}
           <div className="flex justify-end"><button type="button" disabled={saving} onClick={() => void saveStep('group_information')} className="inline-flex min-h-11 items-center gap-2 rounded-xl bg-violet-700 px-5 py-3 text-sm font-bold text-white disabled:opacity-60">{saving ? 'Saving…' : 'Continue'} <ArrowRight className="h-4 w-4" /></button></div>

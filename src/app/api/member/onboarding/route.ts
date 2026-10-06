@@ -33,7 +33,7 @@ export async function GET(request: Request) {
   for (const result of [groupResult, cycleResult, termsResult, fieldsResult, stateResult]) {
     if (result.error) return databaseError(result.error)
   }
-  if (!groupResult.data) return Response.json({ error: { message: 'This Ikimina is unavailable.' } }, { status: 404 })
+  if (!groupResult.data) return Response.json({ error: { message: 'This group is unavailable.' } }, { status: 404 })
   let onboardingState: (NonNullable<typeof stateResult.data> & { share_transaction_status?: string | null }) | null = stateResult.data
   if (stateResult.data?.share_transaction_id) {
     const { data: share, error: shareError } = await admin.from('share_transactions')

@@ -112,13 +112,13 @@ export function LoanForm({
           role={cycleStatus === 'unavailable' ? 'alert' : 'status'}
           className="rounded-xl border border-amber-200 bg-amber-50 p-3.5 text-sm text-amber-950"
         >
-          {cycleStatus === 'checking' && 'Checking whether this Ikimina has an active cycle…'}
+          {cycleStatus === 'checking' && 'Checking whether this group has an active cycle…'}
           {cycleStatus === 'closed' &&
-            'Loan applications are paused because this Ikimina has no active cycle. Ask an authorized official to open a cycle.'}
+            'Loan applications are paused because this group has no active cycle. Ask an authorized official to open a cycle.'}
           {cycleStatus === 'unavailable' && (
             <span className="flex flex-wrap items-center justify-between gap-2">
               <span>
-                Could not check the Ikimina cycle. Try again before submitting a loan request.
+                Could not check the group cycle. Try again before submitting a loan request.
               </span>
               <button
                 type="button"

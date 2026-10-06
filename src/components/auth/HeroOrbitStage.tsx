@@ -181,7 +181,7 @@ export function HeroOrbitStage({ isMobile = false, className = '', lang = 'en' }
             <div className="absolute w-28 h-28 bg-gradient-to-tr from-cyan-400/35 to-violet-500/30 blur-xl rounded-full pointer-events-none" />
             <Image
               src="/animated_log/logo_assemble_transparent.gif"
-              alt="Physio Fund Cycle logo"
+              alt="Physio Fund Circle logo"
               width={150}
               height={150}
               loading={loadHeroEagerly ? 'eager' : 'lazy'}
@@ -384,7 +384,7 @@ export function HeroOrbitStage({ isMobile = false, className = '', lang = 'en' }
             >
               <Image
                 src="/animated_log/logo_assemble_transparent.gif"
-                alt="Physio Fund Cycle logo"
+                alt="Physio Fund Circle logo"
                 width={220}
                 height={220}
                 loading={loadHeroEagerly ? 'eager' : 'lazy'}

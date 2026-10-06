@@ -55,7 +55,7 @@ export function RoleAccessPage({ preferredGroupId }: { preferredGroupId?: string
     return (
       <main className="p-5">
         <p className="rounded-2xl border border-slate-200 bg-white p-5 text-sm text-slate-600">
-          No Ikimina with role access is available.
+          No group with role access is available.
         </p>
       </main>
     )
@@ -74,7 +74,7 @@ export function RoleAccessPage({ preferredGroupId }: { preferredGroupId?: string
           </p>
           <h1 className="mt-2 font-heading text-2xl font-extrabold text-slate-950">{group.name}</h1>
           <p className="mt-2 max-w-3xl text-sm leading-relaxed text-slate-600">
-            Roles add responsibilities within this Ikimina. They do not create membership, and every
+            Roles add responsibilities within this group. They do not create membership, and every
             action still depends on its specific permission.
           </p>
         </header>
@@ -99,7 +99,7 @@ export function RoleAccessPage({ preferredGroupId }: { preferredGroupId?: string
             role="alert"
             className="rounded-2xl border border-amber-200 bg-amber-50 p-5 text-sm text-amber-950"
           >
-            You do not have permission to view role assignments in this Ikimina.
+            You do not have permission to view role assignments in this group.
           </section>
         )}
         {canReadAssignments && !canManageAssignments && access && (

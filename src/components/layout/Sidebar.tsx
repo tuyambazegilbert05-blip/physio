@@ -18,7 +18,7 @@ export function Sidebar() {
         <div className="mb-5 rounded-[22px] border border-indigo-100/70 bg-gradient-to-br from-white via-white to-indigo-50/70 p-4 shadow-[0_12px_32px_-24px_rgba(36,55,245,0.3)]">
           <Link
             href="/dashboard"
-            aria-label="Physio Fund Cycle home"
+            aria-label="Physio Fund Circle home"
             className="inline-flex items-center"
           >
             <BrandLogo

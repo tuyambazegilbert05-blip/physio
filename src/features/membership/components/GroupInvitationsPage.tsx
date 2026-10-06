@@ -120,7 +120,7 @@ export function GroupInvitationsPage() {
           <div className="flex flex-wrap items-start justify-between gap-3">
             <div>
               <p className="flex items-center gap-2 text-xs font-bold uppercase tracking-[0.16em] text-violet-700"><ShieldCheck className="h-4 w-4" /> Authorized invitations</p>
-              <h1 className="mt-2 font-heading text-lg font-extrabold text-[#231044]">Invite a person to this Ikimina</h1>
+              <h1 className="mt-2 font-heading text-lg font-extrabold text-[#231044]">Invite a person to this group</h1>
               <p className="mt-1 max-w-2xl text-xs leading-relaxed text-slate-500">Only people with the group’s explicit invitation permission can send or manage invitations. Acceptance grants Member access only.</p>
             </div>
             {groups.length > 1 && <GroupSelector groups={groups} currentId={group.id} returnTo="/dashboard/invitations" />}

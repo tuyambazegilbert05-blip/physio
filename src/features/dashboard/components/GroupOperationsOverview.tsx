@@ -70,7 +70,7 @@ export async function GroupOperationsOverview({ group, permissions }: Props) {
   if (!hasGroupWorkspaceAccess(permissions)) {
     return (
       <>
-        <DashboardHeader title="Manage Ikimina" description={`${group.name} · Access restricted`} />
+        <DashboardHeader title="Manage group" description={`${group.name} · Access restricted`} />
         <main className="mx-auto max-w-4xl p-5 sm:p-8">
           <section className="rounded-2xl border border-amber-200 bg-amber-50 p-5 sm:p-7">
             <h2 className="font-heading text-lg font-extrabold text-amber-950">
@@ -484,7 +484,7 @@ export async function GroupOperationsOverview({ group, permissions }: Props) {
 
   return (
     <>
-      <DashboardHeader title="Group overview" description={`${group.name} · Manage Ikimina`} />
+      <DashboardHeader title="Group overview" description={`${group.name} · Manage group`} />
       <main className="mx-auto w-full max-w-[1500px] space-y-5 p-4 sm:space-y-6 sm:p-7 lg:p-8">
         <div className="flex flex-wrap items-end justify-between gap-3">
           <div>

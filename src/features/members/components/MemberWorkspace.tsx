@@ -305,7 +305,7 @@ export function MemberWorkspace({
     } catch (cause) {
       if (requestVersion.current === requestId) {
         setPositionState({ groupId: group.id, position: null })
-        setError(cause instanceof Error ? cause.message : 'Unable to load your Ikimina position.')
+        setError(cause instanceof Error ? cause.message : 'Unable to load your group position.')
       }
     }
   }, [group])
@@ -386,7 +386,7 @@ export function MemberWorkspace({
       .catch((cause: unknown) => {
         if (!active || requestVersion.current !== requestId) return
         setPositionState({ groupId: group.id, position: null })
-        setError(cause instanceof Error ? cause.message : 'Unable to load your Ikimina position.')
+        setError(cause instanceof Error ? cause.message : 'Unable to load your group position.')
       })
     return () => {
       active = false
@@ -402,7 +402,7 @@ export function MemberWorkspace({
   if (groupsLoading || loading) {
     return (
       <>
-        <DashboardHeader title="My Ikimina space" description="Your personal financial position" />
+        <DashboardHeader title="My group space" description="Your personal financial position" />
         <main className="mx-auto max-w-6xl p-5 sm:p-8" aria-live="polite">
           <p className="rounded-2xl border border-indigo-100 bg-white/80 p-5 text-sm text-slate-500">
             Loading your personal records…
@@ -415,7 +415,7 @@ export function MemberWorkspace({
   if (groupsError || error || !position) {
     return (
       <>
-        <DashboardHeader title="My Ikimina space" description="Personal records and membership" />
+        <DashboardHeader title="My group space" description="Personal records and membership" />
         <main className="mx-auto max-w-4xl p-5 sm:p-8">
           <EmptyState
             title={
@@ -424,7 +424,7 @@ export function MemberWorkspace({
             description={
               groupsError ??
               error ??
-              'This account is not registered as a member of the selected Ikimina.'
+              'This account is not registered as a member of the selected group.'
             }
             action={
               <Link
@@ -586,7 +586,7 @@ export function MemberWorkspace({
   const roleSet = [...new Set(position.roles)]
 
   const pageTitle = {
-    overview: 'My Ikimina position',
+    overview: 'My group position',
     savings: 'My savings and shares',
     contributions: 'My contributions',
     loans: 'My loans and repayments',
@@ -613,7 +613,7 @@ export function MemberWorkspace({
         <MemberGuide groupId={position.group.id} memberId={position.member.id} />
         {(position.systemControls.status !== 'normal' || position.systemControls.message) && (
           <aside role="status" className={`rounded-2xl border px-4 py-3 ${position.systemControls.status === 'locked' || position.systemControls.status === 'maintenance' ? 'border-amber-200 bg-amber-50 text-amber-950' : 'border-indigo-200 bg-indigo-50 text-indigo-950'}`}>
-            <p className="text-xs font-extrabold">Ikimina status: {position.systemControls.status}</p>
+            <p className="text-xs font-extrabold">group status: {position.systemControls.status}</p>
             {position.systemControls.message && <p className="mt-1 text-xs leading-relaxed">{position.systemControls.message}</p>}
             {position.systemControls.disabled_modules.length > 0 && <p className="mt-1 text-[10px] opacity-75">Some group actions are temporarily unavailable.</p>}
           </aside>
@@ -700,7 +700,7 @@ export function MemberWorkspace({
               <Panel>
                 <SectionTitle
                   title={position.cycle ? "This month's payment" : 'Current contribution plan'}
-                  detail={`Your ${position.cycle ? 'monthly cycle' : position.group.contribution_frequency} plan. See what you submitted and what the Ikimina confirmed.`}
+                  detail={`Your ${position.cycle ? 'monthly cycle' : position.group.contribution_frequency} plan. See what you submitted and what the group confirmed.`}
                 />
                 <div className="grid gap-3 sm:grid-cols-2">
                   <div className="rounded-2xl border border-indigo-100 bg-indigo-50/45 p-4">
@@ -980,7 +980,7 @@ export function MemberWorkspace({
                   Need help with a personal record?
                 </h2>
                 <p className="mt-1 text-xs text-slate-500">
-                  Send a private question to authorized Ikimina officials.
+                  Send a private question to authorized group officials.
                 </p>
               </div>
               <Link

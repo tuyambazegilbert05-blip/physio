@@ -203,7 +203,7 @@ export function MembershipRequestsPage() {
               ))
             ) : (
               <p className="rounded-xl bg-slate-50 p-8 text-center text-xs text-slate-500">
-                There are no pending requests for this Ikimina.
+                There are no pending requests for this group.
               </p>
             )}
           </div>

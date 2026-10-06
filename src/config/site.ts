@@ -1,5 +1,5 @@
 export const siteConfig = {
-  name: 'Physio Fund Cycle',
+  name: 'Physio Fund Circle',
   description: 'A secure workspace for managing community savings groups.',
   locale: 'en-RW',
   defaultCurrency: 'RWF',

@@ -4,7 +4,7 @@ import { BrandLogo } from '@/components/ui/BrandLogo'
 export function Navbar() {
   return (
     <header className="flex items-center justify-between border-b border-slate-200 bg-white px-6 py-4">
-      <Link href="/dashboard" aria-label="Physio Fund Cycle home">
+      <Link href="/dashboard" aria-label="Physio Fund Circle home">
         <BrandLogo size={34} wordmarkClassName="text-lg" />
       </Link>
       <nav aria-label="Main">

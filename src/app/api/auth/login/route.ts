@@ -104,7 +104,7 @@ export async function POST(request: Request) {
     await logApplicationAuthEvent('LOGIN_SUCCESS', account.id)
     const response = NextResponse.json({
       data: {
-        message: account.email_verified_at ? 'Signed in.' : 'Verify your email with the code we sent before opening Ikimina.',
+        message: account.email_verified_at ? 'Signed in.' : 'Verify your email with the code we sent before opening Physio Fund Circle.',
         requiresMfa: false,
         requiresEmailVerification: !account.email_verified_at,
         email: account.email,

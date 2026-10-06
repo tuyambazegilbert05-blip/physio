@@ -40,9 +40,9 @@ export function MemberOnboardingSettingsPage({ preferredGroupId }: { preferredGr
   const accessLoading = Boolean(group && accessState?.groupId !== group.id)
   const canManageOnboarding = hasAnyPermission(access?.permissions, 'onboarding:manage', 'groups:manage')
 
-  if (loading) return <p role="status" className="p-6 text-sm text-slate-500">Loading Ikimina…</p>
+  if (loading) return <p role="status" className="p-6 text-sm text-slate-500">Loading group…</p>
   if (groupError) return <p role="alert" className="m-5 rounded-xl bg-rose-50 p-4 text-sm text-rose-700">{groupError}</p>
-  if (!group) return <p className="p-6 text-sm text-slate-500">No Ikimina is available to configure.</p>
+  if (!group) return <p className="p-6 text-sm text-slate-500">No group is available to configure.</p>
 
   return (
     <>
@@ -55,7 +55,7 @@ export function MemberOnboardingSettingsPage({ preferredGroupId }: { preferredGr
         ) : !canManageOnboarding ? (
           <section className="rounded-2xl border border-amber-200 bg-amber-50 p-5">
             <h2 className="font-heading text-base font-extrabold text-amber-950">Onboarding setup access denied</h2>
-            <p className="mt-1.5 text-sm text-amber-900/80">You need permission to manage this Ikimina’s member onboarding requirements.</p>
+            <p className="mt-1.5 text-sm text-amber-900/80">You need permission to manage this group’s member onboarding requirements.</p>
           </section>
         ) : (
           <GroupOnboardingConfig groupId={group.id} />
