@@ -3,7 +3,7 @@
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
 import { useState, type FormEvent } from 'react'
-import { User, Mail, AlertCircle, ShieldCheck } from 'lucide-react'
+import { User, Mail, Smartphone, AlertCircle, ShieldCheck } from 'lucide-react'
 import { registerSchema } from '@/features/auth/schemas/auth.schema'
 import { authService } from '@/features/auth/services/auth.service'
 import { PasswordPolicyFields } from '@/features/auth/components/PasswordPolicyFields'
@@ -16,6 +16,7 @@ export function SignUpCard({ lang = 'en' }: SignUpCardProps) {
   const router = useRouter()
   const [fullName, setFullName] = useState('')
   const [email, setEmail] = useState('')
+  const [phone, setPhone] = useState('')
   const [password, setPassword] = useState('')
   const [confirmation, setConfirmation] = useState('')
   const [pending, setPending] = useState(false)
@@ -30,6 +31,8 @@ export function SignUpCard({ lang = 'en' }: SignUpCardProps) {
       namePlaceholder: 'e.g. Mukamana Alice',
       emailLabel: 'Email address',
       emailPlaceholder: 'you@example.com',
+      phoneLabel: 'Phone number',
+      phonePlaceholder: '+250 7XX XXX XXX',
       passwordLabel: 'Password',
       passwordHint: 'At least 8 characters with letters & numbers.',
       createBtn: 'Create account',
@@ -46,6 +49,8 @@ export function SignUpCard({ lang = 'en' }: SignUpCardProps) {
       namePlaceholder: 'urugero: Mukamana Alice',
       emailLabel: 'Imeri yawe',
       emailPlaceholder: 'wowe@urugero.com',
+      phoneLabel: 'Nimero ya telefone',
+      phonePlaceholder: '+250 7XX XXX XXX',
       passwordLabel: 'Ijambobanga',
       passwordHint: 'Byibuze inyuguti 8 zirimo imibare n’inyuguti.',
       createBtn: 'Fungura konti',
@@ -60,7 +65,7 @@ export function SignUpCard({ lang = 'en' }: SignUpCardProps) {
     event.preventDefault()
     setError('')
 
-    const parsed = registerSchema.safeParse({ fullName, email, password })
+    const parsed = registerSchema.safeParse({ fullName, email, phone, password })
     if (!parsed.success) {
       setError(parsed.error.issues[0]?.message ?? 'Please check your details.')
       return
@@ -161,6 +166,32 @@ export function SignUpCard({ lang = 'en' }: SignUpCardProps) {
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               placeholder={t.emailPlaceholder}
+              className="w-full rounded-2xl border border-slate-200 bg-slate-50/60 py-3 pl-10 pr-4 text-sm font-semibold text-[#081233] placeholder-slate-400 transition-all focus:border-[#2437F5] focus:bg-white focus:outline-none focus:ring-3 focus:ring-[#2437F5]/15"
+            />
+          </div>
+        </div>
+
+        {/* Phone Number */}
+        <div>
+          <label
+            htmlFor="register-phone"
+            className="mb-1.5 block text-xs font-bold uppercase tracking-wider text-slate-600"
+          >
+            {t.phoneLabel}
+          </label>
+          <div className="relative">
+            <div className="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3.5 text-slate-400">
+              <Smartphone className="h-4 w-4" />
+            </div>
+            <input
+              id="register-phone"
+              name="phone"
+              type="tel"
+              required
+              autoComplete="tel"
+              value={phone}
+              onChange={(e) => setPhone(e.target.value)}
+              placeholder={t.phonePlaceholder}
               className="w-full rounded-2xl border border-slate-200 bg-slate-50/60 py-3 pl-10 pr-4 text-sm font-semibold text-[#081233] placeholder-slate-400 transition-all focus:border-[#2437F5] focus:bg-white focus:outline-none focus:ring-3 focus:ring-[#2437F5]/15"
             />
           </div>
