@@ -1,5 +1,8 @@
 pmOnFail: ignore
 
+onlyBuiltDependencies:
+  - unrs-resolver
+
 minimumReleaseAgeExclude:
   - '@next/*'
   - next
