@@ -25,7 +25,7 @@ export function hashEmailVerificationCode(email: string, code: string) {
     .digest('hex')
 }
 
-function hashRequestIp(request: Request) {
+export function hashRequestIp(request: Request) {
   const forwarded = request.headers.get('x-forwarded-for')?.split(',')[0]?.trim()
   const ip = request.headers.get('x-real-ip')?.trim() || forwarded || 'unknown'
   return createHmac('sha256', getOtpSecret()).update(`ikimina-email-otp-ip:${ip}`).digest('hex')

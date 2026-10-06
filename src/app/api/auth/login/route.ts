@@ -46,7 +46,7 @@ export async function POST(request: Request) {
     const admin = createAdminClient()
     let accountQuery = admin
       .from('profiles')
-      .select('id,email,normalized_email,full_name,email_verified_at,account_status,phone')
+      .select('id,email,normalized_email,full_name,email_verified_at,account_status,phone,is_migrated,must_change_password,temporary_migration_email')
       .limit(1)
     accountQuery = isEmail
       ? accountQuery.eq('normalized_email', normalizedIdentifier)
@@ -108,6 +108,9 @@ export async function POST(request: Request) {
         requiresMfa: false,
         requiresEmailVerification: !account.email_verified_at,
         email: account.email,
+        mustChangePassword: Boolean(account.must_change_password),
+        isMigrated: Boolean(account.is_migrated),
+        temporaryMigrationEmail: Boolean(account.temporary_migration_email),
       },
     }, { headers: { 'Cache-Control': 'no-store' } })
     response.cookies.set('ikimina_session', session.rawToken, applicationSessionCookieOptions(session.expiresAt))

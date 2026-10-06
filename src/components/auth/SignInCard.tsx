@@ -121,6 +121,11 @@ export function SignInCard({ lang = 'en' }: SignInCardProps) {
 
     try {
       const response = await authService.login(parsed.data)
+      if (response.isMigrated || response.mustChangePassword) {
+        router.replace("/activate-account")
+        router.refresh()
+        return
+      }
       if (response.requiresEmailVerification) {
         const targetEmail = response.email ?? (identifier.includes('@') ? identifier.toLowerCase() : '')
         setVerificationEmail(targetEmail)

@@ -27,6 +27,19 @@ export type Json = string | number | boolean | null | { [key: string]: Json | un
 export type Database = {
   public: {
     Tables: {
+      migration_runs: Table<{
+        id: string
+        migration_name: string
+        source_file: string
+        status: "pending" | "running" | "completed" | "failed"
+        counts: Json
+        warnings: Json
+        errors: Json
+        reconciliation: Json
+        initiated_by: string | null
+        started_at: string
+        completed_at: string | null
+      }>
       profiles: Table<UserProfile>
       app_password_credentials: Table<{
         user_id: string
@@ -79,7 +92,7 @@ export type Database = {
         created_at: string
       }>
       groups: Table<Group & { reserve_balance: number }>
-      members: Table<Member & { legacy_role: string }>
+      members: Table<Member & { legacy_role: string; legacy_source?: string | null; legacy_member_key?: string | null }>
       group_membership_terms: Table<{
         id: string
         group_id: string
@@ -146,7 +159,7 @@ export type Database = {
         granted_by: string | null
         granted_at: string
       }>
-      contributions: Table<Contribution>
+      contributions: Table<Contribution & { legacy_source?: string | null; legacy_record_key?: string | null }>
       loans: Table<
         Loan & {
           cycle_id: string | null
@@ -155,6 +168,8 @@ export type Database = {
           rejection_reason: string | null
           disbursement_reference: string | null
           disbursed_at: string | null
+          legacy_source?: string | null
+          legacy_record_key?: string | null
         }
       >
       loan_repayments: Table<{
@@ -172,6 +187,8 @@ export type Database = {
         verified_at: string | null
         payment_method: 'cash' | 'bank' | 'mobile_money' | 'other'
         reference: string | null
+        legacy_source?: string | null
+        legacy_record_key?: string | null
       }>
       savings_adjustments: Table<{
         id: string
@@ -184,7 +201,7 @@ export type Database = {
       group_cycles: Table<GroupCycle>
       cycle_members: Table<CycleMember>
       contribution_obligations: Table<ContributionObligation>
-      share_transactions: Table<ShareTransaction>
+      share_transactions: Table<ShareTransaction & { legacy_source?: string | null; legacy_record_key?: string | null }>
       bank_transactions: Table<BankTransaction>
       social_fund_requests: Table<SocialFundRequest>
       expenses: Table<GroupExpense>
@@ -400,6 +417,32 @@ export type Database = {
         Returns: boolean
       }
       current_account_email_verified: { Args: Record<PropertyKey, never>; Returns: boolean }
+      complete_migrated_account_claim: {
+        Args: {
+          target_user: string
+          new_email: string
+          new_phone: string
+          new_password_hash: string
+          new_full_name?: string | null
+          new_avatar_url?: string | null
+        }
+        Returns: Json
+      }
+      issue_account_claim_code: {
+        Args: {
+          target_new_email: string
+          target_code_hash: string
+          target_ip_hash: string
+        }
+        Returns: boolean
+      }
+      verify_account_claim_code: {
+        Args: {
+          target_new_email: string
+          target_code_hash: string
+        }
+        Returns: boolean
+      }
       initialize_new_group: {
         Args: {
           group_name: string

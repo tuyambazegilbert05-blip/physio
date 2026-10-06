@@ -11,4 +11,10 @@ export type UserProfile = {
   last_login_at: string | null
   created_at: string
   updated_at: string
+  is_migrated?: boolean
+  migration_source?: string | null
+  legacy_member_id?: string | null
+  must_change_password?: boolean
+  temporary_migration_email?: boolean
+  legacy_phone?: string | null
 }

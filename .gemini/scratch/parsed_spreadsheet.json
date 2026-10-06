@@ -1,0 +1,2129 @@
+{
+  "sheet_names": [
+    "July 2025",
+    "August 2025",
+    "September 2025",
+    "October2025",
+    "November2025",
+    "December2025",
+    "January 2026",
+    "February 2026",
+    "March202",
+    "April 2026",
+    "May2026",
+    "June 2026",
+    "July 2026",
+    "August 2026",
+    "September 2026"
+  ],
+  "sheets": {
+    "July 2025": [
+      [
+        null,
+        "2025-07-01",
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      [
+        "Members names",
+        "Members shares",
+        "Amount in figures",
+        "Bank slip/receipt",
+        "Reference number",
+        "credits",
+        "credits Repaid/cleared",
+        null
+      ],
+      [
+        "Aimable BIZIMUNGU",
+        2.0,
+        55000.0,
+        "RECEIVED",
+        "FTCM25178VMPS09DV",
+        null,
+        null,
+        null
+      ],
+      [
+        "Felicite NISHIMWE",
+        2.0,
+        55000.0,
+        "RECEIVED",
+        "FTCM25181LXQLCYYX",
+        null,
+        null,
+        null
+      ],
+      [
+        "Marie Aimee UWASE ",
+        4.0,
+        105000.0,
+        "RECEIVED",
+        "FTCM25179LOGLKRVA\\KCM",
+        null,
+        null,
+        null
+      ],
+      [
+        "Gloriose MUKASHEMA",
+        4.0,
+        105000.0,
+        "RECEIVED",
+        "AMC6F\\KCM",
+        null,
+        null,
+        null
+      ],
+      [
+        "Enock  NZAKIZWANIMANA",
+        4.0,
+        206000.0,
+        "RECEIVED",
+        "FTCM251872PJJKZXL",
+        null,
+        null,
+        null
+      ],
+      [
+        "Etienne TURIKUMANA ",
+        2.0,
+        55000.0,
+        "RECEIVED",
+        "FTCM25179B63F4FOP",
+        null,
+        null,
+        null
+      ],
+      [
+        "Ben honore NISHIMWE",
+        2.0,
+        55000.0,
+        "RECEIVED",
+        "FTCM25181QTGVVUZE\\REM",
+        null,
+        null,
+        null
+      ],
+      [
+        "Edouard KAREMERA",
+        1.0,
+        105000.0,
+        "RECEIVED",
+        "FTCM25178LXRJTJI5",
+        null,
+        null,
+        null
+      ],
+      [
+        "Eric NDAYISHIMIYE",
+        1.0,
+        30000.0,
+        "RECEIVED",
+        "FTCM25186GGZFXKOL\\KIG",
+        null,
+        null,
+        null
+      ],
+      [
+        "Eliezel NIYOBYOSE",
+        1.0,
+        30000.0,
+        "RECEIVED",
+        "FTCM25186GMLKD2HS",
+        null,
+        null,
+        null
+      ],
+      [
+        "Jean Aime MUBERA",
+        1.0,
+        0.0,
+        "-",
+        "-",
+        null,
+        null,
+        null
+      ],
+      [
+        "Total",
+        24.0,
+        801000.0,
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      [
+        null,
+        null,
+        "1K extra for delay",
+        null,
+        null,
+        null,
+        null,
+        null
+      ]
+    ],
+    "August 2025": [
+      [
+        "Members names",
+        "Members shares",
+        "Amount in figures",
+        "Bank slip/receipt",
+        "Reference number",
+        "credits",
+        "credits Repaid/cleared"
+      ],
+      [
+        "Aimable BIZIMUNGU",
+        2.0,
+        55000.0,
+        "RECEIVED",
+        "FTCM252130CD6FAJD\\REM",
+        null,
+        null
+      ],
+      [
+        "Felicite NISHIMWE",
+        2.0,
+        55000.0,
+        "RECEIVED",
+        "FTCM252164WBUIULJ",
+        2000000.0,
+        null
+      ],
+      [
+        "Marie Aimee UWASE ",
+        4.0,
+        105000.0,
+        "RECEIVED",
+        "FTCM252117DBGUUNI\\KCM",
+        null,
+        null
+      ],
+      [
+        "Gloriose MUKASHEMA",
+        4.0,
+        105000.0,
+        "RECEIVED",
+        "FTCM25216EF6LERUH",
+        250000.0,
+        null
+      ],
+      [
+        "Enock  NZAKIZWANIMANA",
+        4.0,
+        5000.0,
+        "RECEIVED",
+        "FTCM252170DB",
+        null,
+        2000000.0
+      ],
+      [
+        "Etienne TURIKUMANA ",
+        2.0,
+        55000.0,
+        "RECEIVED",
+        "FTCM25216VWAXUVMR",
+        1500000.0,
+        null
+      ],
+      [
+        "Ben honore NISHIMWE",
+        2.0,
+        55000.0,
+        "RECEIVED",
+        "FT25216ZHRX7\\BNK",
+        null,
+        null
+      ],
+      [
+        "Edouard KAREMERA",
+        1.0,
+        5000.0,
+        "RECEIVED",
+        "FTCM252133P5KCSMU\\KIG",
+        null,
+        null
+      ],
+      [
+        "Eric NDAYISHIMIYE",
+        1.0,
+        30000.0,
+        "RECEIVED",
+        "FTCM25215IW4IZVKN",
+        null,
+        null
+      ],
+      [
+        "Eliezel NIYOBYOSE",
+        1.0,
+        30000.0,
+        "RECEIVED",
+        "FTCM25217JZ4WUDID",
+        null,
+        null
+      ],
+      [
+        "Jean Aime MUBERA",
+        1.0,
+        60000.0,
+        "RECEIVED",
+        "FTCM25198P9688YVD\\KNB",
+        null,
+        null
+      ],
+      [
+        "TOTAL AFTER 2 MO",
+        24.0,
+        1361500.0,
+        "0N A/C",
+        null,
+        null,
+        null
+      ]
+    ],
+    "September 2025": [
+      [
+        "Members names",
+        "Members shares",
+        "Amount in figures",
+        "Bank slip/receipt",
+        "Reference number",
+        "credits",
+        "credits Repaid/cleared"
+      ],
+      [
+        "Aimable BIZIMUNGU",
+        2.0,
+        55000.0,
+        "RECEIVED",
+        "FTCM25245JEAKID01",
+        null,
+        null
+      ],
+      [
+        "Felicite NISHIMWE",
+        2.0,
+        55000.0,
+        "RECEIVED",
+        "FTCM25246YLYO0XJ8\\KCM",
+        null,
+        null
+      ],
+      [
+        "Marie Aimee UWASE ",
+        4.0,
+        105000.0,
+        "RECEIVED",
+        "FTCM25243ID676EFS\\KCM",
+        null,
+        null
+      ],
+      [
+        "Gloriose MUKASHEMA",
+        4.0,
+        105000.0,
+        "RECEIVED",
+        "FTCM252461DYZWKJF\\KCM",
+        null,
+        null
+      ],
+      [
+        "Enock  NZAKIZWANIMANA",
+        4.0,
+        205000.0,
+        "RECEIVED",
+        "FTCM252449JZVYCSB\\KIG",
+        null,
+        null
+      ],
+      [
+        "Etienne TURIKUMANA ",
+        2.0,
+        55000.0,
+        "RECEIVED",
+        "FTCM252462HW4RLVE\\TOW",
+        null,
+        null
+      ],
+      [
+        "Ben honore NISHIMWE",
+        2.0,
+        55000.0,
+        "RECEIVED",
+        "FT252476CFLT\\BNK",
+        null,
+        null
+      ],
+      [
+        "Edouard KAREMERA",
+        1.0,
+        5000.0,
+        "RECEIVED",
+        "FTCM2524208CWMOVO\\KIG",
+        null,
+        null
+      ],
+      [
+        "Eric NDAYISHIMIYE",
+        1.0,
+        30000.0,
+        "RECEIVED",
+        "FTCM25246SX1DAHWH",
+        null,
+        null
+      ],
+      [
+        "Eliezel NIYOBYOSE",
+        1.0,
+        30000.0,
+        "RECEIVED",
+        "FTCM25241SJPBBBTG",
+        null,
+        null
+      ],
+      [
+        "Jean Aime MUBERA",
+        1.0,
+        30000.0,
+        "RECEIVED",
+        "FTCM25245N2DNCRGW",
+        null,
+        null
+      ],
+      [
+        "TOTAL AFTER 3 MONTHS",
+        24.0,
+        2092000.0,
+        "ON A/C",
+        "-",
+        null,
+        null
+      ]
+    ],
+    "October2025": [
+      [
+        "Members names",
+        "Members shares",
+        "Amount in figures",
+        "Bank slip/receipt",
+        "Reference number",
+        "credits",
+        "credits Repaid/cleared"
+      ],
+      [
+        "Aimable BIZIMUNGU",
+        2.0,
+        55000.0,
+        "RECEIVED",
+        "FTCM25277ZCUYGHUW\\KCM",
+        null,
+        null
+      ],
+      [
+        "Felicite NISHIMWE",
+        2.0,
+        55000.0,
+        "RECEIVED",
+        "FTCM25274HAVBIMON\\KCM",
+        null,
+        null
+      ],
+      [
+        "Marie Aimee UWASE ",
+        4.0,
+        105000.0,
+        "RECEIVED",
+        "FTCM25277NACRMFQC\\KCM",
+        null,
+        null
+      ],
+      [
+        "Gloriose MUKASHEMA",
+        4.0,
+        105000.0,
+        "RECEIVED",
+        "FTCM25274E2VEPRAA\\KCM",
+        null,
+        null
+      ],
+      [
+        "Enock  NZAKIZWANIMANA",
+        4.0,
+        5000.0,
+        "RECEIVED",
+        "FTCM25278WAJIYSWW\\RUY",
+        null,
+        null
+      ],
+      [
+        "Etienne TURIKUMANA ",
+        2.0,
+        55000.0,
+        "RECEIVED",
+        "FTCM25274GQ3ENLNA\\KCM",
+        null,
+        null
+      ],
+      [
+        "Ben honore NISHIMWE",
+        2.0,
+        55000.0,
+        "RECEIVED",
+        "FT25276KC14G\\BNK",
+        null,
+        null
+      ],
+      [
+        "Edouard KAREMERA",
+        1.0,
+        55000.0,
+        "RECEIVED",
+        "FTCM25270GKBMYBOJ\\KCM",
+        null,
+        null
+      ],
+      [
+        "Eric NDAYISHIMIYE",
+        1.0,
+        30000.0,
+        "RECEIVED",
+        "FTCM25277R4S3UZNP",
+        null,
+        null
+      ],
+      [
+        "Eliezel NIYOBYOSE",
+        1.0,
+        30000.0,
+        "RECEIVED",
+        "FTCM25270U3ELLP93",
+        null,
+        null
+      ],
+      [
+        "Jean Aime MUBERA",
+        1.0,
+        30000.0,
+        "RECEIVED",
+        "FT25276XL1VJ\\BNK",
+        null,
+        null
+      ],
+      [
+        "TOTAL AFTER 4 MONTHS",
+        24.0,
+        2672000.0,
+        "ON A/C",
+        null,
+        null,
+        null
+      ]
+    ],
+    "November2025": [
+      [
+        "Members names",
+        "Members shares",
+        "Amount in figures",
+        "Bank slip/receipt",
+        "Reference number",
+        "credits",
+        "credits Repaid/cleared"
+      ],
+      [
+        "Aimable BIZIMUNGU",
+        2.0,
+        55000.0,
+        "RECEIVED",
+        "FTCM25307ZL8MN9IV",
+        null,
+        null
+      ],
+      [
+        "Felicite NISHIMWE",
+        2.0,
+        55000.0,
+        "RECEIVED",
+        "FTCM25305KMAJZQGJ\\KCM",
+        null,
+        null
+      ],
+      [
+        "Marie Aimee UWASE ",
+        4.0,
+        105000.0,
+        "RECEIVED",
+        "FTCM25304CG3ES73H\\KCM",
+        null,
+        null
+      ],
+      [
+        "Gloriose MUKASHEMA",
+        4.0,
+        105000.0,
+        "RECEIVED",
+        "FTCM25305KMAJZQGJ\\KCM",
+        null,
+        null
+      ],
+      [
+        "Enock  NZAKIZWANIMANA",
+        4.0,
+        105000.0,
+        "RECEIVED",
+        "FT25309TJBVM\\BNK",
+        null,
+        null
+      ],
+      [
+        "Etienne TURIKUMANA ",
+        2.0,
+        55000.0,
+        "RECEIVED",
+        "FTCM25309H480VF28\\KCM",
+        null,
+        null
+      ],
+      [
+        "Ben honore NISHIMWE",
+        2.0,
+        55000.0,
+        "RECEIVED",
+        "FT25307Y9Q19\\BNK",
+        null,
+        null
+      ],
+      [
+        "Edouard KAREMERA",
+        1.0,
+        5000.0,
+        "RECEIVED",
+        "FTCM25302KJXXVRQD\\KAB",
+        "100000/500(Cheque)",
+        "ONGOING"
+      ],
+      [
+        "Eric NDAYISHIMIYE",
+        1.0,
+        30000.0,
+        "RECEIVED",
+        "FTCM253068BZRW6EQ\\KCM",
+        null,
+        null
+      ],
+      [
+        "Eliezel NIYOBYOSE",
+        1.0,
+        31000.0,
+        "RECEIVED",
+        "FTCM25310LLYTFH4X",
+        "350000/500(Cheque)",
+        "ONGOING"
+      ],
+      [
+        "Jean Aime MUBERA",
+        1.0,
+        30000.0,
+        "RECEIVED",
+        "FT25307M8192\\BNK",
+        null,
+        null
+      ],
+      [
+        "TOTAL AFTER 5MONTHS",
+        24.0,
+        3303000.0,
+        null,
+        null,
+        null,
+        null
+      ],
+      [
+        "AFTER CREDITS OF 450K",
+        "2845K Remains on A/C",
+        "1K Extra for delay",
+        null,
+        "The cheque book cost 7k",
+        null,
+        null
+      ]
+    ],
+    "December2025": [
+      [
+        "Members names",
+        "Members shares",
+        "Amount in figures",
+        "Bank slip/receipt",
+        "Reference number",
+        "credits",
+        "credits Repaid/cleared"
+      ],
+      [
+        "Aimable BIZIMUNGU",
+        2.0,
+        55000.0,
+        "RECEIVED",
+        "FTCM25335Y2DDY6AA",
+        null,
+        null
+      ],
+      [
+        "Felicite NISHIMWE",
+        2.0,
+        55000.0,
+        "RECEIVED",
+        "FTCM253356QIGXHJO\\KCM",
+        null,
+        null
+      ],
+      [
+        "Marie Aimee UWASE ",
+        4.0,
+        105000.0,
+        "RECEIVED",
+        "FTCM25336UFPVC9UC\\KCM",
+        null,
+        null
+      ],
+      [
+        "Gloriose MUKASHEMA",
+        4.0,
+        105000.0,
+        "RECEIVED",
+        "FTCM25336FP09TTMP\\KCM",
+        null,
+        null
+      ],
+      [
+        "Enock  NZAKIZWANIMANA",
+        4.0,
+        105000.0,
+        "RECEIVED",
+        "FTCM253381DVB5GOA\\KIG",
+        null,
+        null
+      ],
+      [
+        "Etienne TURIKUMANA ",
+        2.0,
+        55000.0,
+        "RECEIVED",
+        "FTCM2533715W9ZJUW\\KCM",
+        null,
+        null
+      ],
+      [
+        "Ben honore NISHIMWE",
+        2.0,
+        55000.0,
+        "RECEIVED",
+        "FTCM25336UQBASG2P/KIG",
+        null,
+        null
+      ],
+      [
+        "Edouard KAREMERA",
+        1.0,
+        5000.0,
+        "RECEIVED",
+        "FTCM25331LWRLWL6X\\KAB",
+        "100K/3K Profit",
+        "CLEARED"
+      ],
+      [
+        "Eric NDAYISHIMIYE",
+        1.0,
+        30000.0,
+        "RECEIVED",
+        "FTCM25339DLSDAMEI\\KCM",
+        null,
+        null
+      ],
+      [
+        "Eliezel NIYOBYOSE",
+        1.0,
+        40500.0,
+        "RECEIVED",
+        "FTCM25331QF1QTFIK/FTCM25331LGIV",
+        "350K",
+        "ONGOING/10.5K/REPAID PROFIT"
+      ],
+      [
+        "Jean Aime MUBERA",
+        1.0,
+        30000.0,
+        "RECEIVED",
+        "FTCM25335SH5UEWRB\\KIG",
+        null,
+        null
+      ],
+      [
+        "TOTAL AFTER 6 MONTHS",
+        24.0,
+        3588500.0,
+        null,
+        null,
+        null,
+        null
+      ],
+      [
+        null,
+        null,
+        "Karemera paid loan with 103k",
+        null,
+        null,
+        null,
+        null
+      ]
+    ],
+    "January 2026": [
+      [
+        "Members names",
+        "Members shares",
+        "Saved Amount in figures",
+        "Bank slip/receipt",
+        "Reference number",
+        "credits",
+        "credits Repaid/cleared"
+      ],
+      [
+        "Aimable BIZIMUNGU",
+        2.0,
+        55000.0,
+        "RECEIVED",
+        "FTCM26028FYGPKQG",
+        null,
+        null
+      ],
+      [
+        "Felicite NISHIMWE",
+        2.0,
+        55000.0,
+        "RECEIVED",
+        "FTCM2605RQH2XVZH\\KCM",
+        null,
+        null
+      ],
+      [
+        "Marie Aimee UWASE ",
+        4.0,
+        105000.0,
+        "RECEIVED",
+        "FTCM2603NGBBPZAS\\KCM",
+        null,
+        null
+      ],
+      [
+        "Gloriose MUKASHEMA",
+        4.0,
+        105000.0,
+        "RECEIVED",
+        "FTCM26057DFM0W61\\KCM",
+        null,
+        null
+      ],
+      [
+        "Enock  NZAKIZWANIMANA",
+        4.0,
+        105000.0,
+        "RECEIVED",
+        "FTCM2602JCWZZQV7\\KIG",
+        null,
+        null
+      ],
+      [
+        "Etienne TURIKUMANA ",
+        2.0,
+        55000.0,
+        "RECEIVED",
+        "FTCM26051ZRJHFZZ\\KCM",
+        null,
+        null
+      ],
+      [
+        "Ben honore NISHIMWE",
+        2.0,
+        55000.0,
+        "RECEIVED",
+        "FTCM263365JCEANT0G\\KIG",
+        "350000rwf/500 CHEQUE",
+        "ON GOING"
+      ],
+      [
+        "Edouard KAREMERA",
+        1.0,
+        30000.0,
+        "RECEIVED",
+        "FTCM253574GZQAFYA\\KCM",
+        null,
+        null
+      ],
+      [
+        "Eric NDAYISHIMIYE",
+        1.0,
+        30000.0,
+        "RECEIVED",
+        "FTCM2603HHXCI9ZH",
+        null,
+        null
+      ],
+      [
+        "Eliezel NIYOBYOSE",
+        1.0,
+        43500.0,
+        "RECEIVED",
+        "FTCM2608PNLAQMPT\\KCM",
+        "350000rwf",
+        "ON GOING/10500rwf/profit"
+      ],
+      [
+        "Jean Aime MUBERA",
+        1.0,
+        30000.0,
+        "RECEIVED",
+        "FTCM2613A0REW7NO\\KNB",
+        null,
+        null
+      ],
+      [
+        "TOTAL AFTER 7 MONTHS",
+        24.0,
+        3906500.0,
+        null,
+        null,
+        null,
+        null
+      ],
+      [
+        null,
+        null,
+        "3K EXTRA FOR DELAY/ELIEZEL",
+        null,
+        null,
+        null,
+        null
+      ]
+    ],
+    "February 2026": [
+      [
+        "Members names",
+        "Members shares",
+        "Amount in figures",
+        "Bank slip/receipt",
+        "Reference number",
+        "credits",
+        "credits Repaid/cleared",
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      [
+        "Aimable BIZIMUNGU",
+        2.0,
+        55000.0,
+        "RECEIVED",
+        "FTCM26340DJA4CKW",
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      [
+        "Felicite NISHIMWE",
+        2.0,
+        55000.0,
+        "RECEIVED",
+        "FTCM26348TUHGTPE\\KCM",
+        "400000rwf/1month",
+        "ON GOING",
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      [
+        "Marie Aimee UWASE ",
+        4.0,
+        105000.0,
+        "RECEIVED",
+        "FTCM2633TXB8TPGD\\KCM",
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      [
+        "Gloriose MUKASHEMA",
+        4.0,
+        105000.0,
+        "RECEIVED",
+        "FTCM2634CT9LAHTK\\KCM",
+        "500000rwf/2months",
+        "ON GOING",
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      [
+        "Enock  NZAKIZWANIMANA",
+        4.0,
+        106000.0,
+        "RECEIVED",
+        "FTCM2636BAI7I4UC\\KIG",
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      [
+        "Etienne TURIKUMANA ",
+        2.0,
+        55000.0,
+        "RECEIVED",
+        "FTCM2636ILN2BFRW",
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      [
+        "Ben honore NISHIMWE",
+        2.0,
+        55000.0,
+        "RECEIVED",
+        "FTCM26341FAQJGDD\\KIG",
+        "350000rwf/1month",
+        "Paid/10500rwf/profit",
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      [
+        "Edouard KAREMERA",
+        1.0,
+        30000.0,
+        "RECEIVED",
+        "FTCM2628SGQUFNQX",
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      [
+        "Eric NDAYISHIMIYE",
+        1.0,
+        30000.0,
+        "RECEIVED",
+        "FTCM2633XKQKZNB6",
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      [
+        "Eliezel NIYOBYOSE",
+        1.0,
+        30000.0,
+        "RECEIVED",
+        "FTCM2634WN8DEEPO\\KCM",
+        "350000rwf/5months",
+        "ON GOING/10500rwf/profit",
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      [
+        "Jean Aime MUBERA",
+        1.0,
+        30000.0,
+        "RECEIVED",
+        "FTCM2631XFP3AVKN\\KNB",
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      [
+        "TOTAL AFTER 8 MONTHS",
+        24.0,
+        4020910.0,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      [
+        null,
+        null,
+        "1k extra for late saving",
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ]
+    ],
+    "March202": [
+      [
+        "Members names",
+        "Members shares",
+        "Amount in figures",
+        "Bank slip/receipt",
+        "Reference number",
+        "credits",
+        "credits Repaid/cleared"
+      ],
+      [
+        "Aimable BIZIMUNGU",
+        2.0,
+        55000.0,
+        "RECEIVED",
+        "FTCM2662YZZQEBBF",
+        null,
+        null
+      ],
+      [
+        "Felicite NISHIMWE",
+        2.0,
+        55000.0,
+        "RECEIVED",
+        "FTCM2663GNZUN9YX",
+        null,
+        "Paid 400000/12k(PROFIT)"
+      ],
+      [
+        "Marie Aimee UWASE ",
+        4.0,
+        105000.0,
+        "RECEIVED",
+        "FTCM26629NIP6NPQ",
+        null,
+        null
+      ],
+      [
+        "Gloriose MUKASHEMA",
+        4.0,
+        105000.0,
+        "RECEIVED",
+        "FTCM26637TCFSI6S",
+        null,
+        "ONGOINNG/PAID 15K(PROFIT)"
+      ],
+      [
+        "Enock  NZAKIZWANIMANA",
+        4.0,
+        105000.0,
+        "RECEIVED",
+        "HQ-OP-Mob-1160-16245873",
+        "2M/5MONTHS",
+        null
+      ],
+      [
+        "Etienne TURIKUMANA ",
+        2.0,
+        55000.0,
+        "RECEIVED",
+        "FTCM2664LGXURTKP",
+        null,
+        null
+      ],
+      [
+        "Ben honore NISHIMWE",
+        2.0,
+        55000.0,
+        "RECEIVED",
+        "FQ-OP-Mob-1160-16266242",
+        "3M+1K(CHARGES)/MONTH",
+        "ONGOING"
+      ],
+      [
+        "Edouard KAREMERA",
+        1.0,
+        30000.0,
+        "RECEIVED",
+        "FTCM2663NOXFFW8Q",
+        null,
+        null
+      ],
+      [
+        "Eric NDAYISHIMIYE",
+        1.0,
+        30000.0,
+        "RECEIVED",
+        "FTCM2663FUKH4VXZ",
+        null,
+        null
+      ],
+      [
+        "Eliezel NIYOBYOSE",
+        1.0,
+        30000.0,
+        "RECEIVED",
+        "FTCM2664QLHYUOAR",
+        null,
+        null
+      ],
+      [
+        "Jean Aime MUBERA",
+        1.0,
+        30000.0,
+        "RECEIVED",
+        "FTCM2662NUG2SYCM",
+        null,
+        null
+      ],
+      [
+        "Total",
+        24.0,
+        655000.0,
+        null,
+        null,
+        null,
+        null
+      ],
+      [
+        null,
+        null,
+        "so far after 9 months minus credit remained balance= 362,410",
+        null,
+        null,
+        null,
+        null
+      ],
+      [
+        null,
+        null,
+        "1K extra for delay",
+        null,
+        null,
+        null,
+        null
+      ]
+    ],
+    "April 2026": [
+      [
+        "Members names",
+        "Members shares",
+        "Amount in figures",
+        "Bank slip/receipt",
+        "Reference number",
+        "credits",
+        "credits Repaid/cleared"
+      ],
+      [
+        "Aimable BIZIMUNGU",
+        2.0,
+        55000.0,
+        "RECEIVED",
+        "FTCM26933QL3GPQG",
+        null,
+        null
+      ],
+      [
+        "Felicite NISHIMWE",
+        2.0,
+        55000.0,
+        "RECEIVED",
+        "FTCM2692GQ3MKSVA",
+        null,
+        null
+      ],
+      [
+        "Marie Aimee UWASE ",
+        4.0,
+        105000.0,
+        "RECEIVED",
+        "FTCM2690XQMJDS7V",
+        "700000/3months",
+        null
+      ],
+      [
+        "Gloriose MUKASHEMA",
+        4.0,
+        105000.0,
+        "RECEIVED",
+        "FTCM2693LYK9CKEE",
+        "500000/2months",
+        "15000/PROFIT/Previous month"
+      ],
+      [
+        "Enock  NZAKIZWANIMANA",
+        4.0,
+        106000.0,
+        "RECEIVED",
+        "FTCM2696I20DWYQC",
+        "ONGOING/2M/5Months",
+        "60000/PROFIT/month"
+      ],
+      [
+        "Etienne TURIKUMANA ",
+        2.0,
+        55000.0,
+        "RECEIVED",
+        "FTCM2695RMUX3UVP",
+        null,
+        null
+      ],
+      [
+        "Ben honore NISHIMWE",
+        2.0,
+        55000.0,
+        "RECEIVED",
+        "FTCM26956FIHB4JC",
+        "2500000/1month",
+        "90000/PROFIT /previous month Cleared with borrowed amount"
+      ],
+      [
+        "Edouard KAREMERA",
+        1.0,
+        30000.0,
+        "RECEIVED",
+        "FTCM2686TMYOMW9D",
+        "100000/1month",
+        null
+      ],
+      [
+        "Eric NDAYISHIMIYE",
+        1.0,
+        30000.0,
+        "RECEIVED",
+        "FTCM2691JKIAOCEG",
+        null,
+        null
+      ],
+      [
+        "Eliezel NIYOBYOSE",
+        1.0,
+        46500.0,
+        "RECEIVED",
+        "FTCM261010RLBLNJN",
+        null,
+        null
+      ],
+      [
+        "Jean Aime MUBERA",
+        1.0,
+        30000.0,
+        "RECEIVED",
+        "FTCM2693YIRLODBM",
+        null,
+        null
+      ],
+      [
+        "Total",
+        24.0,
+        672500.0,
+        null,
+        null,
+        null,
+        null
+      ],
+      [
+        null,
+        "So far after 10 months minus all credits a/c balance 3689910",
+        "6K extra for delay",
+        null,
+        null,
+        null,
+        null
+      ]
+    ],
+    "May2026": [
+      [
+        "Members names",
+        "Members shares",
+        "Amount in figures",
+        "Bank slip/receipt",
+        "Reference number",
+        "credits",
+        "credits Repaid/cleared"
+      ],
+      [
+        "Aimable BIZIMUNGU",
+        2.0,
+        55000.0,
+        "RECEIVED",
+        "FTCM26125KNWPM61F",
+        null,
+        null
+      ],
+      [
+        "Felicite NISHIMWE",
+        2.0,
+        55000.0,
+        "RECEIVED",
+        "FTCM26125LISXW2RV/KCM",
+        null,
+        null
+      ],
+      [
+        "Marie Aimee UWASE ",
+        4.0,
+        105000.0,
+        "RECEIVED",
+        "FTCM26120ZMO96YJU/KCM",
+        "700000/3months",
+        "21000/PROFIT/MONTH"
+      ],
+      [
+        "Gloriose MUKASHEMA",
+        4.0,
+        105000.0,
+        "RECEIVED",
+        "FTCM26124KQXRPLNJ/KCM",
+        "500000/2months",
+        "15000/PROFIT/MONTH CLEARED WITH RETURN OF BORROWED AMOUNT/FTCM26139VPYNANVO/RDB"
+      ],
+      [
+        "Enock  NZAKIZWANIMANA",
+        4.0,
+        106000.0,
+        "RECEIVED",
+        "FTCM261255OLAXLSM/KCM",
+        "ONGOING/2M/5Months",
+        "60000/PROFIT/month, Extra 300k of Profit with FTCM26146JDYZHIG3/KCM"
+      ],
+      [
+        "Etienne TURIKUMANA ",
+        2.0,
+        56000.0,
+        "RECEIVED",
+        "FTCM26126XLTUPRMP/KCM",
+        null,
+        null
+      ],
+      [
+        "Ben honore NISHIMWE",
+        2.0,
+        55000.0,
+        "RECEIVED",
+        "FTCM26125TQ0VCJWJ/KCM",
+        "2500000/1month",
+        "90000/PROFIT /previous month Cleared with borrowed amount/FTCM26135E80WIDST/KIG"
+      ],
+      [
+        "Edouard KAREMERA",
+        1.0,
+        30000.0,
+        "RECEIVED",
+        "FTCM26119SGIXC9NN/KCM",
+        "100000/1month",
+        "3000/NOT GIVEN/MONTH"
+      ],
+      [
+        "Eric NDAYISHIMIYE",
+        1.0,
+        30000.0,
+        "RECEIVED",
+        "FTCM26125TUXLQXU6/KCM",
+        null,
+        null
+      ],
+      [
+        "Eliezel NIYOBYOSE",
+        1.0,
+        50500.0,
+        "RECEIVED",
+        "FTCM26128PH26CHD6/KCM",
+        "350K/>5 Months/5%",
+        "17500/PROFIT/CLEARED WITH  RETURN OF BORROWED AMT 350000/FTCM26147UDR5DBDW/KCM"
+      ],
+      [
+        "Jean Aime MUBERA",
+        1.0,
+        30000.0,
+        "RECEIVED",
+        null,
+        null,
+        null
+      ],
+      [
+        "Total",
+        24.0,
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      [
+        null,
+        "So far after 11 months minus all credits overall a/c balance=4436320rwf",
+        "3K Extra for delay",
+        null,
+        null,
+        null,
+        null
+      ]
+    ],
+    "June 2026": [
+      [
+        "Members names",
+        "Members shares",
+        "Amount in figures",
+        "Bank slip/receipt",
+        "Reference number",
+        "credits",
+        "credits  Staus Repaid/cleared/Ongoing"
+      ],
+      [
+        "Aimable BIZIMUNGU",
+        2.0,
+        55000.0,
+        "RECEIVED",
+        "FTCM26156R8EXL1QD",
+        null,
+        null
+      ],
+      [
+        "Felicite NISHIMWE",
+        2.0,
+        55000.0,
+        "RECEIVED",
+        "FTCM26154L7LGMCJW",
+        "1500000/6MONTHS/Taken 01/06/2026",
+        "ONGOING"
+      ],
+      [
+        "Marie Aimee UWASE ",
+        4.0,
+        105000.0,
+        "RECEIVED",
+        "FTCM26156VOVJP3TA",
+        "700000/3months",
+        "21000/PROFIT CLEARED"
+      ],
+      [
+        "Gloriose MUKASHEMA",
+        4.0,
+        105000.0,
+        "RECEIVED",
+        "FTCM261548VKD8KPD",
+        "250000/3MONTHS/taken 08/06/2026",
+        "ONGOING"
+      ],
+      [
+        "Enock  NZAKIZWANIMANA",
+        4.0,
+        105000.0,
+        "RECEIVED",
+        "FTCM26156ME2C1PEF",
+        null,
+        null
+      ],
+      [
+        "Etienne TURIKUMANA ",
+        2.0,
+        55000.0,
+        "RECEIVED",
+        "FTCM26157VKAROPBK",
+        null,
+        null
+      ],
+      [
+        "Ben honore NISHIMWE",
+        2.0,
+        55000.0,
+        "RECEIVED",
+        "FTCM261552YCWVCRC/KIG",
+        null,
+        null
+      ],
+      [
+        "Edouard KAREMERA",
+        1.0,
+        30000.0,
+        "RECEIVED",
+        "FTCM26152P9URNL9S",
+        "100000/2MONTHS",
+        "6000 PROFIT CLEARED"
+      ],
+      [
+        "Eric NDAYISHIMIYE",
+        1.0,
+        30000.0,
+        "RECEIVED",
+        "FTCM26152FCOAJC6V",
+        null,
+        null
+      ],
+      [
+        "Eliezel NIYOBYOSE",
+        1.0,
+        30000.0,
+        "RECEIVED",
+        "FTCM26156B7WKFHFQ",
+        null,
+        null
+      ],
+      [
+        "Jean Aime MUBERA",
+        1.0,
+        30000.0,
+        "RECEIVED",
+        "FTCM26149C1UDW9KC",
+        null,
+        null
+      ],
+      [
+        "Total",
+        24.0,
+        655000.0,
+        null,
+        null,
+        null,
+        null
+      ],
+      [
+        null,
+        "So far after 12 months minus all credits remaining overall A/C balance=4,818,320rwf",
+        "1K extra for delay",
+        null,
+        null,
+        null,
+        null
+      ]
+    ],
+    "July 2026": [
+      [
+        "Members names",
+        "Members shares",
+        "Amount in figures",
+        "Bank slip/receipt",
+        "Reference number",
+        "credits",
+        "credits Repaid/cleared"
+      ],
+      [
+        "Aimable BIZIMUNGU",
+        2.0,
+        55000.0,
+        "RECEIVED",
+        "FTCM26184JJCSCATC",
+        null,
+        null
+      ],
+      [
+        "Felicite NISHIMWE",
+        2.0,
+        55000.0,
+        "RECEIVED",
+        "FTCM261883WYAAFF8/FTCM26190YO0AS07E",
+        "1500000/6MOTHS/45K",
+        "45000/PROFIT/CLEARED"
+      ],
+      [
+        "Marie Aimee UWASE ",
+        4.0,
+        105000.0,
+        "RECEIVED",
+        "FTCM26186F5ZFYV61",
+        null,
+        null
+      ],
+      [
+        "Gloriose MUKASHEMA",
+        4.0,
+        105000.0,
+        "RECEIVED",
+        "FTCM26188XGHRVZTQ",
+        "250000/3MONTHS",
+        "ONGOING"
+      ],
+      [
+        "Enock  NZAKIZWANIMANA",
+        4.0,
+        105000.0,
+        "RECEIVED",
+        "FTCM26187AZ0SU2Y7/FTCM26188JKEBCUFN",
+        "Sent with different names and 2 receipt",
+        null
+      ],
+      [
+        "Etienne TURIKUMANA ",
+        2.0,
+        55000.0,
+        "RECEIVED",
+        "FTCM26187HWWUHA58",
+        null,
+        null
+      ],
+      [
+        "Ben honore NISHIMWE",
+        2.0,
+        55000.0,
+        "RECEIVED",
+        "FQ-OP-Mob-1160-18813258",
+        null,
+        null
+      ],
+      [
+        "Edouard KAREMERA",
+        1.0,
+        30000.0,
+        "RECEIVED",
+        "FTCM26185LZNSUZZX",
+        null,
+        null
+      ],
+      [
+        "Eric NDAYISHIMIYE",
+        1.0,
+        30000.0,
+        "RECEIVED",
+        "Not clearly seen",
+        null,
+        null
+      ],
+      [
+        "Eliezel NIYOBYOSE",
+        1.0,
+        30000.0,
+        "RECEIVED",
+        "FTCM26185ISVJUMA",
+        "380000/3 MONTHS",
+        "ONGOING"
+      ],
+      [
+        "Jean Aime MUBERA",
+        1.0,
+        30000.0,
+        "RECEIVED",
+        "FTCM26180RG7JEPEX",
+        null,
+        null
+      ],
+      [
+        "Total",
+        24.0,
+        655000.0,
+        "1k Extra for delay",
+        null,
+        null,
+        null
+      ],
+      [
+        null,
+        null,
+        "So far after 13 months overall A/c balance was 5520730 rwf , Ikimina:4817730,Social:703000",
+        null,
+        null,
+        null,
+        null
+      ]
+    ],
+    "August 2026": [
+      [
+        "Members names",
+        "Members shares",
+        "Amount in RWF",
+        "Bank slip/receipt",
+        "DELAY RATE",
+        "Reference number",
+        "credits",
+        "Interest / Month",
+        "Paid interest",
+        "credits paid/cleared"
+      ],
+      [
+        "Aimable BIZIMUNGU",
+        2.0,
+        55000.0,
+        "RECEIVED",
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      [
+        "Felicite NISHIMWE",
+        2.0,
+        55000.0,
+        "RECEIVED",
+        null,
+        "FTCM26217841YJKSU",
+        "PAID 1.5M CREDITED ANOTHER  2M/6MONTHS on 30/07/2026",
+        "60K",
+        "ONGOING",
+        "ONGOING"
+      ],
+      [
+        "Marie Aimee UWASE ",
+        4.0,
+        105000.0,
+        "RECEIVED",
+        null,
+        "FTCM26212AJF5TXW7",
+        null,
+        null,
+        null,
+        null
+      ],
+      [
+        "Gloriose MUKASHEMA",
+        4.0,
+        105000.0,
+        "RECEIVED",
+        null,
+        "FTCM26216CC9AVQAZ",
+        "250K/3MONTHS on ",
+        "7500/M , paid all 5 MONTHS ",
+        "37500/ 5 MONTHS",
+        "ONGOING"
+      ],
+      [
+        "Enock  NZAKIZWANIMANA",
+        4.0,
+        104000.0,
+        "RECEIVED",
+        null,
+        "FTCM26217BIZXSI6D",
+        "2M/5MONTHS  CLEARED",
+        null,
+        null,
+        "PAID ALL"
+      ],
+      [
+        "Etienne TURIKUMANA ",
+        2.0,
+        55000.0,
+        "RECEIVED",
+        null,
+        "FTCM262174DXMMGKB",
+        "1,5M/5 MONTHS on 05/08/2026",
+        "45k",
+        null,
+        "ONGOING"
+      ],
+      [
+        "Ben honore NISHIMWE",
+        2.0,
+        55000.0,
+        "RECEIVED",
+        null,
+        "FTCM26217IORRDR5X",
+        null,
+        null,
+        null,
+        null
+      ],
+      [
+        "Edouard KAREMERA",
+        1.0,
+        30000.0,
+        "RECEIVED",
+        null,
+        "FTCM26208EAEBMDHK",
+        null,
+        null,
+        null,
+        null
+      ],
+      [
+        "Eric NDAYISHIMIYE",
+        1.0,
+        30000.0,
+        "RECEIVED",
+        null,
+        "FTCM26217BN1C2KBJ",
+        "        ",
+        "        ",
+        null,
+        "        "
+      ],
+      [
+        "Eliezel NIYOBYOSE",
+        1.0,
+        30000.0,
+        "RECEIVED",
+        "2K",
+        "FTCM26219ROIT4TWO",
+        "380K/3 MONTHS on 22/07/2026",
+        11400.0,
+        null,
+        "ONGOING"
+      ],
+      [
+        "Jean Aime MUBERA",
+        1.0,
+        30000.0,
+        "RECEIVED",
+        null,
+        "FTCM26210TMOMEFZB",
+        null,
+        null,
+        null,
+        null
+      ],
+      [
+        "Total",
+        24.0,
+        654000.0,
+        "IKIMINA: 638000",
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      [
+        "ON A/C",
+        24.0,
+        "CURRENT A/C BALANCE : 5773640",
+        "SOCIAL : 54K",
+        null,
+        "LAST A/C: 5520730 RWF",
+        null,
+        null,
+        null,
+        null
+      ]
+    ],
+    "September 2026": [
+      [
+        "Members names",
+        "Members shares",
+        "Amount in RWF",
+        "Bank slip/receipt",
+        "DELAY RATE",
+        "Reference number",
+        "credits",
+        "Interest / Month",
+        "Paid interest",
+        "credits paid/cleared"
+      ],
+      [
+        "Aimable BIZIMUNGU",
+        2.0,
+        55000.0,
+        "RECEIVED",
+        null,
+        "FTCM2647ST3XO3OC",
+        null,
+        null,
+        null,
+        null
+      ],
+      [
+        "Felicite NISHIMWE",
+        2.0,
+        55000.0,
+        "RECEIVED",
+        null,
+        "FTCM2624FSGTWMLP",
+        "2M / MONTH",
+        "60K/MONTH",
+        "60K/MONTH",
+        "CLEARED"
+      ],
+      [
+        "Marie Aimee UWASE ",
+        4.0,
+        105000.0,
+        "RECEIVED",
+        null,
+        "FTCM26245RVS3FMV",
+        "1M",
+        "30K/MONTH",
+        null,
+        "500K PAID"
+      ],
+      [
+        "Gloriose MUKASHEMA",
+        4.0,
+        105000.0,
+        "RECEIVED",
+        null,
+        "FTCM26244XQ5ROAGZ",
+        "250K/3MONTHS on ",
+        "7500/M , paid all 5 MONTHS ",
+        "37500/ 5 MONTHS",
+        "ONGOING"
+      ],
+      [
+        "Enock  NZAKIZWANIMANA",
+        4.0,
+        105000.0,
+        "RECEIVED",
+        "4K",
+        "FTCM26258STPYW5WE",
+        null,
+        null,
+        null,
+        null
+      ],
+      [
+        "Etienne TURIKUMANA ",
+        2.0,
+        55000.0,
+        "RECEIVED",
+        "3K",
+        "FTCM265105UOMLRZ",
+        "1,5M/5 MONTHS on 05/08/2026",
+        "45k",
+        null,
+        "ONGOING"
+      ],
+      [
+        "Ben honore NISHIMWE",
+        2.0,
+        55000.0,
+        "RECEIVED",
+        null,
+        "FTCM26247INYF3VR",
+        "2,5M",
+        "75K",
+        null,
+        "ONGOING"
+      ],
+      [
+        "Edouard KAREMERA",
+        1.0,
+        30000.0,
+        "RECEIVED",
+        null,
+        "FTCM24260CUTPNXZZ",
+        null,
+        null,
+        null,
+        null
+      ],
+      [
+        "Eric NDAYISHIMIYE",
+        1.0,
+        30000.0,
+        "RECEIVED",
+        null,
+        "FTCM2624EPJLFUWK",
+        "        ",
+        "        ",
+        null,
+        "        "
+      ],
+      [
+        "Eliezel NIYISHOBOBYOSE",
+        1.0,
+        30000.0,
+        "RECEIVED",
+        null,
+        "FTCM26248UZM4YJVZ",
+        "380K/3 MONTHS on 22/07/2026",
+        11400.0,
+        "11400/paid this month",
+        "ONGOING"
+      ],
+      [
+        "Jean Aime MUBERA",
+        1.0,
+        30000.0,
+        "RECEIVED",
+        null,
+        "FTCM26248CKMWWQGI",
+        null,
+        null,
+        null,
+        null
+      ],
+      [
+        "Total",
+        24.0,
+        "                                                                    655K",
+        "IKIMINA: 607K",
+        "7K",
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      [
+        "ON A/C",
+        24.0,
+        "CURRENT A/C BALANCE : 5055360RWF",
+        "SOCIAL : 55K",
+        null,
+        "LAST A/C:5773640  RWF",
+        null,
+        null,
+        null,
+        null
+      ]
+    ]
+  }
+}
