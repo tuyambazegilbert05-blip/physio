@@ -400,6 +400,27 @@ export type Database = {
         Returns: boolean
       }
       current_account_email_verified: { Args: Record<PropertyKey, never>; Returns: boolean }
+      initialize_new_group: {
+        Args: {
+          group_name: string
+          group_description?: string
+          group_location?: string | null
+          is_discoverable?: boolean
+          currency_code?: string
+          cycle_start_date?: string
+          cycle_name?: string
+          share_unit_price?: number
+          social_contribution?: number
+          loan_max?: number
+          rate_up_to_4_months?: number
+          rate_over_4_months?: number
+          due_day?: number
+          rules_title?: string | null
+          rules_body?: string | null
+          member_fields?: Json
+        }
+        Returns: Json
+      }
       create_group: {
         Args: {
           group_name: string
