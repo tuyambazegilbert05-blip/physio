@@ -1,7 +1,7 @@
 pmOnFail: ignore
 
-onlyBuiltDependencies:
-  - unrs-resolver
+allowBuilds:
+  unrs-resolver: true
 
 minimumReleaseAgeExclude:
   - '@next/*'
