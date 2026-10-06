@@ -7,6 +7,22 @@ type StageThreeBackgroundProps = {
   className?: string
 }
 
+type DisposableResource = { dispose: () => void }
+type OrbitMesh = {
+  geometry: DisposableResource
+  material: DisposableResource
+  userData: { radius: number; angle: number; speed: number; yOffset: number }
+  position: { x: number; y: number; z: number }
+}
+type SceneRenderer = {
+  domElement: HTMLCanvasElement
+  setSize: (width: number, height: number) => void
+  setPixelRatio: (ratio: number) => void
+  setClearColor: (color: number, alpha: number) => void
+  render: (scene: unknown, camera: unknown) => void
+  dispose: () => void
+}
+
 export function StageThreeBackground({ className = '' }: StageThreeBackgroundProps) {
   const containerRef = useRef<HTMLDivElement>(null)
 
@@ -27,9 +43,9 @@ export function StageThreeBackground({ className = '' }: StageThreeBackgroundPro
     const camera = new THREE.PerspectiveCamera(45, width / height, 0.1, 100)
     camera.position.set(0, 0, 8.5)
 
-    let renderer: any
+    let renderer: SceneRenderer
     try {
-      renderer = new (THREE as any).WebGLRenderer({
+      renderer = new THREE.WebGLRenderer({
         alpha: true,
         antialias: true,
         powerPreference: 'high-performance',
@@ -64,7 +80,7 @@ export function StageThreeBackground({ className = '' }: StageThreeBackgroundPro
 
     // 1. Create Glossy 3D Spherical Node Meshes in 3D Orbits
     const sphereCount = 28
-    const sphereMeshes: any[] = []
+    const sphereMeshes: OrbitMesh[] = []
 
     for (let i = 0; i < sphereCount; i++) {
       const radius = i % 3 === 0 ? 2.2 : i % 3 === 1 ? 3.1 : 3.8
@@ -261,7 +277,7 @@ export function StageThreeBackground({ className = '' }: StageThreeBackgroundPro
       resizeObserver.disconnect()
       sphereMeshes.forEach((mesh) => {
         mesh.geometry.dispose()
-        ;(mesh.material as any).dispose()
+        mesh.material.dispose()
       })
       torus1Geo.dispose()
       torus1Mat.dispose()
@@ -287,4 +303,3 @@ export function StageThreeBackground({ className = '' }: StageThreeBackgroundPro
     />
   )
 }
-

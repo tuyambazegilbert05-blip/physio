@@ -55,6 +55,21 @@
   animation: none;
 }
 
+.glyph {
+  display: grid;
+  width: 58px;
+  height: 58px;
+  place-items: center;
+  border: 1px solid rgb(71 104 217 / 16%);
+  border-radius: 20px;
+  background: linear-gradient(145deg, #fff, #f0edff);
+  color: #7b3ff2;
+  font-size: 42px;
+  font-weight: 800;
+  line-height: 1;
+  animation: logo-breathe 1.8s ease-in-out infinite;
+}
+
 .wordmark {
   margin-top: 4px;
   color: var(--navy);
@@ -91,6 +106,13 @@
   object-fit: contain;
 }
 
+.screen .glyph {
+  width: 100%;
+  height: 100%;
+  border-radius: 28%;
+  font-size: 160px;
+}
+
 .screen .wordmark {
   margin-top: 0;
   font-size: clamp(23px, 3vw, 30px);
@@ -108,6 +130,19 @@
 .inline .logo {
   width: 25px;
   height: 25px;
+}
+
+.inline .glyph {
+  width: 25px;
+  height: 25px;
+  border-radius: 8px;
+  font-size: 20px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .glyph {
+    animation: none;
+  }
 }
 
 .inline .message {

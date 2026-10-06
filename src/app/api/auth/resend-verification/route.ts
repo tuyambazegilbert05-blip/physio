@@ -1,61 +1,42 @@
-import { NextResponse } from 'next/server'
-import { z } from 'zod'
-import { createAdminClient } from '@/lib/supabase/admin'
-import { sendAuthConfirmationEmail } from '@/lib/email/brevo'
-
-const schema = z.object({
-  email: z.string().trim().email('Invalid email address'),
-})
+import { issueAndSendEmailVerificationCode } from '@/lib/security/email-verification-otp'
+import { requireApiUser } from '@/lib/supabase/route'
 
 export async function POST(request: Request) {
+  const auth = await requireApiUser({ requireVerifiedEmail: false })
+  if (auth.response) return auth.response
+
   try {
-    const json = await request.json().catch(() => null)
-    const result = schema.safeParse(json)
-    if (!result.success) {
-      return NextResponse.json(
-        { error: { message: result.error.issues[0]?.message || 'Invalid email address' } },
-        { status: 400 }
+    const result = await issueAndSendEmailVerificationCode({
+      supabase: auth.supabase,
+      email: auth.user!.email ?? '',
+      request,
+    })
+    if (result.reason === 'rate_limit') {
+      return Response.json(
+        {
+          error: {
+            message: 'Too many verification codes were requested. Wait before trying again.',
+          },
+        },
+        { status: 429 },
       )
     }
-
-    const { email } = result.data
-    const origin =
-      request.headers.get('origin') ||
-      process.env.NEXT_PUBLIC_SITE_URL ||
-      'http://localhost:3000'
-    const redirectTo = `${origin}/auth/callback?next=/verify-email`
-
-    const supabaseAdmin = createAdminClient()
-
-    let actionUrl: string | null = null
-
-    // Generate magiclink verification link for existing user
-    const { data: magicData, error: magicError } =
-      await supabaseAdmin.auth.admin.generateLink({
-        type: 'magiclink',
-        email,
-        options: { redirectTo },
-      })
-
-    if (!magicError && magicData?.properties?.action_link) {
-      actionUrl = magicData.properties.action_link
+    if (!result.sent) {
+      return Response.json(
+        { error: { message: 'Verification email is temporarily unavailable.' } },
+        { status: 503 },
+      )
     }
-
-    if (actionUrl) {
-      await sendAuthConfirmationEmail({
-        toEmail: email,
-        actionUrl,
-      })
-    }
-
-    return NextResponse.json({
-      data: { message: 'If an account is awaiting verification, a new link has been dispatched.' },
+    return Response.json({
+      data: { message: 'If this account still needs verification, a new code has been sent.' },
     })
   } catch (error) {
-    console.error('[Resend Verification] Error:', error)
-    return NextResponse.json(
-      { error: { message: 'Failed to resend verification email' } },
-      { status: 500 }
+    console.error('[Resend verification] Could not issue the app verification code.', {
+      reason: error instanceof Error ? error.name : 'UnknownError',
+    })
+    return Response.json(
+      { error: { message: 'Verification email is temporarily unavailable.' } },
+      { status: 503 },
     )
   }
 }

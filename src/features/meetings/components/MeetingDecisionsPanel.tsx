@@ -16,13 +16,14 @@ const voteLabels: Record<MeetingVoteChoice, string> = { yes: 'Yes', no: 'No', ab
 
 export function MeetingDecisionsPanel({ meetingId, canManage, canVote }: { meetingId: string; canManage: boolean; canVote: boolean }) {
   const [decisions, setDecisions] = useState<MeetingDecisionRecord[]>([])
-  const [loading, setLoading] = useState(true)
+  const [loadedMeetingId, setLoadedMeetingId] = useState<string | null>(null)
   const [pending, setPending] = useState(false)
   const [error, setError] = useState('')
   const [title, setTitle] = useState('')
   const [description, setDescription] = useState('')
   const [closesAt, setClosesAt] = useState('')
   const [meetingMinutes, setMeetingMinutes] = useState('')
+  const loading = loadedMeetingId !== meetingId
 
   const refresh = useCallback(async () => {
     setError('')
@@ -32,7 +33,6 @@ export function MeetingDecisionsPanel({ meetingId, canManage, canVote }: { meeti
 
   useEffect(() => {
     let active = true
-    setLoading(true)
     Promise.all([
       apiRequest<MeetingDecisionRecord[]>(`/api/meetings/${meetingId}/decisions`),
       apiRequest<Meeting>(`/api/meetings/${meetingId}`),
@@ -41,10 +41,14 @@ export function MeetingDecisionsPanel({ meetingId, canManage, canVote }: { meeti
         if (active) {
           setDecisions(data)
           setMeetingMinutes(meeting.minutes ?? '')
+          setLoadedMeetingId(meetingId)
         }
       })
-      .catch((reason: unknown) => { if (active) setError(reason instanceof Error ? reason.message : 'Unable to load meeting decisions.') })
-      .finally(() => { if (active) setLoading(false) })
+      .catch((reason: unknown) => {
+        if (!active) return
+        setError(reason instanceof Error ? reason.message : 'Unable to load meeting decisions.')
+        setLoadedMeetingId(meetingId)
+      })
     return () => { active = false }
   }, [meetingId])
 
@@ -87,7 +91,7 @@ export function MeetingDecisionsPanel({ meetingId, canManage, canVote }: { meeti
       <h2 className="text-lg font-semibold text-slate-900">Meeting decisions</h2>
       <p className="mt-1 text-sm text-slate-600">Record proposals, collect member votes, and keep the final outcome with the meeting.</p>
     </div>
-    {!loading && <MeetingMinutesPanel meetingId={meetingId} initialMinutes={meetingMinutes} canManage={canManage} />}
+    {!loading && <MeetingMinutesPanel key={meetingId} meetingId={meetingId} initialMinutes={meetingMinutes} canManage={canManage} />}
     <MeetingAttendancePanel meetingId={meetingId} canManage={canManage} />
     <FormError message={error} />
 
@@ -107,7 +111,7 @@ export function MeetingDecisionsPanel({ meetingId, canManage, canVote }: { meeti
     {loading ? <p role="status" className="py-4 text-sm text-slate-500">Loading meeting decisions…</p> : decisions.length ? <div className="space-y-3">
       {decisions.map((decision) => {
         const showResults = canManage || !decision.voting_open
-        const votingDeadlinePassed = Boolean(decision.voting_closes_at && Date.parse(decision.voting_closes_at) <= Date.now())
+        const votingDeadlinePassed = decision.voting_deadline_passed
         return <article key={decision.id} className="rounded-lg border border-slate-200 p-4">
           <div className="flex flex-wrap items-start justify-between gap-3">
             <div>

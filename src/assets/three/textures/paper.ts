@@ -1,7 +1,7 @@
 import * as THREE from 'three'
 
 /** Build a small, repeatable ledger-paper texture without downloading an image. */
-export function createLedgerTexture(): any {
+export function createLedgerTexture(): { colorSpace: string; dispose: () => void } | null {
   if (typeof document === 'undefined') return null
 
   const canvas = document.createElement('canvas')

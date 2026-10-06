@@ -1,5 +1,6 @@
-import Image from 'next/image'
 import styles from './BrandLoader.module.css'
+import { cn } from '@/lib/utils'
+import Image from 'next/image'
 
 type BrandLoaderProps = {
   label?: string
@@ -23,23 +24,18 @@ export function BrandLoader({
           style={{ width: `${size}px`, height: `${size}px` }}
           className="relative inline-flex items-center justify-center overflow-hidden"
         >
-          <Image
-            src="/animated_log/logo_assemble_transparent.gif"
-            alt="Phyaio Cycle"
-            width={size}
-            height={size}
-            unoptimized
-            priority
-            loading="eager"
-            style={{
-              width: `${size}px`,
-              height: `${size}px`,
-              maxWidth: `${size}px`,
-              maxHeight: `${size}px`,
-              objectFit: 'contain',
-            }}
-            className="block select-none"
-          />
+          <span className={cn('inline-flex items-center gap-2', className)}>
+             <Image
+                    src="/animated_log/logo_assemble_transparent.gif"
+                    alt=""
+                    width={size}
+                    height={size}
+                    unoptimized
+                    loading="lazy"
+                    style={{ width: `${size}px`, height: `${size}px` }}
+                    className="shrink-0 object-contain select-none"
+                  />
+          </span>
         </span>
       </span>
       {variant === 'screen' && (

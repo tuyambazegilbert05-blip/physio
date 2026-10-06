@@ -2,7 +2,6 @@ import { readFile } from 'node:fs/promises'
 import { join } from 'node:path'
 
 type EmailRecipient = {
-
   email: string
   name?: string
 }
@@ -15,12 +14,19 @@ type SendEmailOptions = {
   replyTo?: EmailRecipient
 }
 
+export type EmailSendFailureReason =
+  | 'configuration_missing'
+  | 'provider_rejected'
+  | 'network_failure'
+  | 'unexpected_response'
+
+export type EmailSendResult =
+  | { success: true; messageId: string }
+  | { success: false; reason: EmailSendFailureReason; statusCode?: number }
+
 function getEmailConfig() {
-  const apiKey = process.env.BREVO_SMTP_KEY
-  const senderEmail =
-    process.env.BREVO_SENDER_EMAIL ||
-    process.env.PhyaioCycle_AUTH_SENDER_EMAIL ||
-    'physiocycle.help@gmail.com'
+  const apiKey = process.env.BREVO_API_KEY
+  const senderEmail = process.env.BREVO_SENDER_EMAIL
   const senderName = process.env.BREVO_SENDER_NAME || 'Phyaio Cycle'
 
   return { apiKey, senderEmail, senderName }
@@ -29,16 +35,17 @@ function getEmailConfig() {
 /**
  * Base method to dispatch transactional emails through Brevo REST API v3
  */
-export async function sendTransactionalEmail(options: SendEmailOptions) {
+export async function sendTransactionalEmail(options: SendEmailOptions): Promise<EmailSendResult> {
   const { apiKey, senderEmail, senderName } = getEmailConfig()
 
-  if (!apiKey) {
-    console.warn('[Brevo] BREVO_SMTP_KEY is not defined. Email dispatch skipped.')
-    return { success: false, error: 'Missing Brevo API key' }
+  if (!apiKey || !senderEmail || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(senderEmail)) {
+    console.error('[Email] Brevo REST delivery is not configured.')
+    return { success: false, reason: 'configuration_missing' }
   }
 
+  let response: Response
   try {
-    const response = await fetch('https://api.brevo.com/v3/smtp/email', {
+    response = await fetch('https://api.brevo.com/v3/smtp/email', {
       method: 'POST',
       headers: {
         'api-key': apiKey,
@@ -58,21 +65,32 @@ export async function sendTransactionalEmail(options: SendEmailOptions) {
       }),
     })
 
-    if (!response.ok) {
-      const errorText = await response.text()
-      console.error(`[Brevo] API Error (${response.status}):`, errorText)
-      return { success: false, error: errorText }
-    }
-
-    const data = await response.json()
-    return { success: true, messageId: data.messageId }
   } catch (error) {
-    console.error('[Brevo] Network error during email dispatch:', error)
-    return {
-      success: false,
-      error: error instanceof Error ? error.message : 'Unknown email dispatch error',
-    }
+    console.error('[Email] Brevo REST request failed.', {
+      reason: error instanceof Error ? error.name : 'UnknownError',
+    })
+    return { success: false, reason: 'network_failure' }
   }
+
+  if (!response.ok) {
+    console.error('[Email] Brevo rejected a transactional email request.', {
+      status: response.status,
+    })
+    return { success: false, reason: 'provider_rejected', statusCode: response.status }
+  }
+
+  let data: { messageId?: unknown }
+  try {
+    data = await response.json()
+  } catch {
+    console.error('[Email] Brevo returned an unreadable success response.')
+    return { success: false, reason: 'unexpected_response', statusCode: response.status }
+  }
+  if (typeof data?.messageId !== 'string' || !data.messageId) {
+    console.error('[Email] Brevo success response did not include a message ID.')
+    return { success: false, reason: 'unexpected_response', statusCode: response.status }
+  }
+  return { success: true, messageId: data.messageId }
 }
 
 /**
@@ -163,6 +181,19 @@ function createBrandedEmailTemplate({
     </table>
   </body>
 </html>`
+}
+
+function escapeHtml(value: string) {
+  return value.replace(/[&<>"']/g, (character) => {
+    const entities: Record<string, string> = {
+      '&': '&amp;',
+      '<': '&lt;',
+      '>': '&gt;',
+      '"': '&quot;',
+      "'": '&#39;',
+    }
+    return entities[character]!
+  })
 }
 
 /**
@@ -314,11 +345,13 @@ export async function sendLoanDecisionEmail({
 export async function sendAuthRecoveryEmail({
   toEmail,
   actionUrl,
+  siteUrl: requestSiteUrl,
 }: {
   toEmail: string
   actionUrl: string
+  siteUrl?: string
 }) {
-  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000'
+  const siteUrl = requestSiteUrl || process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000'
   let htmlContent: string
 
   try {
@@ -348,42 +381,119 @@ export async function sendAuthRecoveryEmail({
   })
 }
 
-/**
- * Dispatch account confirmation email with branded template
- */
-export async function sendAuthConfirmationEmail({
+export async function sendEmailVerificationOtp({
   toEmail,
-  actionUrl,
+  code,
 }: {
   toEmail: string
-  actionUrl: string
+  code: string
 }) {
-  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000'
-  let htmlContent: string
-
-  try {
-    const rawTemplate = await readFile(join(process.cwd(), 'emails/auth/confirmation.html'), 'utf-8')
-    htmlContent = rawTemplate
-      .replaceAll('{{ .SiteURL }}', siteUrl)
-      .replaceAll('{{ .Email }}', toEmail)
-      .replaceAll('{{ .ConfirmationURL }}', actionUrl)
-  } catch (error) {
-    console.warn('[Brevo] Failed to read confirmation.html, using fallback template:', error)
-    htmlContent = createBrandedEmailTemplate({
-      headline: 'Confirm your email address',
-      bodyHtml: `
-        <p style="margin:0 0 16px;">Welcome to Phyaio Cycle! Please confirm your email address <strong>${toEmail}</strong> to activate your account.</p>
-      `,
-      actionUrl,
-      actionLabel: 'Confirm Email Address',
-    })
-  }
-
+  const safeEmail = escapeHtml(toEmail)
+  const htmlContent = createBrandedEmailTemplate({
+    headline: 'Verify your email address',
+    bodyHtml: `
+      <p style="margin:0 0 14px;">Use this one-time code to confirm that you own <strong>${safeEmail}</strong>.</p>
+      <div style="margin:24px 0;padding:20px;text-align:center;border:1px solid #e8defe;border-radius:16px;background:#f8f5ff;">
+        <span style="font-size:32px;line-height:1.2;font-weight:800;letter-spacing:0.35em;color:#5a36e8;">${escapeHtml(code)}</span>
+      </div>
+      <p style="margin:0;color:#647089;font-size:13px;">This code expires shortly and can only be used once. If you did not create this account, ignore this email.</p>
+    `,
+  })
   return sendTransactionalEmail({
     to: [{ email: toEmail }],
-    subject: 'Confirm your Phyaio Cycle account',
+    subject: 'Your Phyaio Cycle email verification code',
     htmlContent,
-    textContent: `Confirm your Phyaio Cycle account:\n\n${actionUrl}\n\nIf you didn't create an account, you can ignore this email.`,
+    textContent: `Your Phyaio Cycle verification code is ${code}. It expires shortly and can only be used once.`,
   })
 }
 
+export async function sendMembershipDecisionEmail({
+  toEmail,
+  toName,
+  groupName,
+  groupId,
+  approved,
+  message,
+}: {
+  toEmail: string
+  toName: string
+  groupName: string
+  groupId: string
+  approved: boolean
+  message?: string | null
+}) {
+  const safeName = escapeHtml(toName)
+  const safeGroupName = escapeHtml(groupName)
+  const safeMessage = message ? escapeHtml(message) : ''
+  const headline = approved
+    ? 'Your Ikimina request was approved'
+    : 'An update on your Ikimina request'
+  const status = approved ? 'approved' : 'not approved'
+  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000'
+  const actionUrl = approved
+    ? `${siteUrl}/dashboard/onboarding?group=${encodeURIComponent(groupId)}`
+    : `${siteUrl}/dashboard/join`
+  return sendTransactionalEmail({
+    to: [{ email: toEmail, name: toName }],
+    subject: `[Phyaio Cycle] ${headline}`,
+    htmlContent: createBrandedEmailTemplate({
+      headline,
+      bodyHtml: `<p style="margin:0 0 14px;">Hello ${safeName},</p><p style="margin:0 0 14px;">Your request to join <strong>${safeGroupName}</strong> was ${status}.</p>${approved ? '<p>You are now a Member. Continue with group onboarding to review the group information, rules, and contribution details before opening your personal Member space.</p>' : '<p>You do not have Member access to this Ikimina. You can review other available groups from your account.</p>'}${safeMessage ? `<p style="margin-top:16px;padding:14px;border-radius:12px;background:#f8f5ff;color:#4b5563;">Message from the Ikimina: ${safeMessage}</p>` : ''}`,
+      actionUrl,
+      actionLabel: approved ? 'Continue Member onboarding' : 'Review my request',
+    }),
+    textContent: `Hello ${toName}, your request to join ${groupName} was ${status}.${message ? ` Message: ${message}` : ''}${approved ? ' Continue with group onboarding before opening your Member space.' : ''}\n\n${actionUrl}`,
+  })
+}
+
+export async function sendGroupInvitationEmail({
+  toEmail,
+  toName,
+  inviterName,
+  groupName,
+  expiresAt,
+  acceptUrl,
+  declineUrl,
+}: {
+  toEmail: string
+  toName?: string | null
+  inviterName: string
+  groupName: string
+  expiresAt: string
+  acceptUrl: string
+  declineUrl: string
+}) {
+  const safeInvitee = escapeHtml(toName || 'there')
+  const safeInviter = escapeHtml(inviterName)
+  const safeGroup = escapeHtml(groupName)
+  const date = new Intl.DateTimeFormat('en', { dateStyle: 'long', timeZone: 'UTC' }).format(new Date(expiresAt))
+  const safeAcceptUrl = escapeHtml(acceptUrl)
+  const safeDeclineUrl = escapeHtml(declineUrl)
+  const htmlContent = createBrandedEmailTemplate({
+    headline: `You are invited to join ${safeGroup}`,
+    bodyHtml: `
+      <p style="margin:0 0 14px;">Hello ${safeInvitee},</p>
+      <p style="margin:0 0 14px;"><strong>${safeInviter}</strong> invited you to become a Member of <strong>${safeGroup}</strong>.</p>
+      <p style="margin:0 0 14px;">Accepting activates your membership in this group. You will then complete a short group onboarding that covers group information, rules, any required member details, and the configured contribution and share information before opening your personal Member space.</p>
+      <p style="margin:0 0 14px;">This invitation grants Member access only. It does not assign administrative or financial approval responsibilities, and onboarding confirmations do not record payments.</p>
+      <p style="margin:0;color:#647089;font-size:13px;">This invitation expires on ${escapeHtml(date)}. If you were not expecting it, you can decline it or ignore this message.</p>
+      <table role="presentation" cellspacing="0" cellpadding="0" border="0" style="margin-top:28px;">
+        <tr>
+          <td align="center" style="border-radius:14px;background:#7B3FF2;">
+            <a href="${safeAcceptUrl}" style="display:inline-block;padding:14px 24px;border-radius:14px;background:#7B3FF2;color:#ffffff;font-size:14px;font-weight:700;text-decoration:none;">ACCEPT INVITATION</a>
+          </td>
+          <td width="12"></td>
+          <td align="center" style="border-radius:14px;border:1px solid #d9d2ea;background:#ffffff;">
+            <a href="${safeDeclineUrl}" style="display:inline-block;padding:13px 20px;border-radius:14px;color:#39285e;font-size:14px;font-weight:700;text-decoration:none;">DECLINE INVITATION</a>
+          </td>
+        </tr>
+      </table>
+    `,
+  })
+  return sendTransactionalEmail({
+    to: [{ email: toEmail, name: toName ?? undefined }],
+    subject: `[Phyaio Cycle] Invitation to join ${groupName}`,
+    htmlContent,
+    textContent: `Hello ${toName || 'there'}, ${inviterName} invited you to join ${groupName}. Accepting activates your Member membership. You will then complete group onboarding to review its information and requirements before opening your personal Member space. Member onboarding does not record a payment. This invitation does not assign administrative or financial approval responsibilities. It expires on ${date}.\n\nAccept invitation: ${acceptUrl}\n\nDecline invitation: ${declineUrl}`,
+  })
+}

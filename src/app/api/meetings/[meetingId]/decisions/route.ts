@@ -36,6 +36,9 @@ export async function GET(_request: Request, { params }: RouteContext) {
   const summariesById = new Map((summaries ?? []).map((summary) => [summary.decision_id, summary]))
   const data: MeetingDecisionRecord[] = (decisions ?? []).map((decision) => ({
     ...decision,
+    voting_deadline_passed: Boolean(
+      decision.voting_closes_at && Date.parse(decision.voting_closes_at) <= Date.now(),
+    ),
     ...(summariesById.get(decision.id) ?? { decision_id: decision.id, yes_count: 0, no_count: 0, abstain_count: 0, my_vote: null }),
   }))
   return Response.json({ data })

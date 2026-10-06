@@ -83,7 +83,7 @@ export function RoleAssignmentsPanel({ groupId, access, onChanged }: { groupId: 
   return <section className="space-y-5 rounded-xl border border-slate-200 bg-white p-5" aria-labelledby="role-access-heading">
     <div>
       <h2 id="role-access-heading" className="font-semibold">Roles and access</h2>
-      <p className="mt-1 text-sm text-slate-600">Membership stays separate. A registered user can receive several group roles, and technicians can be assigned without becoming members.</p>
+      <p className="mt-1 text-sm text-slate-600">Membership stays separate. Group staff roles require active membership; technical roles can be assigned to a verified account without adding membership.</p>
     </div>
     <FormError message={error} />
     <form onSubmit={assign} className="grid items-end gap-3 sm:grid-cols-[1fr_1fr_auto]">

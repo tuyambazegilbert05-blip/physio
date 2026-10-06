@@ -1,38 +1,19 @@
-import { createServerClient } from '@supabase/ssr'
 import { NextResponse, type NextRequest } from 'next/server'
-import type { Database } from '@/types/database'
-import { getSupabaseEnvironment } from '@/config/environment'
 
-export async function proxy(request: NextRequest) {
-  let response = NextResponse.next({ request })
-  const { url, publishableKey } = getSupabaseEnvironment()
-  const supabase = createServerClient<Database>(url, publishableKey, {
-    cookies: {
-      getAll: () => request.cookies.getAll(),
-      setAll(cookiesToSet) {
-        cookiesToSet.forEach(({ name, value }) => request.cookies.set(name, value))
-        response = NextResponse.next({ request })
-        cookiesToSet.forEach(({ name, value, options }) => response.cookies.set(name, value, options))
-      },
-    },
-  })
-  const { data: { user } } = await supabase.auth.getUser()
+/**
+ * The proxy performs only an inexpensive missing-cookie redirect. The opaque
+ * cookie is never treated as proof of identity here: protected layouts and
+ * APIs validate its hash, expiry, and revocation state against the database.
+ */
+export function proxy(request: NextRequest) {
   const path = request.nextUrl.pathname
-  const isAuthRoute = ['/login', '/register', '/forgot-password', '/verify-email'].includes(path)
-
-  if (!user && path.startsWith('/dashboard')) {
+  if (path.startsWith('/dashboard') && !request.cookies.has('ikimina_session')) {
     const destination = request.nextUrl.clone()
     destination.pathname = '/login'
     destination.searchParams.set('next', path)
     return NextResponse.redirect(destination)
   }
-  if (user && isAuthRoute) {
-    const destination = request.nextUrl.clone()
-    destination.pathname = '/dashboard'
-    destination.search = ''
-    return NextResponse.redirect(destination)
-  }
-  return response
+  return NextResponse.next()
 }
 
-export const config = { matcher: ['/dashboard/:path*', '/login', '/register', '/forgot-password', '/reset-password', '/verify-email'] }
+export const config = { matcher: ['/dashboard/:path*'] }

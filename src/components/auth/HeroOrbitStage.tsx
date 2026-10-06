@@ -1,7 +1,7 @@
 'use client'
 
 import Image from 'next/image'
-import { useEffect, useRef } from 'react'
+import { useEffect, useRef, useSyncExternalStore } from 'react'
 import { motion } from 'motion/react'
 import { gsap } from 'gsap'
 import { StageThreeBackground } from '@/components/auth/StageThreeBackground'
@@ -13,7 +13,21 @@ export type HeroOrbitStageProps = {
   lang?: 'en' | 'rw'
 }
 
+const desktopQuery = '(min-width: 64rem)'
+
+function subscribeToDesktopLayout(onChange: () => void) {
+  const media = window.matchMedia(desktopQuery)
+  media.addEventListener('change', onChange)
+  return () => media.removeEventListener('change', onChange)
+}
+
+function getDesktopLayoutSnapshot() {
+  return window.matchMedia(desktopQuery).matches
+}
+
 export function HeroOrbitStage({ isMobile = false, className = '', lang = 'en' }: HeroOrbitStageProps) {
+  const desktopLayout = useSyncExternalStore(subscribeToDesktopLayout, getDesktopLayoutSnapshot, () => null)
+  const loadHeroEagerly = desktopLayout !== null && isMobile !== desktopLayout
   const containerRef = useRef<HTMLDivElement>(null)
   const svgRef = useRef<SVGSVGElement>(null)
   const logoRef = useRef<HTMLDivElement>(null)
@@ -170,7 +184,7 @@ export function HeroOrbitStage({ isMobile = false, className = '', lang = 'en' }
               alt="Ikimina Logo"
               width={150}
               height={150}
-              loading="eager"
+              loading={loadHeroEagerly ? 'eager' : 'lazy'}
               unoptimized
               style={{
                 width: "150px",
@@ -373,7 +387,7 @@ export function HeroOrbitStage({ isMobile = false, className = '', lang = 'en' }
                 alt="Ikimina Logo"
                 width={220}
                 height={220}
-                loading="eager"
+                loading={loadHeroEagerly ? 'eager' : 'lazy'}
                 unoptimized
                 style={{
                   width: "220px",

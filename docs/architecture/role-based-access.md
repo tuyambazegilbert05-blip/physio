@@ -2,7 +2,7 @@
 
 ## Identity model
 
-Supabase Auth identifies a person. `public.members` records membership in an Ikimina. `public.group_role_assignments` records one or more responsibilities for a person in a group. A role assignment can exist without a member record, which supports technical staff.
+The validated Ikimina application session identifies a person; `public.profiles` retains that account UUID. `public.members` records membership in an Ikimina. `public.group_role_assignments` records one or more responsibilities for a person in a group. A role assignment can exist without a member record, which supports technical staff.
 
 `public.role_permissions` maps the fixed role catalog to granular permissions. PostgreSQL RLS calls `has_group_permission(...)` to authorize data access and mutations. The web interface reads the same permission mapping to show available actions, but database policies remain the enforcement boundary.
 

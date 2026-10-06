@@ -1,2 +1,5 @@
-import { DashboardModule } from '@/features/dashboard/components/DashboardModule'
-export default function LoansPage() { return <DashboardModule resource="loans" /> }
+import { LoansDashboard } from '@/features/loans/components/LoansDashboard'
+
+export default function LoansPage() {
+  return <LoansDashboard />
+}

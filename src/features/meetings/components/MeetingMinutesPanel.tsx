@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect, useState, type FormEvent } from 'react'
+import { useState, type FormEvent } from 'react'
 import { FormError } from '@/components/forms/FormError'
 import { FormSubmit } from '@/components/forms/FormSubmit'
 import { Textarea } from '@/components/ui/Textarea'
@@ -12,11 +12,6 @@ export function MeetingMinutesPanel({ meetingId, initialMinutes, canManage }: { 
   const [pending, setPending] = useState(false)
   const [error, setError] = useState('')
   const [message, setMessage] = useState('')
-
-  useEffect(() => {
-    setMinutes(initialMinutes)
-    setSavedMinutes(initialMinutes)
-  }, [initialMinutes, meetingId])
 
   async function save(event: FormEvent<HTMLFormElement>) {
     event.preventDefault()

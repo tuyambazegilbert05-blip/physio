@@ -1,21 +1,7 @@
-import { createServerClient } from '@supabase/ssr'
-import { cookies } from 'next/headers'
-import type { Database } from '@/types/database'
-import { getSupabaseEnvironment } from '@/config/environment'
+import { createApplicationDatabaseClient, getCurrentApplicationUser } from '@/lib/security/application-session'
 
+/** Server-only database client bound to the user resolved from the opaque app session. */
 export async function createClient() {
-  const cookieStore = await cookies()
-  const { url, publishableKey } = getSupabaseEnvironment()
-  return createServerClient<Database>(url, publishableKey, {
-    cookies: {
-      getAll() { return cookieStore.getAll() },
-      setAll(cookiesToSet) {
-        try {
-          cookiesToSet.forEach(({ name, value, options }) => cookieStore.set(name, value, options))
-        } catch {
-          // Server Components cannot write cookies; proxy.ts persists refreshed tokens.
-        }
-      },
-    },
-  })
+  const user = await getCurrentApplicationUser()
+  return createApplicationDatabaseClient(user)
 }

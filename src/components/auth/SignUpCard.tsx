@@ -3,9 +3,10 @@
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
 import { useState, type FormEvent } from 'react'
-import { User, Mail, Lock, Eye, EyeOff, AlertCircle, ShieldCheck } from 'lucide-react'
+import { User, Mail, AlertCircle, ShieldCheck } from 'lucide-react'
 import { registerSchema } from '@/features/auth/schemas/auth.schema'
 import { authService } from '@/features/auth/services/auth.service'
+import { PasswordPolicyFields } from '@/features/auth/components/PasswordPolicyFields'
 
 type SignUpCardProps = {
   lang?: 'en' | 'rw'
@@ -16,7 +17,7 @@ export function SignUpCard({ lang = 'en' }: SignUpCardProps) {
   const [fullName, setFullName] = useState('')
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
-  const [showPassword, setShowPassword] = useState(false)
+  const [confirmation, setConfirmation] = useState('')
   const [pending, setPending] = useState(false)
   const [error, setError] = useState('')
 
@@ -64,11 +65,17 @@ export function SignUpCard({ lang = 'en' }: SignUpCardProps) {
       setError(parsed.error.issues[0]?.message ?? 'Please check your details.')
       return
     }
+    if (password !== confirmation) {
+      setError('Passwords do not match.')
+      return
+    }
 
     setPending(true)
     try {
-      await authService.register(parsed.data)
-      router.push(`/verify-email?email=${encodeURIComponent(parsed.data.email)}`)
+      const result = await authService.register(parsed.data)
+      const query = new URLSearchParams({ email: parsed.data.email })
+      if (!result.emailSent) query.set('delivery', 'retry')
+      router.push(`/verify-email?${query.toString()}`)
     } catch (reason) {
       setError(reason instanceof Error ? reason.message : 'Registration failed. Please try again.')
     } finally {
@@ -159,43 +166,13 @@ export function SignUpCard({ lang = 'en' }: SignUpCardProps) {
           </div>
         </div>
 
-        {/* Password */}
-        <div>
-          <label
-            htmlFor="register-password"
-            className="block text-xs font-bold uppercase tracking-wider text-slate-600 mb-1.5"
-          >
-            {t.passwordLabel}
-          </label>
-          <div className="relative">
-            <div className="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3.5 text-slate-400">
-              <Lock className="h-4 w-4" />
-            </div>
-            <input
-              id="register-password"
-              name="password"
-              type={showPassword ? 'text' : 'password'}
-              required
-              minLength={8}
-              autoComplete="new-password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              placeholder="••••••••••••"
-              className="w-full rounded-2xl border border-slate-200 bg-slate-50/60 py-3 pl-10 pr-11 text-sm font-semibold text-[#081233] placeholder-slate-400 transition-all focus:border-[#2437F5] focus:bg-white focus:outline-none focus:ring-3 focus:ring-[#2437F5]/15"
-            />
-            <button
-              type="button"
-              onClick={() => setShowPassword((prev) => !prev)}
-              aria-label={showPassword ? 'Hide password' : 'Show password'}
-              className="absolute inset-y-0 right-0 flex items-center pr-3.5 text-slate-400 hover:text-slate-600 transition-colors"
-            >
-              {showPassword ? <EyeOff className="h-4 w-4" /> : <Eye className="h-4 w-4" />}
-            </button>
-          </div>
-          <p className="mt-1.5 text-[11px] text-slate-400 font-medium">
-            {t.passwordHint}
-          </p>
-        </div>
+        <PasswordPolicyFields
+          prefix="register-card"
+          password={password}
+          confirmation={confirmation}
+          onPasswordChange={setPassword}
+          onConfirmationChange={setConfirmation}
+        />
 
         {/* Create Account Button */}
         <div className="pt-2">

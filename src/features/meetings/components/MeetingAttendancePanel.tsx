@@ -9,23 +9,25 @@ type AttendanceRow = { id: string; meeting_id: string; member_id: string; presen
 type AttendanceData = { members: MeetingMember[]; attendance: AttendanceRow[] }
 
 export function MeetingAttendancePanel({ meetingId, canManage }: { meetingId: string; canManage: boolean }) {
-  const [data, setData] = useState<AttendanceData>({ members: [], attendance: [] })
-  const [loading, setLoading] = useState(true)
+  const [attendanceState, setAttendanceState] = useState<{
+    meetingId: string
+    data: AttendanceData
+  } | null>(null)
+  const data = attendanceState?.meetingId === meetingId ? attendanceState.data : { members: [], attendance: [] }
+  const loading = attendanceState?.meetingId !== meetingId
   const [pendingMember, setPendingMember] = useState('')
   const [error, setError] = useState('')
 
   const refresh = useCallback(async () => {
     const next = await apiRequest<AttendanceData>(`/api/meetings/${meetingId}/attendance`)
-    setData(next)
+    setAttendanceState({ meetingId, data: next })
   }, [meetingId])
 
   useEffect(() => {
     let active = true
-    setLoading(true)
     apiRequest<AttendanceData>(`/api/meetings/${meetingId}/attendance`)
-      .then((result) => { if (active) setData(result) })
+      .then((result) => { if (active) setAttendanceState({ meetingId, data: result }) })
       .catch((reason: unknown) => { if (active) setError(reason instanceof Error ? reason.message : 'Unable to load attendance.') })
-      .finally(() => { if (active) setLoading(false) })
     return () => { active = false }
   }, [meetingId])
 

@@ -7,7 +7,7 @@ import { LanguageSwitch } from '@/components/auth/LanguageSwitch'
 import { HeroOrbitStage } from '@/components/auth/HeroOrbitStage'
 import { ResetPasswordCard } from '@/components/auth/ResetPasswordCard'
 
-export function ResetPasswordView() {
+export function ResetPasswordView({ resetToken }: { resetToken: string }) {
   const [lang, setLang] = useState<'en' | 'rw'>('en')
 
   return (
@@ -51,7 +51,7 @@ export function ResetPasswordView() {
                 />
               }
             >
-              <ResetPasswordCard lang={lang} />
+              <ResetPasswordCard lang={lang} resetToken={resetToken} />
             </Suspense>
           </div>
         </div>
@@ -71,7 +71,7 @@ export function ResetPasswordView() {
                 />
               }
             >
-              <ResetPasswordCard lang={lang} />
+              <ResetPasswordCard lang={lang} resetToken={resetToken} />
             </Suspense>
           </div>
         </div>

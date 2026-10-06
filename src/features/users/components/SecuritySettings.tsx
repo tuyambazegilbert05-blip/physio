@@ -1,74 +1,96 @@
 'use client'
 
-import { useCallback, useEffect, useState, type FormEvent } from 'react'
-import { createClient } from '@/lib/supabase/client'
+import { useEffect, useState, type FormEvent } from 'react'
+import { apiRequest } from '@/lib/api'
 import { FormError } from '@/components/forms/FormError'
 import { FormField } from '@/components/forms/FormField'
 import { FormSubmit } from '@/components/forms/FormSubmit'
 import { Input } from '@/components/ui/Input'
+import { PasswordPolicyFields } from '@/features/auth/components/PasswordPolicyFields'
 
-type TOTPFactor = { id: string; friendly_name?: string; status: 'verified' | 'unverified'; created_at: string }
-type TOTPSetup = { id: string; qrCode: string; secret: string }
+type TotpState = { enabled: boolean; pending: boolean; createdAt: string | null }
+type TotpSetup = { secret: string; otpauthUrl: string }
 
 export function SecuritySettings() {
   const [error, setError] = useState('')
   const [message, setMessage] = useState('')
   const [pending, setPending] = useState(false)
-  const [factors, setFactors] = useState<TOTPFactor[]>([])
-  const [setup, setSetup] = useState<TOTPSetup | null>(null)
+  const [password, setPassword] = useState('')
+  const [confirmation, setConfirmation] = useState('')
+  const [factor, setFactor] = useState<TotpState>({ enabled: false, pending: false, createdAt: null })
+  const [setup, setSetup] = useState<TotpSetup | null>(null)
   const [code, setCode] = useState('')
 
-  const refreshFactors = useCallback(async () => {
-    const { data, error: factorsError } = await createClient().auth.mfa.listFactors()
-    if (factorsError) throw factorsError
-    setFactors(data.totp as TOTPFactor[])
-  }, [])
+  async function refreshFactor() {
+    const result = await apiRequest<TotpState>('/api/auth/mfa')
+    setFactor(result)
+  }
 
-  useEffect(() => { void refreshFactors().catch((cause: unknown) => setError(cause instanceof Error ? cause.message : 'Could not load two-factor settings.')) }, [refreshFactors])
+  useEffect(() => {
+    let active = true
+    void apiRequest<TotpState>('/api/auth/mfa')
+      .then((result) => { if (active) setFactor(result) })
+      .catch((cause: unknown) => {
+        if (active) setError(cause instanceof Error ? cause.message : 'Could not load security settings.')
+      })
+    return () => { active = false }
+  }, [])
 
   async function updatePassword(event: FormEvent<HTMLFormElement>) {
     event.preventDefault()
     const formElement = event.currentTarget
-    const password = String(new FormData(formElement).get('password') ?? '')
-    if (password.length < 8) { setError('Use at least 8 characters.'); return }
-    setPending(true); setError(''); setMessage('')
+    setError(''); setMessage('')
+    if (password !== confirmation) { setError('Passwords do not match.'); return }
+    setPending(true)
+    const form = new FormData(formElement)
     try {
-      const { error: updateError } = await createClient().auth.updateUser({ password })
-      if (updateError) setError(updateError.message)
-      else { formElement.reset(); setMessage('Password updated.') }
+      const result = await apiRequest<{ message: string }>('/api/auth/password', {
+        method: 'PUT',
+        body: JSON.stringify({ currentPassword: form.get('currentPassword'), newPassword: password }),
+      })
+      setMessage(result.message)
+      setPassword(''); setConfirmation('')
+      formElement.reset()
     } catch (cause) { setError(cause instanceof Error ? cause.message : 'Unable to update your password.') }
     finally { setPending(false) }
   }
 
-  async function beginMfaSetup() {
+  async function beginMfa() {
     setPending(true); setError(''); setMessage('')
     try {
-      const { data, error: enrollError } = await createClient().auth.mfa.enroll({ factorType: 'totp', friendlyName: 'Ikimina authenticator' })
-      if (enrollError) throw enrollError
-      setSetup({ id: data.id, qrCode: data.totp.qr_code, secret: data.totp.secret })
+      const result = await apiRequest<TotpSetup>('/api/auth/mfa', { method: 'POST' })
+      setSetup(result)
+      setCode('')
     } catch (cause) { setError(cause instanceof Error ? cause.message : 'Could not begin authenticator setup.') }
     finally { setPending(false) }
   }
 
   async function verifyMfa(event: FormEvent<HTMLFormElement>) {
-    event.preventDefault()
-    if (!setup) return
-    setPending(true); setError(''); setMessage('')
+    event.preventDefault(); setPending(true); setError(''); setMessage('')
+    const formElement = event.currentTarget
+    const form = new FormData(formElement)
     try {
-      const { error: verifyError } = await createClient().auth.mfa.challengeAndVerify({ factorId: setup.id, code: code.trim() })
-      if (verifyError) throw verifyError
-      setSetup(null); setCode(''); await refreshFactors(); setMessage('Two-factor authentication is enabled for this account.')
+      await apiRequest('/api/auth/mfa/verify', { method: 'POST', body: JSON.stringify({ code, currentPassword: form.get('mfaCurrentPassword') }) })
+      setSetup(null); setCode('')
+      formElement.reset()
+      await refreshFactor()
+      setMessage('Two-factor authentication is enabled for this account.')
     } catch (cause) { setError(cause instanceof Error ? cause.message : 'That authenticator code could not be verified.') }
     finally { setPending(false) }
   }
 
-  async function removeFactor(factorId: string) {
-    if (!window.confirm('Remove this authenticator from your account?')) return
-    setPending(true); setError(''); setMessage('')
+  async function removeMfa(event: FormEvent<HTMLFormElement>) {
+    event.preventDefault(); setPending(true); setError(''); setMessage('')
+    const formElement = event.currentTarget
+    const form = new FormData(formElement)
     try {
-      const { error: removeError } = await createClient().auth.mfa.unenroll({ factorId })
-      if (removeError) throw removeError
-      await refreshFactors(); setMessage('Authenticator removed.')
+      await apiRequest('/api/auth/mfa', {
+        method: 'DELETE',
+        body: JSON.stringify({ currentPassword: form.get('currentPassword'), code: form.get('code') }),
+      })
+      formElement.reset()
+      await refreshFactor()
+      setMessage('Authenticator removed.')
     } catch (cause) { setError(cause instanceof Error ? cause.message : 'Could not remove this authenticator.') }
     finally { setPending(false) }
   }
@@ -76,21 +98,57 @@ export function SecuritySettings() {
   async function signOutOtherSessions() {
     setPending(true); setError(''); setMessage('')
     try {
-      const { error: signOutError } = await createClient().auth.signOut({ scope: 'others' })
-      if (signOutError) throw signOutError
-      setMessage('Other sessions have been signed out.')
+      const result = await apiRequest<{ message: string }>('/api/auth/sessions', { method: 'DELETE' })
+      setMessage(result.message)
     } catch (cause) { setError(cause instanceof Error ? cause.message : 'Could not end other sessions.') }
     finally { setPending(false) }
   }
 
-  return <div className="max-w-xl space-y-8">
-    <FormError message={error} />
-    {message && <p role="status" className="rounded-md border border-emerald-200 bg-emerald-50 p-3 text-sm text-emerald-800">{message}</p>}
-    <section><h2 className="mb-4 text-lg font-semibold">Change password</h2><form onSubmit={updatePassword} className="grid gap-4"><FormField htmlFor="new-password" label="New password"><Input id="new-password" name="password" type="password" minLength={8} autoComplete="new-password" required /></FormField><FormSubmit pending={pending}>Update password</FormSubmit></form></section>
-    <section className="space-y-4"><div><h2 className="text-lg font-semibold">Two-factor authentication</h2><p className="mt-1 text-sm text-slate-600">Use an authenticator app to protect sign-ins and sensitive financial actions.</p></div>
-      {factors.filter((factor) => factor.status === 'verified').map((factor) => <div key={factor.id} className="flex items-center justify-between rounded-lg border border-slate-200 p-3"><div><strong className="text-sm">Authenticator app</strong><p className="text-xs text-slate-500">{factor.friendly_name ?? 'Verified authenticator'}</p></div><button type="button" disabled={pending} onClick={() => void removeFactor(factor.id)} className="rounded-md border border-slate-300 px-3 py-2 text-xs">Remove</button></div>)}
-      {setup ? <form onSubmit={verifyMfa} className="grid gap-3 rounded-lg border border-slate-200 p-4"><p className="text-sm">Scan this QR code with an authenticator app, or enter the setup key manually.</p><img src={setup.qrCode} alt="Authenticator setup QR code" className="h-44 w-44 rounded bg-white p-2" /><code className="break-all rounded bg-slate-100 p-2 text-xs">{setup.secret}</code><FormField htmlFor="mfa-code" label="6-digit verification code"><Input id="mfa-code" value={code} onChange={(event) => setCode(event.target.value)} inputMode="numeric" autoComplete="one-time-code" pattern="[0-9]{6}" maxLength={6} required /></FormField><div className="flex gap-2"><FormSubmit pending={pending}>Verify and enable</FormSubmit><button type="button" disabled={pending} onClick={() => setSetup(null)} className="rounded-md border border-slate-300 px-4 py-2 text-sm">Cancel</button></div></form> : factors.some((factor) => factor.status === 'unverified') ? <p className="text-sm text-amber-800">An authenticator setup is pending. Finish setup or remove the unverified factor before starting again.</p> : <button type="button" disabled={pending} onClick={() => void beginMfaSetup()} className="rounded-md bg-indigo-700 px-4 py-2 text-sm font-semibold text-white">Set up authenticator</button>}
-    </section>
-    <section className="space-y-3"><div><h2 className="text-lg font-semibold">Session security</h2><p className="text-sm text-slate-600">Sessions use secure, HTTP-only cookies managed by Supabase Auth.</p></div><button type="button" disabled={pending} onClick={() => void signOutOtherSessions()} className="rounded-md border border-slate-300 px-4 py-2 text-sm font-semibold text-slate-700">Sign out other sessions</button></section>
-  </div>
+  return (
+    <div className="space-y-6">
+      <FormError message={error} />
+      {message && <p role="status" className="rounded-2xl border border-emerald-200 bg-emerald-50/80 p-3.5 text-sm font-medium text-emerald-800">{message}</p>}
+      <section className="rounded-2xl border border-indigo-50 bg-gradient-to-br from-white to-indigo-50/35 p-4 sm:p-5">
+        <h2 className="mb-4 font-heading text-base font-extrabold text-[#081233]">Change password</h2>
+        <form onSubmit={updatePassword} className="grid max-w-xl gap-4">
+          <FormField htmlFor="current-password" label="Current password"><Input id="current-password" name="currentPassword" type="password" autoComplete="current-password" required /></FormField>
+          <PasswordPolicyFields prefix="security" password={password} confirmation={confirmation} onPasswordChange={setPassword} onConfirmationChange={setConfirmation} />
+          <FormSubmit pending={pending}>Update password</FormSubmit>
+        </form>
+      </section>
+      <section className="space-y-4 rounded-2xl border border-indigo-50 bg-gradient-to-br from-white to-indigo-50/35 p-4 sm:p-5">
+        <div>
+          <h2 className="font-heading text-base font-extrabold text-[#081233]">Two-factor authentication</h2>
+          <p className="mt-1 text-sm leading-relaxed text-slate-500">Protect sign-ins and sensitive account actions with a time-based authenticator code.</p>
+        </div>
+        {factor.enabled ? (
+          <form onSubmit={removeMfa} className="grid max-w-xl gap-3 rounded-2xl border border-indigo-100 bg-white/90 p-4">
+            <p className="text-sm font-semibold text-emerald-800">Authenticator app is enabled.</p>
+            <FormField htmlFor="mfa-current-password" label="Current password"><Input id="mfa-current-password" name="currentPassword" type="password" autoComplete="current-password" required /></FormField>
+            <FormField htmlFor="mfa-remove-code" label="Current authenticator code"><Input id="mfa-remove-code" name="code" inputMode="numeric" autoComplete="one-time-code" pattern="[0-9]{6}" maxLength={6} required /></FormField>
+            <FormSubmit pending={pending}>Remove authenticator</FormSubmit>
+          </form>
+        ) : setup ? (
+          <form onSubmit={verifyMfa} className="grid gap-3 rounded-2xl border border-indigo-100 bg-white/90 p-4">
+            <p className="text-sm leading-relaxed text-slate-600">Add this account to your authenticator app using the setup key below, then enter the six-digit code it displays.</p>
+            <code className="select-all break-all rounded-lg bg-slate-50 p-3 text-sm font-bold tracking-wider text-[#231044]">{setup.secret}</code>
+            <a href={setup.otpauthUrl} className="break-all text-xs font-semibold text-violet-700 underline">Open authenticator setup link</a>
+            <FormField htmlFor="mfa-enroll-current-password" label="Current password"><Input id="mfa-enroll-current-password" name="mfaCurrentPassword" type="password" autoComplete="current-password" required /></FormField>
+            <FormField htmlFor="mfa-setup-code" label="Authenticator code"><Input id="mfa-setup-code" value={code} onChange={(event) => setCode(event.target.value.replace(/\D/g, '').slice(0, 6))} inputMode="numeric" autoComplete="one-time-code" pattern="[0-9]{6}" maxLength={6} required /></FormField>
+            <FormSubmit pending={pending}>Verify and enable</FormSubmit>
+            <button type="button" className="text-sm text-slate-600 underline" onClick={() => setSetup(null)}>Cancel setup</button>
+          </form>
+        ) : (
+          <div className="flex flex-wrap items-center justify-between gap-3 rounded-2xl border border-indigo-100 bg-white/90 p-4">
+            <p className="text-sm text-slate-600">No authenticator is linked to this account.</p>
+            <button type="button" disabled={pending} onClick={() => void beginMfa()} className="rounded-xl bg-[#7B3FF2] px-4 py-2.5 text-sm font-bold text-white disabled:opacity-50">Set up authenticator</button>
+          </div>
+        )}
+      </section>
+      <section className="flex flex-wrap items-center justify-between gap-3 rounded-2xl border border-indigo-50 bg-white p-4 sm:p-5">
+        <div><h2 className="font-heading text-base font-extrabold text-[#081233]">Active sessions</h2><p className="mt-1 text-sm text-slate-500">End every other signed-in session on your account.</p></div>
+        <button type="button" disabled={pending} onClick={() => void signOutOtherSessions()} className="rounded-xl border border-indigo-100 px-4 py-2.5 text-sm font-bold text-[#4d42cf] hover:bg-indigo-50 disabled:opacity-50">Sign out other sessions</button>
+      </section>
+    </div>
+  )
 }

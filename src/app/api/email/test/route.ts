@@ -1,20 +1,44 @@
 import { NextResponse, type NextRequest } from 'next/server'
-import { sendNotificationEmail } from '@/lib/email/brevo'
-import { createClient } from '@/lib/supabase/server'
+import { z } from 'zod'
+import { sendNotificationEmail } from '@/lib/email/service'
+import { databaseError, readJson, requireApiUser } from '@/lib/supabase/route'
+
+const emailTestSchema = z.object({ email: z.email().optional() }).optional()
 
 export async function POST(request: NextRequest) {
-  const supabase = await createClient()
-  const { data: { user } } = await supabase.auth.getUser()
+  const auth = await requireApiUser({ requireMfaIfEnabled: true, requireVerifiedEmail: true })
+  if (auth.response) return auth.response
+  const parsed = await readJson(request, emailTestSchema)
+  if (parsed.response) return parsed.response
 
-  if (!user) {
-    return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
+  const { data: assignments, error: assignmentError } = await auth.supabase
+    .from('group_role_assignments')
+    .select('group_id')
+    .eq('user_id', auth.user!.id)
+  if (assignmentError) return databaseError(assignmentError)
+
+  let canConfigureSystem = false
+  for (const groupId of [...new Set((assignments ?? []).map((assignment) => assignment.group_id))]) {
+    const { data: permissions, error } = await auth.supabase.rpc('current_group_permissions', {
+      target_group: groupId,
+    })
+    if (error) return databaseError(error)
+    if (permissions?.includes('system:configure')) {
+      canConfigureSystem = true
+      break
+    }
+  }
+  if (!canConfigureSystem) {
+    return NextResponse.json(
+      { error: { message: 'System configuration permission is required.' } },
+      { status: 403 },
+    )
   }
 
-  const body = await request.json().catch(() => ({}))
-  const targetEmail = body.email || user.email
-
+  const user = auth.user!
+  const targetEmail = parsed.data?.email ?? user.email
   if (!targetEmail) {
-    return NextResponse.json({ error: 'No target email specified' }, { status: 400 })
+    return NextResponse.json({ error: { message: 'A recipient email is required.' } }, { status: 400 })
   }
 
   const result = await sendNotificationEmail({
@@ -27,8 +51,11 @@ export async function POST(request: NextRequest) {
   })
 
   if (!result.success) {
-    return NextResponse.json({ error: result.error }, { status: 500 })
+    return NextResponse.json(
+      { error: { message: 'The email service could not send the test message.' } },
+      { status: 503 },
+    )
   }
 
-  return NextResponse.json({ success: true, messageId: result.messageId })
+  return NextResponse.json({ data: { success: true, messageId: result.messageId } })
 }

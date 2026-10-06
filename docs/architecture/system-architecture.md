@@ -1,5 +1,5 @@
 # System architecture
 
-The browser renders the Next.js App Router UI. Client components call same-origin route handlers for mutations and lists. Route handlers create cookie-aware Supabase clients with the publishable key; PostgreSQL row-level security scopes data to the authenticated user and active group membership. Supabase Auth manages credentials, email verification, and password recovery.
+The browser renders the Next.js App Router UI. Client components call same-origin route handlers for private data and mutations. Ikimina validates its opaque server-side session cookie, then creates a short-lived server-signed PostgREST identity so PostgreSQL's existing `auth.uid()`-based RLS and group permission resolver continue to scope data. Supabase supplies PostgreSQL only; Ikimina manages password credentials, sessions, application MFA, email verification, and recovery tokens. Brevo REST delivers application emails.
 
-No service-role key is used by the web application. SQL migrations, not application startup, define the database schema and policies.
+The service-role key is used only by server-side account/session/authentication operations and narrowly scoped administrative services. It is never sent to a browser. SQL migrations, not application startup, define the database schema and policies.

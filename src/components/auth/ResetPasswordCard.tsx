@@ -1,17 +1,18 @@
 'use client'
 
 import Link from 'next/link'
-import { useRouter } from 'next/navigation'
-import { useState, type FormEvent } from 'react'
+import { useEffect, useState, type FormEvent } from 'react'
 import { Lock, Eye, EyeOff, AlertCircle, ShieldCheck, CheckCircle2, ArrowRight } from 'lucide-react'
-import { createClient } from '@/lib/supabase/client'
+import { apiRequest } from '@/lib/api'
+import { resetPasswordSchema } from '@/features/auth/schemas/auth.schema'
 
 type ResetPasswordCardProps = {
   lang?: 'en' | 'rw'
+  resetToken: string
 }
 
-export function ResetPasswordCard({ lang = 'en' }: ResetPasswordCardProps) {
-  const router = useRouter()
+export function ResetPasswordCard({ lang = 'en', resetToken }: ResetPasswordCardProps) {
+  const [validation, setValidation] = useState<{ token: string; state: 'ready' | 'missing' } | null>(null)
   const [password, setPassword] = useState('')
   const [confirmPassword, setConfirmPassword] = useState('')
   const [showPassword, setShowPassword] = useState(false)
@@ -19,6 +20,12 @@ export function ResetPasswordCard({ lang = 'en' }: ResetPasswordCardProps) {
   const [pending, setPending] = useState(false)
   const [error, setError] = useState('')
   const [saved, setSaved] = useState(false)
+  const tokenIsValid = /^[A-Za-z0-9_-]{43}$/.test(resetToken)
+  const recoveryState = !tokenIsValid
+    ? 'missing'
+    : validation?.token === resetToken
+      ? validation.state
+      : 'checking'
 
   const t = {
     en: {
@@ -33,10 +40,13 @@ export function ResetPasswordCard({ lang = 'en' }: ResetPasswordCardProps) {
       updateBtn: 'Update password',
       updatingBtn: 'Updating password…',
       successTitle: 'Password updated!',
-      successMessage:
-        'Your password has been changed securely. You can now access your account.',
+      successMessage: 'Your password was changed. Sign in with your new password to continue.',
       signInBtn: 'Sign in to your account',
-      encryptionNote: '256-bit AES encryption · Supabase RLS secure',
+      encryptionNote: 'Single-use, expiring recovery link',
+      checkingLink: 'Checking your recovery link…',
+      expiredLink:
+        'This password reset link is invalid, expired, or already used. Request a new link to continue.',
+      requestNewLink: 'Request a new reset link',
     },
     rw: {
       badge: 'Umutekano',
@@ -53,16 +63,36 @@ export function ResetPasswordCard({ lang = 'en' }: ResetPasswordCardProps) {
       successMessage:
         'Ijambobanga ryawe ryahinduwe mu mutekano. Ubu ushobora kwinjira muri konti yawe.',
       signInBtn: 'Injira muri konti yawe',
-      encryptionNote: 'Umutekano wizewe wa 256-bit AES RLS',
+      encryptionNote: 'Ihuza rimwe gusa kandi rifite igihe ntarengwa',
+      checkingLink: 'Turagenzura umurongo wo guhindura ijambobanga…',
+      expiredLink:
+        'Uyu murongo ntiwemewe, warangiye, cyangwa wakoreshejwe. Saba undi murongo mushya.',
+      requestNewLink: 'Saba undi murongo mushya',
     },
   }[lang]
+
+  useEffect(() => {
+    let active = true
+    if (!tokenIsValid) return () => { active = false }
+    void fetch(`/api/auth/reset-password?token=${encodeURIComponent(resetToken)}`, { cache: 'no-store', referrerPolicy: 'no-referrer' })
+      .then(async (response) => {
+        const result = await response.json() as { data?: { valid: boolean } }
+        if (active) setValidation({ token: resetToken, state: response.ok && result.data?.valid ? 'ready' : 'missing' })
+        if (active && response.ok && result.data?.valid) window.history.replaceState(null, '', '/reset-password')
+      })
+      .catch(() => { if (active) setValidation({ token: resetToken, state: 'missing' }) })
+    return () => {
+      active = false
+    }
+  }, [resetToken, tokenIsValid])
 
   async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault()
     setError('')
 
-    if (password.length < 8) {
-      setError('Password must be at least 8 characters long.')
+    const parsed = resetPasswordSchema.safeParse({ password })
+    if (!parsed.success) {
+      setError(parsed.error.issues[0]?.message ?? 'Choose a stronger password.')
       return
     }
     if (password !== confirmPassword) {
@@ -72,14 +102,16 @@ export function ResetPasswordCard({ lang = 'en' }: ResetPasswordCardProps) {
 
     setPending(true)
     try {
-      const { error: authError } = await createClient().auth.updateUser({ password })
-      if (authError) throw authError
+      await apiRequest('/api/auth/reset-password', {
+        method: 'POST',
+        body: JSON.stringify({ token: resetToken, password: parsed.data.password }),
+      })
       setSaved(true)
     } catch (reason) {
       setError(
         reason instanceof Error
           ? reason.message
-          : 'Unable to update the password. Please try again.'
+          : 'Unable to update the password. Please try again.',
       )
     } finally {
       setPending(false)
@@ -99,7 +131,27 @@ export function ResetPasswordCard({ lang = 'en' }: ResetPasswordCardProps) {
         </span>
       </div>
 
-      {saved ? (
+      {recoveryState === 'checking' ? (
+        <div role="status" className="py-10 text-center text-sm font-medium text-slate-500">
+          <span className="mx-auto mb-4 block h-6 w-6 animate-spin rounded-full border-2 border-indigo-200 border-t-[#7B3FF2]" />
+          {t.checkingLink}
+        </div>
+      ) : recoveryState === 'missing' ? (
+        <div className="py-4 text-center">
+          <div
+            role="alert"
+            className="rounded-2xl border border-rose-200 bg-rose-50 p-4 text-sm text-rose-700"
+          >
+            {t.expiredLink}
+          </div>
+          <Link
+            href="/forgot-password"
+            className="mt-6 flex w-full items-center justify-center gap-2 rounded-[14px] bg-[#7B3FF2] py-4 font-heading text-[15px] font-bold text-white shadow-[0_12px_28px_-4px_rgba(123,63,242,0.48)] transition-all hover:bg-[#682bd8]"
+          >
+            {t.requestNewLink}
+          </Link>
+        </div>
+      ) : saved ? (
         /* SUCCESS STATE */
         <div className="py-4 text-center animate-in fade-in zoom-in-95 duration-300">
           <div className="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-2xl bg-indigo-50 text-[#2437F5] shadow-[0_8px_20px_-4px_rgba(36,55,245,0.25)]">

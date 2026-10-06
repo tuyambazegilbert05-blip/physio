@@ -30,15 +30,31 @@ export async function GET(request: Request) {
   const auth = await requireApiUser()
   if (auth.response) return auth.response
   const groupId = new URL(request.url).searchParams.get('group_id')
-  if (!uuidSchema.safeParse(groupId).success) return Response.json({ error: { message: 'A valid group_id is required.' } }, { status: 400 })
+  if (!uuidSchema.safeParse(groupId).success)
+    return Response.json({ error: { message: 'A valid group_id is required.' } }, { status: 400 })
 
-  const [{ data: roles, error: rolesError }, { data: permissions, error: permissionsError }, { data: membership, error: membershipError }, { data: rows, error: assignmentsError }] = await Promise.all([
+  const [
+    { data: roles, error: rolesError },
+    { data: permissions, error: permissionsError },
+    { data: membership, error: membershipError },
+    { data: rows, error: assignmentsError },
+  ] = await Promise.all([
     auth.supabase.rpc('current_group_roles', { target_group: groupId! }),
     auth.supabase.rpc('current_group_permissions', { target_group: groupId! }),
-    auth.supabase.from('members').select('id').eq('group_id', groupId!).eq('user_id', auth.user!.id).eq('status', 'active').maybeSingle(),
-    auth.supabase.from('group_role_assignments').select('group_id,user_id,role_key,user_email,granted_at').eq('group_id', groupId!).order('role_key'),
+    auth.supabase
+      .from('members')
+      .select('id,status')
+      .eq('group_id', groupId!)
+      .eq('user_id', auth.user!.id)
+      .maybeSingle(),
+    auth.supabase
+      .from('group_role_assignments')
+      .select('group_id,user_id,role_key,user_email,granted_at')
+      .eq('group_id', groupId!)
+      .order('role_key'),
   ])
-  for (const error of [rolesError, permissionsError, membershipError, assignmentsError]) if (error) return databaseError(error)
+  for (const error of [rolesError, permissionsError, membershipError, assignmentsError])
+    if (error) return databaseError(error)
 
   const userIds = [...new Set((rows ?? []).map((row) => row.user_id))]
   const { data: profiles, error: profilesError } = userIds.length
@@ -58,12 +74,14 @@ export async function GET(request: Request) {
   const data: GroupAccess = {
     group_id: groupId!,
     current_user_id: auth.user!.id,
-    is_member: Boolean(membership),
-    roles: ((roles ?? []).filter((role): role is GroupRole => groupRoles.includes(role as GroupRole))),
+    is_member: membership?.status === 'active',
+    roles: (roles ?? []).filter((role): role is GroupRole =>
+      groupRoles.includes(role as GroupRole),
+    ),
     permissions: permissions ?? [],
     assignments,
   }
-  return Response.json({ data })
+  return Response.json({ data }, { headers: { 'Cache-Control': 'no-store' } })
 }
 
 export async function POST(request: Request) {

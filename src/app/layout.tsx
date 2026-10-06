@@ -1,4 +1,4 @@
-import { Analytics } from '@vercel/analytics/next'
+import { PrivateAnalytics } from '@/components/analytics/PrivateAnalytics'
 import type { Metadata, Viewport } from 'next'
 import { Providers } from '@/components/providers/Providers'
 import './globals.css'
@@ -43,7 +43,7 @@ export default function RootLayout({
       </head>
       <body className="antialiased">
         <Providers>{children}</Providers>
-        {process.env.NODE_ENV === 'production' && <Analytics />}
+        {process.env.NODE_ENV === 'production' && <PrivateAnalytics />}
       </body>
     </html>
   )

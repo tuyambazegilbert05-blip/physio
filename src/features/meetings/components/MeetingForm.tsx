@@ -23,7 +23,16 @@ export function MeetingForm({ groupId, onCreated }: { groupId: string; onCreated
     const parsed = meetingCreateSchema.safeParse({ group_id: groupId, title: form.get('title'), agenda: form.get('agenda') || null, location: form.get('location') || null, starts_at: start.toISOString(), ends_at: end?.toISOString() ?? null })
     if (!parsed.success) { setError(parsed.error.issues[0]?.message ?? 'Check meeting details.'); return }
     setPending(true); setError('')
-    try { const meeting = await meetingService.create(parsed.data as any); onCreated?.(meeting); formElement.reset() }
+    try {
+      const meeting = await meetingService.create({
+        ...parsed.data,
+        agenda: parsed.data.agenda ?? null,
+        location: parsed.data.location ?? null,
+        ends_at: parsed.data.ends_at ?? null,
+      })
+      onCreated?.(meeting)
+      formElement.reset()
+    }
     catch (reason) { setError(reason instanceof Error ? reason.message : 'Could not create meeting.') }
     finally { setPending(false) }
   }

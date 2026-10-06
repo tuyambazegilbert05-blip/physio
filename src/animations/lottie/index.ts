@@ -1,5 +1,5 @@
 export type LottieAsset = 'savings' | 'community' | 'success' | 'loading' | 'emptyState'
-type Loader = () => Promise<{ default: unknown }>
+type Loader = () => Promise<{ default: object }>
 
 const animationLoaders: Record<LottieAsset, Loader> = {
   savings: () => import('@/assets/lottie/savings.json'),

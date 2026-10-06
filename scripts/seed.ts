@@ -1,5 +1,6 @@
 import { randomBytes } from 'node:crypto'
 import { createClient } from '@supabase/supabase-js'
+import { hashPassword } from '../src/lib/security/password-hash.ts'
 
 if (process.env.NODE_ENV === 'production') throw new Error('Development seed data is disabled in production.')
 const url = process.env.NEXT_PUBLIC_SUPABASE_URL
@@ -13,37 +14,41 @@ const mainGroupId = uuid(1)
 const seedTime = new Date().toISOString()
 const ownerEmail = 'treasurer@PhyaioCycle.local'
 const technicianEmail = 'support@PhyaioCycle.local'
-const { data: userPage, error: listError } = await admin.auth.admin.listUsers({ page: 1, perPage: 1000 })
-if (listError) throw listError
-
-async function ensureUser(email: string, fullName: string, initialPassword = randomBytes(32).toString('base64url')) {
-  const existing = userPage.users.find((user) => user.email?.toLowerCase() === email.toLowerCase())
-  if (existing) return existing
-  const { data, error } = await admin.auth.admin.createUser({
-    email,
-    password: initialPassword,
-    email_confirm: true,
-    user_metadata: { full_name: fullName },
-  })
-  if (error) throw new Error(`Could not create seed account ${email}: ${error.message}`)
-  return data.user
+function seedUser(sequence: number, email: string, fullName: string, initialPassword = randomBytes(32).toString('base64url')) {
+  return { id: uuid(0x1000 + sequence), email, fullName, password: initialPassword }
 }
 
-const owner = await ensureUser(ownerEmail, 'Development Treasurer', password)
-const technician = await ensureUser(technicianEmail, 'Development Technician')
-const demoUsers: any[] = []
+const owner = seedUser(0, ownerEmail, 'Development Treasurer', password)
+const technician = seedUser(1, technicianEmail, 'Development Technician')
+const demoUsers: Array<ReturnType<typeof seedUser>> = []
 for (let index = 1; index <= 11; index += 1) {
   const suffix = String(index).padStart(2, '0')
-  demoUsers.push(await ensureUser(`demo.member.${suffix}@PhyaioCycle.local`, `Demo Member ${suffix}`))
+  demoUsers.push(seedUser(index + 1, `demo.member.${suffix}@PhyaioCycle.local`, `Demo Member ${suffix}`))
 }
 
 const profileRows = [
-  { id: owner.id, full_name: 'Development Treasurer' },
-  { id: technician.id, full_name: 'Development Technician' },
-  ...demoUsers.map((user, index) => ({ id: user.id, full_name: `Demo Member ${String(index + 1).padStart(2, '0')}` })),
+  ...[owner, technician, ...demoUsers].map((user) => ({
+    id: user.id,
+    full_name: user.fullName,
+    email: user.email,
+    normalized_email: user.email.toLowerCase(),
+    email_verified_at: seedTime,
+    account_status: 'active',
+  })),
 ]
 const { error: profilesError } = await admin.from('profiles').upsert(profileRows, { ignoreDuplicates: true })
 if (profilesError) throw profilesError
+const credentialRows: Array<{ user_id: string; password_hash: string; password_changed_at: string; updated_at: string }> = []
+for (const user of [owner, technician, ...demoUsers]) {
+  credentialRows.push({
+    user_id: user.id,
+    password_hash: await hashPassword(user.password),
+    password_changed_at: seedTime,
+    updated_at: seedTime,
+  })
+}
+const { error: credentialsError } = await admin.from('app_password_credentials').upsert(credentialRows, { ignoreDuplicates: true })
+if (credentialsError) throw credentialsError
 
 const groupRows = Array.from({ length: 9 }, (_, index) => ({
   id: uuid(0x100 + index),

@@ -2,7 +2,7 @@
 
 ## Account access
 
-Register with name, email, and password → verify the email through Supabase Auth → sign in → create or open a group.
+Register with name, email, and password → Ikimina creates the account and opaque session → Ikimina sends and validates its own email OTP → choose a discoverable group → submit a membership request → wait for authorized approval before member access. Login, MFA, password change, password recovery, logout, and session revocation are also app-owned; PostgreSQL and its RLS remain hosted by Supabase.
 
 ## Contribution
 

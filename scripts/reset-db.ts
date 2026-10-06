@@ -29,10 +29,6 @@ create schema public;
 grant usage on schema public to anon, authenticated, service_role;
 grant all on schema public to postgres, service_role;
 ${migrationSql}
-insert into public.profiles (id, full_name)
-select u.id, coalesce(nullif(u.raw_user_meta_data ->> 'full_name', ''), split_part(u.email, '@', 1))
-from auth.users as u
-on conflict (id) do nothing;
 commit;
 `
 

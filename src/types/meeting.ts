@@ -20,4 +20,6 @@ export type MeetingVoteSummary = {
   abstain_count: number
   my_vote: MeetingVoteChoice | null
 }
-export type MeetingDecisionRecord = MeetingDecision & MeetingVoteSummary
+export type MeetingDecisionRecord = MeetingDecision & MeetingVoteSummary & {
+  voting_deadline_passed: boolean
+}

@@ -944,7 +944,7 @@ with contribution_totals as (
 select g.id as group_id, g.currency,
        coalesce(c.collected, 0)::numeric(15,0) as total_contributions,
        coalesce(l.outstanding, 0)::numeric(15,0) as total_loans_outstanding,
-       (g.reserve_balance + coalesce(a.adjusted, 0))::numeric(15,0) as reserve_balance,
+       g.reserve_balance + coalesce(a.adjusted, 0)::numeric(15,0) as reserve_balance,
        (coalesce(c.collected, 0) + coalesce(i.collected, 0) + coalesce(s.net_cash, 0)
         - coalesce(l.outstanding, 0) - g.reserve_balance - coalesce(a.adjusted, 0) - coalesce(e.paid, 0))::numeric(15,0) as available_balance,
        now() as as_of,
